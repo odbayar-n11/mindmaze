@@ -1,0 +1,77 @@
+/* Site-wide basics. Each page brings its own stylesheet (components/<page>/<page>.css),
+   scoped to that page, exactly as in the designs. */
+html,
+body {
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------- page transition */
+.pt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+}
+.pt-overlay[data-active='true'] {
+  visibility: visible;
+  pointer-events: auto;
+}
+.pt-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -52px;
+  height: calc(100% + 104px);
+  display: flex;
+  flex-direction: column;
+  background: #072039;
+  transform: translate3d(0, 100%, 0);
+}
+/* the Mongolian key band that edges every section of the site, leading the panel in and out */
+.pt-band {
+  flex: none;
+  height: 52px;
+  background: #fbf8f1;
+  position: relative;
+}
+.pt-band::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #072039;
+  -webkit-mask: url(/media/888ba7acba947e81b83283f979c2f407.png) 0 0 / auto 100% repeat-x;
+  mask: url(/media/888ba7acba947e81b83283f979c2f407.png) 0 0 / auto 100% repeat-x;
+}
+.pt-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.pt-burr {
+  width: min(300px, 64vw);
+  height: min(300px, 64vw);
+  margin-bottom: -40px;
+  display: block;
+}
+.pt-word {
+  display: block;
+  height: 46px;
+  aspect-ratio: 384 / 379;
+  background: #f3efe6;
+  -webkit-mask: url(/media/e909eea4bc807598c43bcab5e40cfb0b.png) center / contain no-repeat;
+  mask: url(/media/e909eea4bc807598c43bcab5e40cfb0b.png) center / contain no-repeat;
+}
+.pt-dest {
+  min-height: 1em;
+  font-family: 'Jost', 'Futura', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #e2574c;
+}
