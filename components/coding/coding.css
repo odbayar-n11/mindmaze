@@ -567,6 +567,7 @@ html:has(.page-coding) {
 }
 .page-coding .reel-stage {
   position: relative;
+<<<<<<< HEAD
 }
 .page-coding .reel-cap {
   position: relative;
@@ -585,19 +586,169 @@ html:has(.page-coding) {
   position: relative;
   z-index: 2;
   margin-top: clamp(-34px, -1.6vw, -8px);
+=======
+  margin-top: clamp(20px, 2.4vw, 40px);
+}
+/* the caption sits over the far side of the loop, as on the reference */
+.page-coding .reel-cap {
+  position: absolute;
+  z-index: 2;
+  /* a little higher than on the reference so the dark type clears the film on a light page */
+  top: clamp(-20px, calc(2.4vw - 32px), 14px);
+  left: 0;
+  right: 0;
+  text-align: center;
+  pointer-events: none;
+}
+.page-coding .reel-titles {
+  display: grid;
+  perspective: 700px;
+}
+.page-coding .reel-title {
+  grid-area: 1 / 1;
+  transform-origin: 50% 35%;
+}
+.page-coding .reel-name {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(36px, 4.5vw, 72px);
+  line-height: 1.05;
+  color: #072039;
+  text-shadow: 0 1px 0 rgba(251, 248, 241, 0.9), 0 0 22px rgba(251, 248, 241, 0.9);
+}
+.page-coding .reel-meta {
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px 12px;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 20px;
+  color: #55524c;
+  text-shadow: 0 0 12px rgba(251, 248, 241, 0.95);
+}
+.page-coding .reel-meta a {
+  pointer-events: auto;
+  color: #072039;
+  text-decoration: none;
+}
+.page-coding .reel-meta a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* new title: rolls over the top of the drum, seen nearly edge-on, and turns to face us */
+.page-coding .reel-title.is-in {
+  animation: reel-title-in 0.62s linear 0.07s both;
+}
+/* old title: drops away over the front of the drum, trailing its afterglow */
+.page-coding .reel-title.is-out {
+  animation: reel-title-out 0.11s cubic-bezier(0.5, 0, 0.9, 0.6) both;
+}
+@keyframes reel-title-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-0.6em) rotateX(80deg) rotateZ(2deg);
+    text-shadow: 0 -0.1em 0 rgba(7, 32, 57, 0.3), 0 -0.2em 0 rgba(7, 32, 57, 0.15);
+  }
+  3% {
+    opacity: 1;
+    transform: translateY(-0.55em) rotateX(78deg) rotateZ(2.5deg);
+  }
+  9% {
+    transform: translateY(-0.47em) rotateX(69deg) rotateZ(3deg);
+  }
+  17% {
+    transform: translateY(-0.38em) rotateX(57deg) rotateZ(3.6deg);
+    text-shadow: 0 -0.08em 0 rgba(7, 32, 57, 0.26), 0 -0.16em 0 rgba(7, 32, 57, 0.12);
+  }
+  30% {
+    transform: translateY(-0.27em) rotateX(41deg) rotateZ(4deg);
+  }
+  46% {
+    transform: translateY(-0.16em) rotateX(25deg) rotateZ(3.8deg);
+    text-shadow: 0 -0.03em 0 rgba(7, 32, 57, 0.12), 0 -0.06em 0 rgba(7, 32, 57, 0);
+  }
+  59% {
+    transform: translateY(-0.06em) rotateX(14deg) rotateZ(3deg);
+  }
+  73% {
+    transform: translateY(0) rotateX(5deg) rotateZ(2deg);
+    text-shadow: 0 0 0 rgba(7, 32, 57, 0), 0 0 0 rgba(7, 32, 57, 0);
+  }
+  88% {
+    transform: rotateZ(0.6deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes reel-title-out {
+  0% {
+    opacity: 1;
+    transform: none;
+  }
+  25% {
+    opacity: 0.72;
+    transform: translateY(0.04em) rotateX(-8deg);
+    text-shadow: 0 -0.08em 0 rgba(7, 32, 57, 0.3), 0 -0.16em 0 rgba(7, 32, 57, 0.15);
+  }
+  60% {
+    opacity: 0.42;
+    transform: translateY(0.14em) rotateX(-26deg);
+    text-shadow: 0 -0.12em 0 rgba(7, 32, 57, 0.28), 0 -0.24em 0 rgba(7, 32, 57, 0.14);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0.32em) rotateX(-50deg);
+  }
+}
+.page-coding .reel-canvas {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: clamp(420px, 48vw, 820px);
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.page-coding .reel-canvas:active {
+  cursor: grabbing;
+}
+.page-coding .reel-nav {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 6.5%;
+>>>>>>> 20672e8 (fixed)
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+<<<<<<< HEAD
 }
 .page-coding .reel-nav .pbtn {
   width: 52px;
   height: 52px;
+=======
+  pointer-events: none;
+}
+.page-coding .reel-nav > * {
+  pointer-events: auto;
+}
+.page-coding .reel-nav .pbtn {
+  width: 56px;
+  height: 56px;
+>>>>>>> 20672e8 (fixed)
   display: flex;
   align-items: center;
   justify-content: center;
   background: #072039;
   color: #f3efe6;
+<<<<<<< HEAD
   flex: none;
 }
 .page-coding .pdots {
@@ -625,11 +776,84 @@ html:has(.page-coding) {
   }
   .page-coding .reel-nav {
     margin-top: 12px;
+=======
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: none;
+}
+.page-coding .reel-nav .pbtn:active {
+  transform: scale(0.94);
+}
+/* dots stay put; a ring slides along them with the film */
+.page-coding .pdots {
+  --dot: 10px;
+  --gap: 13.5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+}
+.page-coding .pd {
+  display: block;
+  width: var(--dot);
+  height: var(--dot);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(7, 32, 57, 0.36);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.page-coding .pd:hover {
+  background: #072039;
+}
+.page-coding .pd:focus-visible {
+  outline: 3px solid #e2574c;
+  outline-offset: 4px;
+}
+.page-coding .pring {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--dot) / 2);
+  width: 19px;
+  height: 19px;
+  margin: -9.5px 0 0 -9.5px;
+  box-sizing: border-box;
+  border: 1.5px solid #072039;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translateX(calc(var(--p, 0) * (var(--dot) + var(--gap))));
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-coding .reel-title.is-in,
+  .page-coding .reel-title.is-out {
+    animation-duration: 0.01s;
+    animation-delay: 0s;
+  }
+}
+@media (max-width: 760px) {
+  .page-coding .reel-canvas {
+    height: clamp(340px, 92vw, 520px);
+  }
+  .page-coding .reel-meta {
+    font-size: 17px;
+>>>>>>> 20672e8 (fixed)
   }
 }
 @media (max-width: 560px) {
   .page-coding .pdots {
+<<<<<<< HEAD
     gap: 8px;
+=======
+    --dot: 8px;
+    --gap: 11px;
+  }
+  .page-coding .pring {
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+>>>>>>> 20672e8 (fixed)
   }
   .page-coding .reel-nav .pbtn {
     width: 46px;

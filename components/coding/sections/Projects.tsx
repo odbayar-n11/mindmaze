@@ -1,4 +1,8 @@
 import type { CodingVals } from '../CodingPage';
+<<<<<<< HEAD
+=======
+import FilmReel from '../FilmReel';
+>>>>>>> 20672e8 (fixed)
 
 export default function Projects({ v }: { v: CodingVals }) {
   const { t } = v;
@@ -39,6 +43,7 @@ export default function Projects({ v }: { v: CodingVals }) {
           </p>
         </div>
       </div>
+<<<<<<< HEAD
       <div className="reel-stage" style={{ margin: 'clamp(32px, 3.6vw, 56px) 0 0' }}>
         <div
           className="reel-cap"
@@ -127,6 +132,14 @@ export default function Projects({ v }: { v: CodingVals }) {
           </span>
         </div>
       </div>
+=======
+      <FilmReel
+        projects={v.projects}
+        viewLabel={t.viewP}
+        alt={t.stripAlt}
+        padX="max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))"
+      />
+>>>>>>> 20672e8 (fixed)
     </section>
   );
 }

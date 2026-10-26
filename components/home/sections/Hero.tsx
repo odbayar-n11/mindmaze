@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import PinnedHeader from '../../navigation/PinnedHeader';
+>>>>>>> 20672e8 (fixed)
 import type { HomeVals } from '../HomePage';
 
 export default function Hero({ v }: { v: HomeVals }) {
@@ -6,7 +10,11 @@ export default function Hero({ v }: { v: HomeVals }) {
     // The hero fills the screen. Below the header, the composition from the design (1274 x 709 px at
     // 1440 px wide) is scaled as one piece to fit the space; on phones it stacks (see home.css, .hero-*).
     <section id="top" className="hero">
+<<<<<<< HEAD
       <header
+=======
+      <PinnedHeader
+>>>>>>> 20672e8 (fixed)
         style={{
           position: 'relative',
           zIndex: '1',
@@ -119,7 +127,11 @@ export default function Hero({ v }: { v: HomeVals }) {
             Log In
           </a>
         </div>
+<<<<<<< HEAD
       </header>
+=======
+      </PinnedHeader>
+>>>>>>> 20672e8 (fixed)
       <div className="hero-frame">
         <div className="hero-stage">
           <div className="hero-left">

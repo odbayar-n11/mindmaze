@@ -105,5 +105,18 @@ export function codingContent(lang: Lang) {
   const slideHalf = Array.from({ length: slideOnce.length * 3 }, (_, i) => ({ ...slideOnce[i % slideOnce.length], hid: flag(i >= slideOnce.length) }));
   const slidePics = slideHalf.concat(slideHalf.map((p) => ({ ...p, hid: flag(true) })));
 
+<<<<<<< HEAD
   return { t, nav, heroStats, pillars, ipFacts, olFacts, slidePics };
+=======
+  // student projects on the film reel in "Projects we shaped" (screens in /public/media/projects)
+  const projects = [
+    { title: L('Hangman', 'Үг таах тоглоом'), type: L('Game', 'Тоглоом'), img: '/media/projects/hangman.webp' },
+    { title: L('My to-do list', 'Хийх ажлын жагсаалт'), type: L('Web app', 'Веб апп'), img: '/media/projects/todo.webp' },
+    { title: L('Calculator', 'Тооны машин'), type: L('Web app', 'Веб апп'), img: '/media/projects/calc.webp' },
+    { title: L('Tic-tac-toe', 'X ба O'), type: L('Game', 'Тоглоом'), img: '/media/projects/ttt.webp' },
+    { title: L('Memory', 'Санах ойн тоглоом'), type: L('Card game', 'Картын тоглоом'), img: '/media/projects/memory.webp' },
+  ];
+
+  return { t, nav, heroStats, pillars, ipFacts, olFacts, slidePics, projects };
+>>>>>>> 20672e8 (fixed)
 }

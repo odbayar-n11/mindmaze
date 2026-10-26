@@ -45,6 +45,11 @@ components/
     sections/*.tsx    markup of each section (sizes, colours and spacing from the design)
     content.ts        all text in English and Mongolian, plus lists (nav, photos, team…)
     <name>.css        the design's stylesheet, scoped to that page (.page-home, …)
+<<<<<<< HEAD
+=======
+  coding/FilmReel.tsx "Projects we shaped": caption, arrows and dots around the film reel
+  coding/reelScene.ts three.js: the loop of film the projects run along
+>>>>>>> 20672e8 (fixed)
   home/eye.ts         hero eye that blinks between the photo and the drawing
   home/map-data.ts    province outlines and student projects for the map
   puzzles/burr.ts     three.js: the six-piece wooden burr that assembles as you scroll
@@ -62,6 +67,25 @@ public/media/         every image from the designs
 - **three.js** is pinned to r128, the same version the design uses, so the wood, light and colour of
   the 3D burr match exactly. It is only downloaded on the puzzle page and for the transition.
 
+<<<<<<< HEAD
+=======
+## Projects reel (Coding page)
+
+The student projects in **Projects we shaped** run on a loop of 35 mm film, built after the
+selected-work reel on shader.se. Its shape, camera, sprocket holes and timing were measured from a
+screen recording of that site:
+
+- The loop stays still while the film slides along it, one frame per step, on a damped spring
+  (about 0.4 s). While it moves, fading ghost exposures trail behind, like a screen's afterglow.
+- The far side of the loop shows through above the front, mirrored, and fades out toward the back.
+- The title rolls over a drum: the old one drops away, the new one turns over the top into place.
+- The arrows, the dots, the keyboard arrow keys, and dragging the film all move it.
+
+To change the projects, edit `projects` in `components/coding/content.ts` (title, type and screen
+image; any number works). The screens live in `public/media/projects/` and are cropped to the film
+window from the top.
+
+>>>>>>> 20672e8 (fixed)
 ## Page transition
 
 Clicking any link to another page starts the transition (`components/transition/PageTransition.tsx`):

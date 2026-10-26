@@ -78,7 +78,11 @@ body:has(.page-puzzles) {
   font-family: var(--body);
   font-size: 16px;
   line-height: 1.55;
+<<<<<<< HEAD
   overflow-x: hidden;
+=======
+  overflow-x: clip;
+>>>>>>> 20672e8 (fixed)
 }
 .page-puzzles a {
   color: inherit;

@@ -75,3 +75,52 @@ body {
   text-transform: uppercase;
   color: #e2574c;
 }
+<<<<<<< HEAD
+=======
+
+/* Match wrapped desktop/mobile navigation height when following section links. */
+html:has(.page-home),
+html:has(.page-coding) {
+  scroll-padding-top: calc(var(--site-nav-height, 89px) + 12px);
+}
+.page-home .hero {
+  padding-top: var(--site-nav-height, 89px);
+}
+
+/* A light navigation surface after leaving the top of the page. */
+[data-scroll-header] {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+[data-scroll-header][data-scrolled='true'] {
+  background: #fff !important;
+  color: #0b1528;
+  border-bottom-color: rgba(11, 21, 40, 0.12) !important;
+  box-shadow: 0 3px 16px rgba(11, 21, 40, 0.08);
+  color-scheme: light;
+  --ink: #0b1528;
+  --bg: #fff;
+}
+[data-scroll-header][data-scrolled='true'] .navlink {
+  color: #0b1528 !important;
+}
+[data-scroll-header][data-scrolled='true'] .navlink:hover {
+  color: #e2574c !important;
+}
+[data-scroll-header][data-scrolled='true'] > a[aria-label] img {
+  filter: brightness(0) !important;
+}
+[data-scroll-header][data-scrolled='true'] [role='group'] {
+  border-color: rgba(11, 21, 40, 0.45) !important;
+}
+[data-scroll-header][data-scrolled='true'] [role='group'] button {
+  color: #0b1528 !important;
+  background: transparent !important;
+}
+[data-scroll-header][data-scrolled='true'] [role='group'] button[aria-pressed='true'] {
+  color: #fff !important;
+  background: #0b1528 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scroll-header] { transition: none; }
+}
+>>>>>>> 20672e8 (fixed)
