@@ -1,21 +1,12 @@
-<<<<<<< HEAD
-=======
 import { useScrolledHeader } from '../../navigation/PinnedHeader';
->>>>>>> 20672e8 (fixed)
 import Link from 'next/link';
 import type { PuzzlesVals } from '../PuzzlesPage';
 
 export default function Header({ v }: { v: PuzzlesVals }) {
-<<<<<<< HEAD
-  const { enP, mnP, nav, setEn, setMn, t } = v;
-  return (
-    <header>
-=======
   const scrolled = useScrolledHeader();
   const { enP, mnP, nav, setEn, setMn, t } = v;
   return (
     <header data-scroll-header data-scrolled={scrolled}>
->>>>>>> 20672e8 (fixed)
       {' '}
       <div className="progress" id="progress" />{' '}
       <nav className="wrap nav" aria-label="Main">

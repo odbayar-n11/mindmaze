@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 import PinnedHeader from '../../navigation/PinnedHeader';
->>>>>>> 20672e8 (fixed)
 import Link from 'next/link';
 import type { CodingVals } from '../CodingPage';
 
@@ -9,11 +6,7 @@ export default function Hero({ v }: { v: CodingVals }) {
   const { enBg, enFg, heroStats, isEn, isMn, mnBg, mnFg, nav, setEn, setMn, t } = v;
   return (
     <section id="top" style={{ position: 'relative', background: '#0B1528', color: '#F3EFE6' }}>
-<<<<<<< HEAD
-      <header
-=======
       <PinnedHeader
->>>>>>> 20672e8 (fixed)
         className="chead"
         style={{
           position: 'absolute',
@@ -130,11 +123,7 @@ export default function Hero({ v }: { v: CodingVals }) {
             Log In
           </a>
         </div>
-<<<<<<< HEAD
-      </header>
-=======
       </PinnedHeader>
->>>>>>> 20672e8 (fixed)
       <h1
         style={{
           position: 'absolute',

@@ -75,8 +75,6 @@ body {
   text-transform: uppercase;
   color: #e2574c;
 }
-<<<<<<< HEAD
-=======
 
 /* Match wrapped desktop/mobile navigation height when following section links. */
 html:has(.page-home),
@@ -123,4 +121,3 @@ html:has(.page-coding) {
 @media (prefers-reduced-motion: reduce) {
   [data-scroll-header] { transition: none; }
 }
->>>>>>> 20672e8 (fixed)

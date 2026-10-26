@@ -105,9 +105,6 @@ export function codingContent(lang: Lang) {
   const slideHalf = Array.from({ length: slideOnce.length * 3 }, (_, i) => ({ ...slideOnce[i % slideOnce.length], hid: flag(i >= slideOnce.length) }));
   const slidePics = slideHalf.concat(slideHalf.map((p) => ({ ...p, hid: flag(true) })));
 
-<<<<<<< HEAD
-  return { t, nav, heroStats, pillars, ipFacts, olFacts, slidePics };
-=======
   // student projects on the film reel in "Projects we shaped" (screens in /public/media/projects)
   const projects = [
     { title: L('Hangman', 'Үг таах тоглоом'), type: L('Game', 'Тоглоом'), img: '/media/projects/hangman.webp' },
@@ -118,5 +115,4 @@ export function codingContent(lang: Lang) {
   ];
 
   return { t, nav, heroStats, pillars, ipFacts, olFacts, slidePics, projects };
->>>>>>> 20672e8 (fixed)
 }

@@ -567,26 +567,6 @@ html:has(.page-coding) {
 }
 .page-coding .reel-stage {
   position: relative;
-<<<<<<< HEAD
-}
-.page-coding .reel-cap {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-.page-coding .reel-img {
-  display: block;
-  position: relative;
-  z-index: 1;
-  width: 85%;
-  height: auto;
-  margin: clamp(-60px, -3vw, -18px) 0 0 6.3%;
-}
-.page-coding .reel-nav {
-  position: relative;
-  z-index: 2;
-  margin-top: clamp(-34px, -1.6vw, -8px);
-=======
   margin-top: clamp(20px, 2.4vw, 40px);
 }
 /* the caption sits over the far side of the loop, as on the reference */
@@ -723,17 +703,10 @@ html:has(.page-coding) {
   left: 0;
   right: 0;
   bottom: 6.5%;
->>>>>>> 20672e8 (fixed)
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-<<<<<<< HEAD
-}
-.page-coding .reel-nav .pbtn {
-  width: 52px;
-  height: 52px;
-=======
   pointer-events: none;
 }
 .page-coding .reel-nav > * {
@@ -742,41 +715,11 @@ html:has(.page-coding) {
 .page-coding .reel-nav .pbtn {
   width: 56px;
   height: 56px;
->>>>>>> 20672e8 (fixed)
   display: flex;
   align-items: center;
   justify-content: center;
   background: #072039;
   color: #f3efe6;
-<<<<<<< HEAD
-  flex: none;
-}
-.page-coding .pdots {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.page-coding .pd {
-  display: block;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  border: 1.5px solid #072039;
-}
-.page-coding .pd.on {
-  width: 14px;
-  height: 14px;
-  background: #072039;
-}
-@media (max-width: 760px) {
-  .page-coding .reel-img {
-    width: 100%;
-    margin-left: 0;
-  }
-  .page-coding .reel-nav {
-    margin-top: 12px;
-=======
   border: 0;
   border-radius: 5px;
   cursor: pointer;
@@ -838,14 +781,10 @@ html:has(.page-coding) {
   }
   .page-coding .reel-meta {
     font-size: 17px;
->>>>>>> 20672e8 (fixed)
   }
 }
 @media (max-width: 560px) {
   .page-coding .pdots {
-<<<<<<< HEAD
-    gap: 8px;
-=======
     --dot: 8px;
     --gap: 11px;
   }
@@ -853,7 +792,6 @@ html:has(.page-coding) {
     width: 16px;
     height: 16px;
     margin: -8px 0 0 -8px;
->>>>>>> 20672e8 (fixed)
   }
   .page-coding .reel-nav .pbtn {
     width: 46px;
