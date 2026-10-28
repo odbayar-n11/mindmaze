@@ -23,7 +23,7 @@ export default function Impact({ v }: { v: HomeVals }) {
       id="impact"
       style={{
         position: 'relative',
-        background: '#FBF8F1',
+        background: '#FFFFFF',
         padding: 'clamp(48px, 5vw, 80px) 0',
         overflow: 'hidden',
       }}
@@ -405,7 +405,7 @@ export default function Impact({ v }: { v: HomeVals }) {
                       position: 'absolute',
                       ...cardPos,
                       width: 'min(300px, 70%)',
-                      background: '#F3EFE6',
+                      background: '#F4F4F4',
                       color: '#1A1A1A',
                       boxShadow: '0 22px 44px rgba(40,36,28,0.3)',
                       zIndex: '3',

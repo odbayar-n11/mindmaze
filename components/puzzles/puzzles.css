@@ -5,21 +5,21 @@ body:has(.page-puzzles) {
 
 /* Layout: sticky nav, stacked full-width sections; section 02 pins a 3D stage while scroll assembles the burr puzzle */
 html:has(.page-puzzles) {
-  --bg: #faf8f2;
-  --bg-2: #faf8f2;
+  --bg: #ffffff;
+  --bg-2: #ffffff;
   --ink: #0e1a3a;
   --ink-2: #4a5470;
   --blue: #0b56a6;
   --amber: #d9861f;
   --line: #ddd5c4;
   --pattern: #e9d9bd;
-  --edu-bg: #faf8f2;
-  --edu-card: #f2efe7;
+  --edu-bg: #ffffff;
+  --edu-card: #f4f4f4;
   --edu-ink: #14213d;
   --edu-red: #8b1e1e;
   --edu-rule: #a9a39a;
   --edu-muted: #4b4b4b;
-  --card: #fffdf8;
+  --card: #ffffff;
   --wood-shadow: rgba(40, 28, 10, 0.32);
   --display: "DM Serif Display", Georgia, serif;
   --body: "Instrument Serif", Georgia, serif;
@@ -99,9 +99,12 @@ body:has(.page-puzzles) {
   position: sticky;
   top: env(safe-area-inset-top, 0px);
   z-index: 20;
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
+  /* always dark blue, in both themes and while scrolling; the header's text reads --ink/--bg */
+  --bg: #0b1528;
+  --ink: #f3efe6;
+  color-scheme: dark;
+  background: #0b1528;
+  border-bottom: 1px solid rgba(243, 239, 230, 0.18);
 }
 .page-puzzles .progress {
   position: absolute;

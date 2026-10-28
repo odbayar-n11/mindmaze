@@ -17,7 +17,7 @@ export default function HomeView({ v }: { v: HomeVals }) {
         style={{
           fontFamily: "'Jost', 'Futura', sans-serif",
           color: '#1A1A1A',
-          background: '#FBF8F1',
+          background: '#FFFFFF',
           minWidth: '0',
           overflowX: 'hidden',
         }}

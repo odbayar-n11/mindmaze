@@ -6,7 +6,7 @@ export default function HowWeTeach({ v }: { v: CodingVals }) {
     <section
       className="bp"
       id="how"
-      style={{ position: 'relative', background: '#FBF8F1', padding: 'clamp(32px, 3.3vw, 56px) 0 0' }}
+      style={{ position: 'relative', background: '#FFFFFF', padding: 'clamp(28px, 3vw, 44px) 0 0' }}
     >
       <div aria-hidden="true" className="gl" />
       <div className="shead" style={{ margin: '0 max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))' }}>
@@ -31,7 +31,7 @@ export default function HowWeTeach({ v }: { v: CodingVals }) {
           <p style={{ margin: '0', fontSize: '21px', lineHeight: '1.55', color: '#55524C' }}>{t.howLead}</p>
         </div>
       </div>
-      <div className="split" style={{ marginTop: 'clamp(36px, 4vw, 56px)' }}>
+      <div className="split" style={{ marginTop: 'clamp(24px, 2.6vw, 36px)' }}>
         <article className="sp sp-l">
           <div className="sp-clip">
             <img className="sp-bg" src="/media/18dd08be500119697ebb9158121c8393.jpg" alt={t.ipAlt} />

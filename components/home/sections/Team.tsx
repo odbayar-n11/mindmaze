@@ -9,7 +9,7 @@ export default function Team({ v }: { v: HomeVals }) {
         position: 'relative',
         padding: 'clamp(64px, 7vw, 112px) 0',
         overflow: 'hidden',
-        backgroundColor: '#fbf8f1',
+        backgroundColor: '#ffffff',
       }}
     >
       <div

@@ -9,8 +9,8 @@ export default function Projects({ v }: { v: CodingVals }) {
       id="projects"
       style={{
         position: 'relative',
-        background: '#FBF8F1',
-        padding: 'clamp(64px, 7vw, 112px) 0',
+        background: '#FFFFFF',
+        padding: 'clamp(28px, 3vw, 44px) 0 clamp(36px, 4vw, 56px)',
         overflow: 'hidden',
       }}
     >

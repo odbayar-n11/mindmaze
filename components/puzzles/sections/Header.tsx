@@ -1,12 +1,10 @@
-import { useScrolledHeader } from '../../navigation/PinnedHeader';
 import Link from 'next/link';
 import type { PuzzlesVals } from '../PuzzlesPage';
 
 export default function Header({ v }: { v: PuzzlesVals }) {
-  const scrolled = useScrolledHeader();
   const { enP, mnP, nav, setEn, setMn, t } = v;
   return (
-    <header data-scroll-header data-scrolled={scrolled}>
+    <header>
       {' '}
       <div className="progress" id="progress" />{' '}
       <nav className="wrap nav" aria-label="Main">

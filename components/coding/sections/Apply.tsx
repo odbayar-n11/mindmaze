@@ -8,8 +8,8 @@ export default function Apply({ v }: { v: CodingVals }) {
       id="apply"
       style={{
         position: 'relative',
-        background: '#FBF8F1',
-        padding: 'clamp(64px, 7vw, 112px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
+        background: '#FFFFFF',
+        padding: 'clamp(28px, 3vw, 44px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) clamp(36px, 4vw, 56px)',
       }}
     >
       <div aria-hidden="true" className="gl" />
@@ -139,7 +139,7 @@ export default function Apply({ v }: { v: CodingVals }) {
             gap: '26px 24px',
             alignContent: 'start',
             fontFamily: "'Jost', 'Futura', sans-serif",
-            background: '#F3EFE6',
+            background: '#F4F4F4',
             border: '1px solid var(--ln)',
             padding: 'clamp(24px, 2.6vw, 40px)',
           }}

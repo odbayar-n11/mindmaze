@@ -15,7 +15,7 @@ export default function CodingView({ v }: { v: CodingVals }) {
         style={{
           fontFamily: "'Jost', 'Futura', sans-serif",
           color: '#1A1A1A',
-          background: '#FBF8F1',
+          background: '#FFFFFF',
           minWidth: '0',
           overflowX: 'hidden',
           position: 'relative',

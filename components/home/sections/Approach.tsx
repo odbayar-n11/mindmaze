@@ -13,7 +13,7 @@ export default function Approach({ v }: { v: HomeVals }) {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        background: '#FBF8F1',
+        background: '#FFFFFF',
         padding: 'clamp(32px, 3vw, 64px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
       }}
     >

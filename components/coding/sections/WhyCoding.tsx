@@ -8,9 +8,9 @@ export default function WhyCoding({ v }: { v: CodingVals }) {
       id="why"
       style={{
         position: 'relative',
-        background: '#FBF8F1',
+        background: '#FFFFFF',
         padding:
-          'clamp(40px, 4.5vw, 64px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) clamp(64px, 7vw, 112px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
+          'clamp(28px, 3vw, 44px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) clamp(36px, 4vw, 56px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
       }}
     >
       <div aria-hidden="true" className="gl" />
@@ -39,9 +39,9 @@ export default function WhyCoding({ v }: { v: CodingVals }) {
       </div>
       <p
         style={{
-          margin: 'clamp(36px, 4vw, 56px) 0 0',
+          margin: 'clamp(24px, 2.6vw, 36px) 0 0',
           maxWidth: '1000px',
-          fontSize: 'clamp(23px, 2.3vw, 30px)',
+          fontSize: 'clamp(18px, 1.5vw, 21px)',
           lineHeight: '1.5',
         }}
       >
@@ -57,14 +57,14 @@ export default function WhyCoding({ v }: { v: CodingVals }) {
         </mark>
         {t.whyB}
       </p>
-      <div className="cells" style={{ marginTop: 'clamp(40px, 4vw, 60px)' }}>
+      <div className="cells" style={{ marginTop: 'clamp(28px, 2.8vw, 40px)' }}>
         {pillars?.map((p, i) => (
           <article
             key={i}
             className="cell brk"
             style={{
               position: 'relative',
-              background: '#F3EFE6',
+              background: '#F4F4F4',
               padding: '30px 30px 34px',
               display: 'flex',
               flexDirection: 'column',
@@ -102,11 +102,11 @@ export default function WhyCoding({ v }: { v: CodingVals }) {
       </div>
       <p
         style={{
-          margin: 'clamp(40px, 4vw, 56px) auto 0',
+          margin: 'clamp(28px, 2.8vw, 40px) auto 0',
           maxWidth: '760px',
           textAlign: 'center',
           fontStyle: 'italic',
-          fontSize: 'clamp(22px, 2vw, 26px)',
+          fontSize: 'clamp(18px, 1.4vw, 20px)',
           lineHeight: '1.5',
           color: '#072039',
         }}

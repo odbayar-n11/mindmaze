@@ -8,9 +8,9 @@ export default function WhatWeTeach({ v }: { v: CodingVals }) {
       id="learn"
       style={{
         position: 'relative',
-        background: '#FBF8F1',
+        background: '#FFFFFF',
         padding:
-          'clamp(40px, 4.5vw, 64px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) 0 max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
+          'clamp(28px, 3vw, 44px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) 0 max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
       }}
     >
       <div aria-hidden="true" className="gl" />
@@ -278,7 +278,7 @@ export default function WhatWeTeach({ v }: { v: CodingVals }) {
             style={{
               flex: '1.2 1 480px',
               minWidth: '0',
-              background: '#FBF8F1',
+              background: '#FFFFFF',
               border: '1px solid var(--ln)',
               color: '#072039',
               padding: 'clamp(28px, 3.4vw, 52px)',

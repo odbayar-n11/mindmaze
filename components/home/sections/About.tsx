@@ -7,7 +7,7 @@ export default function About({ v }: { v: HomeVals }) {
       id="why"
       style={{
         position: 'relative',
-        background: '#FBF8F1',
+        background: '#FFFFFF',
         padding: 'clamp(64px, 7vw, 112px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
       }}
     >

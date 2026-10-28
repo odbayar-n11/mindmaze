@@ -19,7 +19,7 @@
 }
 body:has(.page-home) {
   margin: 0;
-  background: #fbf8f1;
+  background: #ffffff;
 }
 .page-home a {
   color: #1a1a1a;

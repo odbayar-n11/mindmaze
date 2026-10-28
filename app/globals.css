@@ -33,7 +33,7 @@ body {
 .pt-band {
   flex: none;
   height: 52px;
-  background: #fbf8f1;
+  background: #ffffff;
   position: relative;
 }
 .pt-band::after {
@@ -80,6 +80,13 @@ body {
 html:has(.page-home),
 html:has(.page-coding) {
   scroll-padding-top: calc(var(--site-nav-height, 89px) + 12px);
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(.page-home),
+  html:has(.page-coding) {
+    scroll-behavior: auto;
+  }
 }
 .page-home .hero {
   padding-top: var(--site-nav-height, 89px);

@@ -7,7 +7,7 @@ export default function Involved({ v }: { v: HomeVals }) {
       id="involved"
       style={{
         position: 'relative',
-        background: '#FBF8F1',
+        background: '#FFFFFF',
         padding: 'clamp(64px, 7vw, 112px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
       }}
     >
@@ -81,7 +81,7 @@ export default function Involved({ v }: { v: HomeVals }) {
           <article
             key={i}
             style={{
-              background: '#F3EFE6',
+              background: '#F4F4F4',
               padding: '0 32px 34px',
               display: 'flex',
               flexDirection: 'column',

@@ -146,7 +146,6 @@ export default function Hero({ v }: { v: CodingVals }) {
             style={{
               display: 'block',
               width: '100%',
-              height: 'clamp(340px, 56vw, 900px)',
               objectFit: 'cover',
               objectPosition: '50% 45%',
             }}
