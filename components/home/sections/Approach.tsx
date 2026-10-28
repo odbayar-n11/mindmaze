@@ -90,110 +90,19 @@ export default function Approach({ v }: { v: HomeVals }) {
         }}
       >
         {progCards?.map((pc, i) => (
-          <article
-            key={i}
-            className="card"
-            style={{
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
-              background: '#F3EFE6',
-              cursor: 'pointer',
-            }}
-          >
-            {/* the whole card is a link to the program's page */}
-            <Link
-              href={pc.href}
-              aria-label={pc.title}
-              style={{ position: 'absolute', inset: 0, zIndex: 2 }}
-            />
-            <div style={{ height: 'clamp(220px, 19vw, 400px)', overflow: 'hidden' }}>
-              <img
-                className="zoom"
-                src={pc.img}
-                alt={pc.alt}
-                style={{
-                  display: 'block',
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: '50% 68.0372%',
-                }}
-              />
-            </div>
-            <div
-              style={{
-                position: 'relative',
-                flex: '1',
-                minWidth: '0',
-                padding: '22px 28px 24px',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <div
-                aria-hidden="true"
-                style={{
-                  position: 'absolute',
-                  top: '24px',
-                  right: '24px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '6px',
-                }}
-              >
-                <span style={{ fontWeight: '500', fontSize: '21px', color: '#8F8A80' }}>
-                  <br />
+          <article key={i} className="card prog-card">
+            <img className="zoom prog-card-img" src={pc.img} alt={pc.alt} />
+            <div aria-hidden="true" className="prog-card-shade" />
+            <div className="prog-card-body">
+              <h3 className="prog-card-title">{pc.title}</h3>
+              <p className="prog-card-text">{pc.text}</p>
+              {/* the link covers the whole card, so the card is one click target */}
+              <Link href={pc.href} className="prog-card-link">
+                {t.readMore}
+                <span aria-hidden="true" className="prog-card-arrow">
+                  →
                 </span>
-                <span
-                  style={{
-                    display: 'block',
-                    width: '34px',
-                    height: '1px',
-                    background: '#8F8A80',
-                    transform: 'rotate(-38deg)',
-                    transformOrigin: 'left center',
-                  }}
-                />
-              </div>
-              <span
-                aria-hidden="true"
-                style={{ display: 'block', width: '72px', height: '14px', background: pc.sq }}
-              />
-              <div
-                style={{
-                  marginTop: '14px',
-                  fontFamily: "'Instrument Serif', Georgia, serif",
-                  fontSize: '24px',
-                }}
-              >
-                {pc.label}
-              </div>
-              <h3
-                style={{
-                  margin: '8px 0 0',
-                  fontFamily: "'DM Serif Display', Georgia, serif",
-                  fontWeight: '400',
-                  fontSize: 'clamp(22px, 2vw, 30px)',
-                  lineHeight: '1.15',
-                  letterSpacing: '0.02em',
-                  textTransform: 'uppercase',
-                  color: '#072039',
-                }}
-              >
-                {pc.title}
-              </h3>
-              <p
-                style={{
-                  margin: '12px 0 0',
-                  fontSize: '18px',
-                  lineHeight: '1.6',
-                  color: '#55524C',
-                  maxWidth: '460px',
-                }}
-              >
-                {pc.text}
-              </p>
+              </Link>
             </div>
           </article>
         ))}

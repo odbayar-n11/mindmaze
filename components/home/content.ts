@@ -18,6 +18,7 @@ export function homeContent(lang: Lang) {
     heroSub: L('Traditional wooden puzzles that train focus and critical thinking — brought back into today’s classrooms.', 'Анхаарал төвлөрөл, сэтгэн бодох чадварыг хөгжүүлдэг уламжлалт модон тоглоомуудыг өнөөгийн ангид эргүүлэн авчирч байна.'),
     btnPrograms: L('Our programs', 'Хөтөлбөрүүд'),
     btnContact: L('Contact →', 'Холбоо барих →'),
+    readMore: L('Read more', 'Дэлгэрэнгүй'),
     whyEyebrow: L('WHAT WE SERVE', 'БИДНИЙ ҮЙЛЧИЛДЭГ ЗҮЙЛ'),
     whyA: L('MindMaze was founded to ignite curiosity, sharpen focus, and restore the joy of ', 'MindMaze нь хүүхдийн сониуч занг сэрээж, анхаарлыг нь хурцалж, '),
     whyHi: L('hands-on play', 'гараараа тоглох баяр баясгаланг'),

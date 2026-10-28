@@ -142,8 +142,9 @@ body:has(.page-home) {
   color: #f3efe6;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  height: 100svh;
+  /* the fixed header sits above the hero (body is padded by its height), so take that off */
+  height: calc(100vh - var(--site-nav-height, 89px));
+  height: calc(100svh - var(--site-nav-height, 89px));
   min-height: 600px;
 }
 .page-home .hero .hero-frame {
@@ -411,4 +412,86 @@ body:has(.page-home) {
     padding: 0 22px;
     font-size: 13px;
   }
+}
+
+/* ---------------------------------------------------------------- approach cards
+   Full-bleed photo with rounded corners, a dark fade at the bottom and the text on top. */
+.page-home .prog-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: 5 / 4;
+  min-height: 360px;
+  border-radius: 20px;
+  background: #0b1528;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.page-home .prog-card-img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.page-home .prog-card-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(11, 21, 40, 0) 35%, rgba(11, 21, 40, 0.55) 62%, rgba(11, 21, 40, 0.85) 100%);
+}
+.page-home .prog-card-body {
+  padding: clamp(24px, 3.5vw, 56px);
+  padding-top: 0;
+}
+.page-home .prog-card-title {
+  margin: 0;
+  font-family: 'Jost', 'Futura', sans-serif;
+  font-weight: 600;
+  font-size: clamp(28px, 2.8vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.page-home .prog-card-text {
+  margin: 14px 0 0;
+  max-width: 520px;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+.page-home .prog-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid currentColor;
+  color: #fff;
+  font-family: 'Jost', 'Futura', sans-serif;
+  font-size: clamp(17px, 1.3vw, 20px);
+  font-weight: 500;
+  text-decoration: none;
+}
+.page-home .prog-card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.page-home .prog-card-arrow {
+  transition: transform 0.3s ease;
+}
+.page-home .prog-card:hover .prog-card-arrow {
+  transform: translateX(4px);
+}
+.page-home .prog-card-link:focus-visible {
+  outline: none;
+}
+.page-home .prog-card:has(.prog-card-link:focus-visible) {
+  outline: 2px solid #e2574c;
+  outline-offset: 3px;
 }
