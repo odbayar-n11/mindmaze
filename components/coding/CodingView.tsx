@@ -1,40 +1,28 @@
 import type { CodingVals } from './CodingPage';
+import { fontVars, headFont } from './fonts';
 import Hero from './sections/Hero';
 import WhyCoding from './sections/WhyCoding';
-import HowWeTeach from './sections/HowWeTeach';
 import WhatWeTeach from './sections/WhatWeTeach';
+import HowWeTeach from './sections/HowWeTeach';
+import Formats from './sections/Formats';
 import Projects from './sections/Projects';
+import Questions from './sections/Questions';
 import Apply from './sections/Apply';
 import Footer from './sections/Footer';
 
-/** Markup of the "Coding" design. Each section lives in ./sections. */
+/** Markup of the "Coding 2" design. Each section lives in ./sections. */
 export default function CodingView({ v }: { v: CodingVals }) {
   return (
-    <div className="page-coding">
-      <div
-        style={{
-          fontFamily: "'Jost', 'Futura', sans-serif",
-          color: '#1A1A1A',
-          background: '#FFFFFF',
-          minWidth: '0',
-          overflowX: 'hidden',
-          position: 'relative',
-        }}
-      >
-        <Hero v={v} />
-        <div aria-hidden="true" className="orn orn5" />
-        <WhyCoding v={v} />
-        <div aria-hidden="true" className="orn orn5" />
-        <HowWeTeach v={v} />
-        <div aria-hidden="true" className="orn orn5" />
-        <WhatWeTeach v={v} />
-        <div aria-hidden="true" className="orn orn5" />
-        <Projects v={v} />
-        <div aria-hidden="true" className="orn orn5" />
-        <Apply v={v} />
-        <div aria-hidden="true" className="orn orn5" />
-        <Footer v={v} />
-      </div>
+    <div className={`page-coding ${fontVars}`} style={{ ['--head' as string]: headFont }}>
+      <Hero v={v} />
+      <WhyCoding v={v} />
+      <WhatWeTeach v={v} />
+      <HowWeTeach v={v} />
+      <Formats v={v} />
+      <Projects v={v} />
+      <Questions v={v} />
+      <Apply v={v} />
+      <Footer v={v} />
     </div>
   );
 }

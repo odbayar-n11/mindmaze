@@ -1,51 +1,56 @@
 import type { CodingVals } from '../CodingPage';
 import FilmReel from '../FilmReel';
 
+// the fan of photos above the title: where each card sits, from the centre of the section
+const FAN = [
+  { id: '3c6a4baae0bcebef7966ed568cb0faaf', left: 'calc(50% - 384px)', top: '128px', turn: -36 },
+  { id: 'ab5f6e7ac7b63e77e518f7f327913fb8', left: 'calc(50% - 290px)', top: '56px', turn: -24 },
+  { id: '18dd08be500119697ebb9158121c8393', left: 'calc(50% - 168px)', top: '14px', turn: -12 },
+  { id: '359356f40941b4cd2d79db90b7e79a9d', left: 'calc(50% - 59px)', top: '0', turn: 0 },
+  { id: 'e1b5d33424da198ad87d0349812712b1', left: 'calc(50% + 50px)', top: '14px', turn: 12 },
+  { id: '4920fa3d593153ad46faaadbf57d1f82', left: 'calc(50% + 172px)', top: '56px', turn: 24 },
+  { id: 'c1f4436b1b4fbc23d29aff680acb7a71', left: 'calc(50% + 266px)', top: '128px', turn: 36 },
+];
+
 export default function Projects({ v }: { v: CodingVals }) {
-  const { t } = v;
+  const { stats, t } = v;
   return (
-    <section
-      className="bp"
-      id="projects"
-      style={{
-        position: 'relative',
-        background: '#FFFFFF',
-        padding: 'clamp(28px, 3vw, 44px) 0 clamp(36px, 4vw, 56px)',
-        overflow: 'hidden',
-      }}
-    >
-      <div aria-hidden="true" className="gl" />
-      <div className="shead" style={{ margin: '0 max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))' }}>
-        <div className="tbox">
-          <span className="icell" aria-hidden="true" />
-          <h2
-            className="ph2"
-            style={{
-              margin: '0',
-              fontFamily: "'DM Serif Display', Georgia, serif",
-              fontWeight: '400',
-              fontSize: 'clamp(34px, 4vw, 56px)',
-              lineHeight: '1.05',
-              letterSpacing: '0.01em',
-              textTransform: 'uppercase',
-              color: '#072039',
-            }}
-          >
-            {t.shapedTitle}
+    <section id="projects" className="proj">
+      <div className="wrap">
+        <div aria-hidden="true" className="fan">
+          {FAN.map((c) => (
+            <img
+              key={c.id}
+              src={`/media/${c.id}.jpg`}
+              alt=""
+              style={{ left: c.left, top: c.top, transform: c.turn ? `rotate(${c.turn}deg)` : undefined }}
+            />
+          ))}
+        </div>
+        <div className="proj-head">
+          <h2 className="sec-title">
+            {t.pT1}
+            <br />
+            {t.pT2}
           </h2>
+          <p>{t.shapedLead}</p>
+          <a href="#reel" className="proj-btn">
+            {t.seeProjects}
+          </a>
         </div>
-        <div className="slead">
-          <p style={{ margin: '0', fontSize: '21px', lineHeight: '1.55', color: '#55524C' }}>
-            {t.shapedLead}
-          </p>
-        </div>
+        <figure id="reel" className="proj-reel">
+          <FilmReel projects={v.projects} viewLabel={t.viewP} alt={t.stripAlt} padX="0" />
+          <figcaption>{t.stripCap}</figcaption>
+        </figure>
+        <dl className="stats">
+          {stats.map((s) => (
+            <div key={s.n}>
+              <dt>{s.n}</dt>
+              <dd>{s.label}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
-      <FilmReel
-        projects={v.projects}
-        viewLabel={t.viewP}
-        alt={t.stripAlt}
-        padX="max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))"
-      />
     </section>
   );
 }

@@ -410,22 +410,16 @@ export class FilmReel {
 
   /** On-screen width of the front frame, in CSS pixels. */
   private frameWidth() {
-    return 0.359 * this.zoom() * (this.canvas.clientWidth || 1);
-  }
-
-  private zoom() {
-    const w = this.canvas.clientWidth || 1;
-    return w < 560 ? 1.65 : w < 900 ? 1.3 : 1;
+    return 0.359 * (this.canvas.clientWidth || 1);
   }
 
   private applyCamera() {
     const w = this.canvas.clientWidth || 1;
     const h = this.canvas.clientHeight || 1;
     const aspect = w / h;
-    // the reference framing on a 2:1 stage; narrower stages keep its width (zoomed in on small
-    // screens so the front frame stays big), wider ones keep its height
-    const tanH = TAN_H / this.zoom();
-    const tanV = Math.max(tanH / aspect, TAN_H / REF_ASPECT / this.zoom());
+    // the reference framing on a 2:1 stage; narrower stages keep its width, wider ones its height
+    const tanH = TAN_H;
+    const tanV = Math.max(tanH / aspect, TAN_H / REF_ASPECT);
     this.camera.fov = (2 * Math.atan(tanV) * 180) / Math.PI;
     this.camera.aspect = aspect;
     this.camera.position.copy(CAM);
