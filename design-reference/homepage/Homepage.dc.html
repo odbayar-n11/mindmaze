@@ -1,0 +1,988 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MindMaze — Homepage (copy)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&amp;family=DM+Serif+Display&amp;family=Instrument+Serif:ital@0;1&amp;family=Noto+Sans+Mongolian&amp;display=swap" rel="stylesheet">
+<style>
+section:not(#top),footer{font-family:'Instrument Serif',Georgia,serif;font-synthesis:none}
+.map-cap{position:absolute;right:0;bottom:0;max-width:280px}@media (max-width:760px){.map-cap{position:static;margin-top:16px;max-width:none}}
+body{margin:0;background:#FBF8F1}
+a{color:#1A1A1A}a:hover{color:#8B0F0F}
+.navlink{color:#1A1A1A;text-decoration:none}
+.navlink:hover{color:#8B0F0F}
+.zoom{transition:transform .6s ease}
+.card:hover .zoom{transform:scale(1.04)}.tm{position:relative;transition:transform .35s cubic-bezier(.2,.7,.2,1)}.tm>div:first-child{transition:box-shadow .35s ease}.tm:hover{transform:scale(1.07);z-index:1}.tm:hover>div:first-child{box-shadow:0 18px 36px rgba(7,32,57,.3)}.card.tm:hover .zoom{transform:none}@media (prefers-reduced-motion:reduce){.tm,.tm>div:first-child{transition:none}}
+.pill{transition:background .2s ease,color .2s ease}
+.pill:hover{background:#1A1A1A !important;color:#FBF8F1 !important}
+.mq-next{position:absolute;z-index:2;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border:0;padding:0;background:#072039;color:#FFFFFF;cursor:pointer;box-shadow:0 8px 20px rgba(11,21,40,.28);transition:background .15s ease,transform .15s ease}.mq-next:hover{background:#8B0F0F;transform:translateX(3px)}.mq-next:focus-visible{outline:3px solid #E2574C;outline-offset:3px}
+input,textarea{font:inherit}
+input:focus,textarea:focus{outline:none;border-bottom-color:#072039 !important}
+.orn{display:block;height:52px;background-repeat:repeat-x;background-size:auto 100%;background-position:0 0}
+.orn1{background-image:url(/_blob/20c9978d6f1f7e5fa0fa1214faf69f48)}
+.orn2{background-image:url(/_blob/fd8bc08d78cf7080cd1d1f76adff77ec)}
+.orn3{background-image:url(/_blob/1385a28ed8dba1ed701910c19b397c14)}
+.orn4{background-image:url(/_blob/68c3371cc46ab1186c8231ae9403c539)}
+@media (max-width:760px){.why-mn{height:220px !important;width:100%;justify-content:center}}
+@media (max-width:760px){#top{height:auto !important}#top .hero-img{position:static !important;order:2;height:300px !important}#top .hero-fade,#top .hero-wash{display:none}#top .hero-title{position:static !important;width:auto !important;height:auto !important;padding:36px 24px 32px;order:1}#top .hero-title h1{font-size:52px !important}}
+.pcard{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease}.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(7,32,57,.24)}.pc-more svg{transition:transform .2s ease}.pc-more:hover svg{transform:translate(2px,-2px)}.pc-more:hover{text-decoration:underline !important;text-underline-offset:4px}@media (prefers-reduced-motion:reduce){.pcard,.pc-more svg{transition:none}.pcard:hover{transform:none}}
+.pc-art{position:absolute;display:block;height:auto;max-width:none;pointer-events:none;transition:transform .5s cubic-bezier(.2,.7,.2,1)}.pc-ball{width:clamp(180px,17.5vw,246px);bottom:-40px;right:-34px;transform:rotate(-10deg);filter:drop-shadow(0 22px 26px rgba(40,0,0,.45))}.pc-star{width:clamp(128px,12.5vw,176px);bottom:-30px;right:clamp(146px,14vw,196px);transform:rotate(14deg);filter:drop-shadow(0 18px 22px rgba(40,0,0,.45))}.pc-code{width:clamp(300px,34vw,480px);right:clamp(-150px,-10vw,-90px);bottom:-30px;border-radius:12px;overflow:hidden;background:#121314;border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 60px rgba(2,8,18,.55),0 6px 16px rgba(2,8,18,.35);transform:perspective(1100px) rotateY(-14deg) rotateX(6deg);transform-origin:left bottom}.pc-code img{display:block;width:100%;height:auto}.pc-win-bar{height:24px;display:flex;align-items:center;gap:7px;padding:0 12px;background:#1C1E21;border-bottom:1px solid rgba(255,255,255,.06)}.pc-win-bar i{width:9px;height:9px;border-radius:50%;background:#FF5F57}.pc-win-bar i:nth-child(2){background:#FEBC2E}.pc-win-bar i:nth-child(3){background:#28C840}.pcard:hover .pc-ball{transform:rotate(-4deg) translateY(-4px)}.pcard:hover .pc-star{transform:rotate(20deg)}.pcard:hover .pc-code{transform:perspective(1100px) rotateY(-9deg) rotateX(4deg) translateY(-4px)}@media (prefers-reduced-motion:reduce){.pc-art{transition:none}}@media (max-width:760px){.pcard{padding-bottom:150px !important}.pc-ball{width:150px;top:auto;bottom:-34px;right:-30px}.pc-star{width:104px;bottom:-22px;right:118px}.pc-code{width:250px;bottom:-20px;right:-70px}}
+.vloop{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
+.rug{--bw:66px;--bh:64px;position:relative;padding:0 var(--bw) var(--bh)}.rug-s{position:absolute;pointer-events:none}.rug-l,.rug-r{top:0;bottom:var(--bh);width:var(--bw);background-size:100% auto;background-repeat:no-repeat round}.rug-l{left:0;background-image:url(/_blob/03224632a2482b2b6f9250d3f1aa8a85)}.rug-r{right:0;background-image:url(/_blob/59ac47f29e95796ab41b371c9e935125)}.rug-b{bottom:0;left:var(--bw);right:calc(var(--bw) + var(--bh) * 87 / 64);height:var(--bh);background-image:url(/_blob/cee82e9fb676c94cc6ec05a7fdfb3e07);background-size:auto 100%;background-repeat:round no-repeat}.rug-be{bottom:0;right:var(--bw);height:var(--bh);width:calc(var(--bh) * 87 / 64);background:url(/_blob/4f3b05246043827d2bdb46b7ff8c30d1) 0 0/100% 100% no-repeat}.rug-k{bottom:0;width:var(--bw);height:var(--bh)}.rug-k.bl{left:0;background:url(/_blob/b46ae6c5d15e5bf7dde530823da66b9b) 0 0/100% 100% no-repeat}.rug-k.br{right:0;background:url(/_blob/4c8e1a74e6f5609fb60353a5053768dc) 0 0/100% 100% no-repeat}.rug-field{position:relative;padding:0 0 clamp(120px,14vw,196px)}.rug-f{position:absolute;z-index:0;bottom:8px;width:clamp(80px,12.5vw,176px);aspect-ratio:1;pointer-events:none}.rug-f.bl{left:8px;background:url(/_blob/97cc89493beb83108fa540e463c6f3d2) left bottom/100% auto no-repeat}.rug-f.br{right:8px;background:url(/_blob/593e5d2817d26c110a1d6bee9bfef15f) right bottom/100% auto no-repeat}@media (max-width:760px){.rug{--bw:33px;--bh:32px}.rug-field{padding-bottom:100px}.rug-f{bottom:5px;width:84px}.rug-f.bl{left:5px}.rug-f.br{right:5px}}
+</style>
+</helmet>
+<div style="font-family: 'Jost', 'Futura', sans-serif; color: #1A1A1A; background: #FBF8F1; min-width: 0; overflow-x: hidden">
+
+<!-- SLIDE 0 · HERO -->
+
+
+<!-- SLIDE 1 · WHY + STATS -->
+
+
+<!-- SLIDE 2 · TWO PROGRAMS -->
+
+<section id="top" style="position: relative; background: #0B1528; color: #F3EFE6; height: 771px; display: flex; flex-direction: column; overflow: hidden">
+<img class="hero-img" src="/_blob/284380a184f156d726b6860d53c7763d" alt="Children cup a wooden burr puzzle together in their hands" style="position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%">
+<div class="hero-fade" aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 190px; background: linear-gradient(180deg, rgba(11,21,40,0.85) 0%, rgba(11,21,40,0.45) 55%, rgba(11,21,40,0) 100%)"></div>
+<header style="position: relative; z-index: 1; padding: 26px max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) 0; border-bottom: 1px solid rgba(243,239,230,0.18); padding-bottom: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px">
+<a href="#top" aria-label="MindMaze home" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none"><img src="/_blob/2a247f25ddc10df30a8d898e98a8509a" alt="" style="display: block; height: 28px; width: auto; filter: brightness(0) invert(1)"><img src="/_blob/e909eea4bc807598c43bcab5e40cfb0b" alt="" style="display: block; height: 33px; width: 40px"></a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 4px 26px; flex: 1 1 520px; justify-content: center; font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase">
+<sc-for list="{{nav}}" as="item" hint-placeholder-count="7">
+<a class="navlink" href="{{item.href}}" style="padding: 12px 0; color: #F3EFE6">{{item.label}}</a>
+</sc-for>
+</nav>
+<div style="display: flex; align-items: center; gap: 12px">
+<div role="group" aria-label="Language" style="display: flex; border: 1px solid rgba(243,239,230,0.6)">
+<button type="button" onClick="{{setEn}}" aria-pressed="{{isEn}}" style="border: 0; cursor: pointer; padding: 0 14px; min-height: 44px; font-family: inherit; font-weight: 600; font-size: 12px; letter-spacing: 0.12em; background: {{enBgD}}; color: {{enFgD}}">EN</button>
+<button type="button" onClick="{{setMn}}" aria-pressed="{{isMn}}" style="border: 0; cursor: pointer; padding: 0 14px; min-height: 44px; font-family: inherit; font-weight: 600; font-size: 12px; letter-spacing: 0.12em; background: {{mnBgD}}; color: {{mnFgD}}">МН</button>
+</div>
+<a href="#contact" style="display: inline-flex; align-items: center; min-height: 44px; background: #E2574C; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; padding: 0 22px">Log In</a>
+</div>
+</header>
+<div class="hero-wash" aria-hidden="true" style="position: absolute; left: 0; top: 0; bottom: 0; width: 62%; background: linear-gradient(90deg, rgba(11,21,40,0.5) 0%, rgba(11,21,40,0.32) 50%, rgba(11,21,40,0) 100%)"></div><div class="hero-title" style="box-sizing: border-box; position: absolute; z-index: 1; left: 89px; top: 208px; width: 564px; height: 368px; display: flex; flex-direction: column; justify-content: center"><h1 style="margin: 0; font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: min(98px, 7vw); line-height: 0.98; letter-spacing: 0.01em; text-transform: uppercase; color: #FFFFFF; text-shadow: 0 2px 28px rgba(11,21,40,0.55), 0 1px 3px rgba(11,21,40,0.35)"><span style="display: block">MindMaze</span><span style="display: block">{{t.heroPlace}}</span></h1><span aria-hidden="true" style="display: block; width: 72px; height: 4px; margin-top: 28px; background: #E2574C"></span></div></section>
+<div class="rug" style="height: 6929px">
+<div class="rug-field">
+
+
+<section id="why" style="position: relative; background: #FBF8F1; padding: clamp(64px, 7vw, 112px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)); height: 508px">
+
+<div style="display: flex; flex-wrap: wrap; gap: 48px 56px; align-items: center">
+<div class="why-mn" style="flex: 0 0 auto; height: 420px; display: flex; gap: 18px; align-items: flex-start">
+<span lang="mn-Mong" aria-hidden="true" style="writing-mode: vertical-lr; font-family: 'Noto Sans Mongolian', serif; font-size: 22px; line-height: 1; color: #E2574C">ᠮᠣᠩᠭᠣᠯ ᠥᠪ ᠰᠣᠶᠣᠯ</span>
+<span aria-hidden="true" style="width: 1px; align-self: stretch; background: rgba(26,26,26,0.25)"></span>
+<span lang="mn-Mong" aria-label="Ухаалаг ирээдүй (Smart future)" style="align-self: flex-end; writing-mode: vertical-lr; font-family: 'Noto Sans Mongolian', serif; font-size: 24px; line-height: 1; white-space: nowrap; color: #E2574C">ᠤᠬᠠᠭᠠᠯᠠᠭ ᠢᠷᠡᠭᠡᠳᠦᠢ</span></div><div style="flex: 1 1 480px; min-width: 0">
+<div style="display: flex; align-items: flex-end; gap: 10px"><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: 24px; padding-bottom: 4px">{{t.part}}</span><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: clamp(30px, 3.4vw, 46px); line-height: 1; letter-spacing: 0.02em; color: #8B0F0F">01</span></div>
+<h2 style="margin: 28px 0 0; font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: clamp(34px, 4vw, 56px); line-height: 1.05; letter-spacing: 0.01em; text-transform: uppercase; color: #072039">{{t.whyEyebrow}}</h2>
+<p style="margin: 16px 0 0; font-size: 26px; line-height: 1.5; font-weight: 400; max-width: 640px">{{t.whyA}}<mark style="background: linear-gradient(transparent 62%, rgba(139,15,15,0.18) 62%); color: inherit; padding: 0 2px">{{t.whyHi}}</mark>{{t.whyB}}</p>
+</div>
+
+<div class="vloop" aria-label="Photos from MindMaze classes" onMouseEnter="{{vPause}}" onMouseLeave="{{vPlay}}" style="flex: 0 1 400px; width: 100%; min-width: 0; height: 420px; position: relative; overflow: hidden">
+<div ref="{{setVTrack}}" style="display: flex; flex-direction: column; will-change: transform">
+<sc-for list="{{vPhotos}}" as="ph" hint-placeholder-count="8">
+<div style="padding-bottom: 14px"><img src="{{ph.img}}" alt="{{ph.alt}}" loading="eager" style="display: block; width: 100%; height: auto"></div>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+<section id="story" style="position: relative; background: #FBF8F1; padding: clamp(24px, 3vw, 48px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) clamp(56px, 6vw, 96px)">
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-start; justify-content: space-between">
+<div style="display: flex; align-items: flex-end; gap: 10px"><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: 24px; padding-bottom: 4px">{{t.part}}</span><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: clamp(30px, 3.4vw, 46px); line-height: 1; letter-spacing: 0.02em; color: #8B0F0F">02</span><h2 style="margin: 0 0 0 clamp(14px, 2vw, 28px); font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: clamp(34px, 4vw, 56px); line-height: 1.05; letter-spacing: 0.01em; text-transform: uppercase; color: #072039">{{t.storyTitle}}</h2></div>
+<p style="margin: 4px 0 0; flex: 1 1 520px; max-width: 700px; font-size: 24px; line-height: 1.65; color: #55524C; width: 802px; height: 131px">{{t.storyLead}}</p>
+</div>
+
+<div style="margin-top: clamp(36px, 4vw, 60px); display: flex; flex-wrap: wrap; gap: 40px 80px; align-items: flex-start; height: 418px">
+<blockquote style="margin: 0; flex: 1 1 380px; min-width: 0; padding: 4px 0 4px 28px; border-left: 3px solid #8B0F0F">
+<p style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: clamp(28px, 2.9vw, 42px); line-height: 1.22; color: #072039">“{{t.storyQuote}}”</p>
+<div style="margin-top: 24px; font-family: 'Jost', 'Futura', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #55524C">— {{t.storyQuoteBy}}</div>
+</blockquote>
+<ol style="margin: 0; padding: 0; list-style: none; flex: 1.35 1 520px; min-width: 0; border-bottom: 1px solid #D6D1C5">
+<sc-for list="{{storyBeats}}" as="sb" hint-placeholder-count="3">
+<li style="display: flex; gap: 24px; padding: 22px 0 24px; border-top: 1px solid #D6D1C5">
+<span aria-hidden="true" style="flex: 0 0 auto; width: 14px; height: 14px; margin-top: 7px; background: {{sb.sq}}"></span>
+<div style="min-width: 0">
+<h3 style="margin: 0; font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.2; letter-spacing: 0.02em; text-transform: uppercase; color: #072039">{{sb.title}}</h3>
+<p style="margin: 8px 0 0; font-size: 18px; line-height: 1.6; color: #55524C">{{sb.text}}</p>
+</div>
+</li>
+</sc-for>
+</ol>
+</div><div style="margin: clamp(36px, 4vw, 64px) auto 0; max-width: 1040px; width: 847px; height: 496px">
+<svg ref="{{setEyeEl}}" viewBox="0 0 1000 530" role="img" aria-label="An engraved eye that blinks: first it shows children holding a wooden burr puzzle, then a watercolor wooden burr puzzle turning as its pupil" style="display: block; width: 100%; height: auto; overflow: visible">
+<defs>
+<clipPath id="eye-open"><path data-eye="clip" d="M90,320 Q500,-50.0 910,320 Q500,570.0 90,320 Z"></path></clipPath>
+<filter id="eye-ink" x="-5%" y="-5%" width="110%" height="110%">
+<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="3" result="g"></feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="g" scale="1.6" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+</filter>
+</defs>
+<g fill="none" stroke="#072039" stroke-linecap="round" filter="url(#eye-ink)">
+<path d="M70,310 Q500,-100 930,310" stroke-width="1.60" opacity="0.55"></path>
+<path d="M64,304 Q500,-116 936,304" stroke-width="1.50" opacity="0.50"></path>
+<path d="M58,298 Q500,-132 942,298" stroke-width="1.40" opacity="0.45"></path>
+<path d="M52,293 Q500,-148 948,293" stroke-width="1.30" opacity="0.40"></path>
+<path d="M46,287 Q500,-164 954,287" stroke-width="1.20" opacity="0.35"></path>
+<path d="M40,282 Q500,-180 960,282" stroke-width="1.10" opacity="0.30"></path>
+<path d="M34,276 Q500,-196 966,276" stroke-width="1.00" opacity="0.25"></path>
+<path d="M28,270 Q500,-212 972,270" stroke-width="0.90" opacity="0.20"></path>
+<path d="M22,265 Q500,-228 978,265" stroke-width="0.80" opacity="0.15"></path>
+<path d="M110,326 Q500,614 890,326" stroke-width="1.40" opacity="0.45"></path>
+<path d="M120,329 Q500,629 880,329" stroke-width="1.28" opacity="0.39"></path>
+<path d="M130,332 Q500,644 870,332" stroke-width="1.16" opacity="0.33"></path>
+<path d="M140,335 Q500,659 860,335" stroke-width="1.04" opacity="0.27"></path>
+<path d="M150,338 Q500,674 850,338" stroke-width="0.92" opacity="0.21"></path>
+<path d="M160,341 Q500,689 840,341" stroke-width="0.80" opacity="0.15"></path>
+<path d="M70,300 l-22,-6" stroke-width="1.2" opacity="0.5"></path>
+<path d="M66,306 l-24,-3" stroke-width="1.2" opacity="0.5"></path>
+<path d="M62,312 l-26,0" stroke-width="1.2" opacity="0.5"></path>
+<path d="M58,318 l-28,3" stroke-width="1.2" opacity="0.5"></path>
+<path d="M54,324 l-30,6" stroke-width="1.2" opacity="0.5"></path>
+<path d="M50,330 l-32,9" stroke-width="1.2" opacity="0.5"></path>
+<path d="M46,336 l-34,12" stroke-width="1.2" opacity="0.5"></path>
+</g>
+<g clip-path="url(#eye-open)">
+<g data-eye="photo"><image href="/_blob/284380a184f156d726b6860d53c7763d" x="37" y="127" width="882" height="386" preserveAspectRatio="xMidYMid slice"></image></g>
+<g data-eye="draw" style="display: none">
+<rect x="60" y="0" width="880" height="640" fill="#F3EFE6"></rect>
+<path d="M103,238 L67,420 M897,238 L930,420 M120,240 L82,418 M881,240 L913,418 M129,241 L94,416 M869,241 L903,416 M143,242 L113,414 M860,242 L892,414 M153,244 L117,412 M844,244 L881,412 M164,246 L127,410 M837,246 L868,410 M175,247 L139,408 M825,247 L861,408 M187,248 L150,406 M813,248 L844,406 M202,250 L170,404 M800,250 L833,404 M212,252 L177,402 M788,252 L819,402 M225,253 L189,400 M774,253 L811,400 M237,254 L205,398 M764,254 L794,398 M251,256 L220,396 M752,256 L787,396 M263,258 L233,394 M738,258 L769,394 M272,259 L234,392 M725,259 L756,392 M282,260 L247,390 M712,260 L746,390 M299,262 L267,388 M700,262 L736,388 M307,264 L276,386 M692,264 L726,386 M321,265 L290,384 M677,265 L714,384 M331,266 L294,382 M665,266 L696,382 M347,268 L310,380 M655,268 L688,380 M356,270 L324,378 M643,270 L675,378" fill="none" stroke="#34323A" stroke-width="1.1" stroke-linecap="round" opacity="0.32"></path>
+<g data-eye="sprite"><image href="/_blob/f4b8938412b792aa99d3403957faab10" x="353" y="151" width="294" height="294" aria-label="Watercolor wooden burr puzzle"></image></g>
+</g>
+<path data-eye="shadow" d="M90,320 Q500,-50.0 910,320" fill="none" stroke="#0B1528" stroke-width="26" opacity="0.35"></path>
+</g>
+<g filter="url(#eye-ink)">
+<path data-eye="upper" d="M90,320 Q500,-50.0 910,320" fill="none" stroke="#072039" stroke-width="9" stroke-linecap="round"></path>
+<path data-eye="lower" d="M90,320 Q500,570.0 910,320" fill="none" stroke="#072039" stroke-width="4" stroke-linecap="round"></path>
+<path data-eye="lash" d="" fill="none" stroke="#072039" stroke-width="2.4" stroke-linecap="round"></path>
+<path data-eye="lowlash" d="" fill="none" stroke="#072039" stroke-width="1.6" stroke-linecap="round" opacity="0.8"></path>
+</g>
+<path d="M90,320 L60,316" stroke="#E2574C" stroke-width="5" stroke-linecap="round"></path>
+</svg></div>
+</section>
+
+<section id="our-programs" style="position: relative; box-sizing: border-box; aspect-ratio: 16 / 9; display: flex; flex-direction: column; justify-content: center; background: #FBF8F1; padding: clamp(32px, 3vw, 64px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))">
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-start; justify-content: space-between">
+<div>
+<div style="display: flex; align-items: flex-end; gap: 10px"><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: 24px; padding-bottom: 4px">{{t.part}}</span><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: clamp(30px, 3.4vw, 46px); line-height: 1; letter-spacing: 0.02em; color: #8B0F0F">03</span><h2 style="margin: 0 0 0 clamp(14px, 2vw, 28px); font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: clamp(34px, 4vw, 56px); line-height: 1.05; letter-spacing: 0.01em; text-transform: uppercase; color: #072039; width: 401px; height: 54px">{{t.progA}} {{t.progB}}</h2></div>
+
+</div><p style="margin: 4px 0 0; flex: 1 1 520px; max-width: 700px; font-size: 21px; line-height: 1.65; color: #55524C">{{t.progLead}}</p>
+
+</div>
+<div style="margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 28px">
+<sc-for list="{{progCards}}" as="pc" hint-placeholder-count="2">
+<article class="pcard" style="position: relative; overflow: hidden; box-sizing: border-box; min-height: calc(clamp(220px, 19vw, 400px) + 215px); display: flex; flex-direction: column; justify-content: space-between; gap: 32px; padding: clamp(28px, 3.2vw, 46px) clamp(26px, 3.2vw, 46px) clamp(24px, 2.6vw, 38px); border-radius: 18px; background: {{pc.bg}}; color: {{pc.fg}}; font-family: 'Jost', 'Futura', sans-serif">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: {{pc.glow}}; pointer-events: none"></span>
+<sc-if value="{{pc.puz}}" hint-placeholder-val="{{ true }}"><img class="pc-art pc-ball" src="/_blob/8fa8835d5276d0ea3a096cd3449b5e75" alt="" aria-hidden="true"><img class="pc-art pc-star" src="/_blob/b2c5f0f72ce272f4ec2d2e101b829979" alt="" aria-hidden="true"></sc-if>
+<sc-if value="{{pc.code}}" hint-placeholder-val="{{ false }}"><div class="pc-art pc-code" aria-hidden="true"><div class="pc-win-bar"><i></i><i></i><i></i></div><img src="/_blob/7d1022342537b1e970e3fa7de80d76dc" alt=""></div></sc-if>
+<div style="position: relative; min-width: 0">
+<h3 style="margin: 0; font-family: 'Jost', 'Futura', sans-serif; font-weight: 500; font-size: clamp(30px, 3vw, 44px); line-height: 1.12; letter-spacing: -0.01em; color: {{pc.fg}}; max-width: 12ch">{{pc.title}}</h3>
+<p style="margin: 18px 0 0; font-family: 'Jost', 'Futura', sans-serif; font-size: 17px; line-height: 1.6; color: {{pc.sub}}; max-width: 340px">{{pc.text}}</p>
+</div>
+<a class="pc-more" href="{{pc.more}}" style="position: relative; align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; min-height: 44px; font-family: 'Jost', 'Futura', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: {{pc.link}}"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6"></path></svg>{{t.learnMore}}</a>
+</article>
+</sc-for>
+</div>
+</section>
+
+
+
+<section id="puzzles" style="position: relative"></section>
+
+<!-- IMPACT: photo strip with stats on top, map, programs list -->
+
+
+<section id="impact" style="position: relative; background: #FBF8F1; padding: clamp(48px, 5vw, 80px) 0; overflow: hidden">
+<div style="padding: 0 max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 48px">
+<div>
+<div style="display: flex; align-items: flex-end; gap: 10px"><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: 24px; padding-bottom: 4px">{{t.part}}</span><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: clamp(30px, 3.4vw, 46px); line-height: 1; letter-spacing: 0.02em; color: #8B0F0F">04</span><h2 style="margin: 0 0 0 clamp(14px, 2vw, 28px); font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: clamp(34px, 4vw, 56px); line-height: 1.05; letter-spacing: 0.01em; text-transform: uppercase; color: #072039">{{t.impactTitle}}</h2></div>
+
+</div>
+
+</div>
+<div style="margin-top: 28px; position: relative; width: 1258px">
+<div class="marquee" aria-label="Photos from MindMaze puzzle sessions" onMouseEnter="{{mqPauseA}}" onMouseLeave="{{mqPlayA}}" style="position: relative; overflow: hidden">
+<div ref="{{setTrackA}}" style="display: flex; width: max-content; will-change: transform">
+<sc-for list="{{success}}" as="item" hint-placeholder-count="8">
+<figure class="card" style="margin: 0; padding-right: 16px; flex: 0 0 auto">
+<div style="overflow: hidden; background: #E9E6DF"><img class="zoom" src="{{item.img}}" alt="{{item.alt}}" loading="eager" style="display: block; height: 300px; width: {{item.w}}; object-fit: cover"></div>
+</figure>
+</sc-for>
+</div>
+</div>
+<div style="position: absolute; inset: 0; pointer-events: none; display: flex; align-items: flex-end; background: linear-gradient(to top, rgba(11,21,40,0.9) 0%, rgba(11,21,40,0.55) 42%, rgba(11,21,40,0) 78%)">
+<div style="width: 100%; box-sizing: border-box; padding: 0 max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px clamp(56px, 16vw, 280px); text-align: center">
+<sc-for list="{{stats}}" as="item" hint-placeholder-count="4">
+<div>
+<span aria-hidden="true" style="display: block; width: 28px; height: 6px; margin: 0 auto; background: {{item.sq}}"></span>
+<div style="margin-top: 12px; font-weight: 700; font-size: clamp(38px, 4.4vw, 60px); line-height: 1; letter-spacing: -0.02em; color: #FFFFFF">{{item.num}}</div>
+<div style="margin-top: 8px; font-size: 14px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: #F3EFE6">{{item.label}}</div>
+</div>
+</sc-for>
+</div>
+</div>
+<button type="button" class="mq-next" aria-label="Show the next photos" onClick="{{mqNextA}}" style="top: 16px; right: max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+</div>
+<div id="where" style="margin-top: clamp(28px, 3vw, 44px); padding: 0 max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))">
+<div id="programs" style=" display: flex; flex-wrap: wrap; gap: 32px 72px; align-items: flex-start">
+<div style="flex: 1 1 320px; min-width: 0">
+<span aria-hidden="true" style="display: block; width: 92px; height: 18px; background-color: #072039"></span>
+<div style="margin-top: 24px; font-family: 'Instrument Serif', Georgia, serif; font-size: 26px">{{t.programsEyebrow}}</div>
+<p style="margin: 12px 0 0; font-size: 19px; line-height: 1.6; color: #55524C; max-width: 360px">{{t.programsLead}}</p>
+</div>
+<div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column">
+<sc-for list="{{programs}}" as="item" hint-placeholder-count="2">
+<div style="display: flex; gap: 28px; padding: 26px 0; border-bottom: 1px solid #D6D1C5">
+<div style="font-weight: 700; font-size: 44px; line-height: 0.9; min-width: 64px; color: #8B0F0F">{{item.n}}</div>
+<div style="flex: 1; min-width: 0">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px">
+<h3 style="margin: 0; font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; font-weight: 400; letter-spacing: 0.02em; text-transform: uppercase">{{item.title}}</h3>
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 10px; background: {{item.badgeBg}}; color: {{item.badgeFg}}">{{item.status}}</span>
+</div>
+<p style="margin: 8px 0 0; font-size: 18px; line-height: 1.6; color: #55524C">{{item.text}}</p>
+<sc-if value="{{item.hasSchools}}" hint-placeholder-val="{{ false }}">
+<ul style="margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{item.schools}}" as="s" hint-placeholder-count="5">
+<li style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid #1A1A1A; padding: 8px 12px; font-size: 15px; font-weight: 500"><span style="width: 8px; height: 8px; background: #072039"></span>{{s}}</li>
+</sc-for>
+</ul>
+</sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="margin-top: 40px; padding-top: 36px; border-top: 1px solid #1A1A1A; display: flex; flex-wrap: wrap; gap: 32px 56px; position: relative">
+<div aria-hidden="true" style="writing-mode: vertical-rl; font-weight: 600; font-size: 18px; letter-spacing: 0.16em; text-transform: uppercase; align-self: flex-end">Mongolia</div>
+<div style="flex: 1 1 600px; min-width: 0">
+<figure style="margin: 0; position: relative; width: 100%">
+<div style="position: relative; width: 100%; aspect-ratio: 1300 / 614">
+<img src="/_blob/755601d532d87e5f8e850f759c68f6c6" alt="Map of Mongolia's aimags, with Töv aimag and Ulaanbaatar marked" style="display: block; width: 100%; height: auto">
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none">
+<sc-for list="{{provinces}}" as="pv" hint-placeholder-count="18">
+<span style="position: absolute; left: {{pv.lxPct}}%; top: {{pv.lyPct}}%; transform: translate(-50%, -50%); white-space: nowrap; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(8px, 1.04vw, 16px); line-height: 1; color: #2F5A3C">{{pv.label}}</span>
+</sc-for>
+</div>
+<svg viewBox="0 0 1300 614" preserveAspectRatio="none" role="group" aria-label="Map of Mongolia — hover a province" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible">
+<sc-for list="{{provinces}}" as="pv" hint-placeholder-count="18">
+<path d="{{pv.d}}" fill="{{pv.fill}}" stroke="{{pv.stroke}}" stroke-width="{{pv.sw}}" stroke-linejoin="round" vector-effect="non-scaling-stroke" onMouseEnter="{{pv.enter}}" onMouseLeave="{{pv.leave}}" onClick="{{pv.click}}" style="cursor: {{pv.cursor}}; transition: fill .15s ease"><title>{{pv.label}}</title></path>
+</sc-for>
+</svg>
+<sc-if value="{{showCard}}" hint-placeholder-val="{{ false }}">
+<aside aria-live="polite" onMouseEnter="{{cardEnter}}" onMouseLeave="{{cardLeave}}" style="position: absolute; {{cardPos}} width: min(300px, 70%); background: #F3EFE6; color: #1A1A1A; box-shadow: 0 22px 44px rgba(40,36,28,0.3); z-index: 3">
+<div style="padding: 16px 20px 14px; background: #072039; color: #FFFFFF">
+<div style="font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase">{{t.cardEyebrow}}</div>
+<div style="margin-top: 4px; font-weight: 600; font-size: 28px; letter-spacing: 0.06em; text-transform: uppercase">{{cardRegion}}</div>
+</div>
+<div style="padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{cardProjects}}" as="pj" hint-placeholder-count="1">
+<div>
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="flex: 0 0 auto; width: 44px; height: 44px; background: #1A1A1A; color: #FBF8F1; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{pj.icon}}"></path></svg></div>
+<div style="min-width: 0">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="font-size: 19px; font-weight: 600">{{pj.title}}</span><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 7px; background: #8B0F0F; color: #FFFFFF">{{pj.tag}}</span></div>
+<div style="margin-top: 3px; font-size: 15px; line-height: 1.45; color: #55524C">{{pj.desc}}</div>
+</div>
+</div>
+<a href="{{pj.url}}" target="_blank" rel="noopener" style="margin-top: 12px; display: inline-flex; align-items: center; min-height: 44px; background: #1A1A1A; color: #FBF8F1; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; padding: 0 16px">{{t.openProject}}</a>
+</div>
+</sc-for>
+</div>
+</aside>
+</sc-if>
+</div>
+<div class="map-cap">
+<div style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px">{{t.cardEyebrow}}</div>
+<p style="margin: 10px 0 0; font-size: 18px; line-height: 1.6; color: #55524C">{{t.cardHint}}</p>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+
+<section id="team" style="position: relative; padding: clamp(64px, 7vw, 112px) 0; overflow: hidden; background-color: #fbf8f1">
+<div style="padding: 0 max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)); display: flex; flex-wrap: wrap; gap: 20px 48px; align-items: flex-end; justify-content: space-between">
+<div>
+<div style="display: flex; align-items: flex-end; gap: 10px"><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: 24px; padding-bottom: 4px">{{t.part}}</span><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: clamp(30px, 3.4vw, 46px); line-height: 1; letter-spacing: 0.02em; color: #8B0F0F">05</span><h2 style="margin: 0 0 0 clamp(14px, 2vw, 28px); font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: clamp(34px, 4vw, 56px); line-height: 1.05; letter-spacing: 0.01em; text-transform: uppercase; color: #072039">{{t.teamTitle}}</h2></div>
+
+</div>
+<p style="margin: 0; font-size: 18px; color: #55524C">{{t.teamLead}}</p>
+</div>
+<div style="margin-top: 56px">
+<h3 style="margin: 0; padding: 0 max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)); font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; font-weight: 500; display: flex; align-items: center; justify-content: flex-end; gap: 14px"><span aria-hidden="true" style="width: 14px; height: 14px; background: #8B0F0F"></span>{{t.membersLabel}}</h3>
+<div class="marquee" aria-label="Team members" style="margin: 6px 0 -18px; padding: 18px 0; position: relative; overflow: hidden">
+<button type="button" class="mq-next" aria-label="Show the next team members" onClick="{{mqNextD}}" style="top: 34px; right: max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+<div ref="{{setTrackD}}" style="display: flex; width: max-content; will-change: transform">
+<sc-for list="{{membersLoop}}" as="m" hint-placeholder-count="8">
+<figure class="card tm" aria-hidden="{{m.hid}}" style="margin: 0; padding-right: 24px; flex: 0 0 auto; width: 240px">
+<div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 12px; background: {{m.bg}}">
+<sc-if value="{{m.hasPhoto}}" hint-placeholder-val="{{ true }}"><img class="zoom" src="{{m.img}}" alt="{{m.name}}" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%"></sc-if>
+<sc-if value="{{m.noPhoto}}" hint-placeholder-val="{{ false }}"><div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center"><span style="font-weight: 700; font-size: 52px; letter-spacing: 0; color: #FBF8F1">{{m.ini}}</span></div></sc-if>
+</div>
+<sc-if value="{{m.cap}}" hint-placeholder-val="{{ true }}"><figcaption style="padding-top: 14px; text-align: center">
+<div style="font-size: 18px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase">{{m.name}}</div>
+<div style="margin-top: 4px; font-family: 'Instrument Serif', Georgia, serif; font-size: 18px; line-height: 1.4; color: #55524C"><br></div>
+</figcaption></sc-if>
+</figure>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<section id="involved" style="position: relative; background: #FBF8F1; padding: clamp(64px, 7vw, 112px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 64px">
+<div style="min-width: 0">
+<div style="display: flex; align-items: flex-end; gap: 10px"><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: 24px; padding-bottom: 4px">{{t.part}}</span><span style="font-family: 'Jost', 'Futura', sans-serif; font-weight: 700; font-size: clamp(30px, 3.4vw, 46px); line-height: 1; letter-spacing: 0.02em; color: #8B0F0F">06</span></div>
+<div style="margin-top: 28px; font-family: 'Instrument Serif', Georgia, serif; font-size: 26px">{{t.involvedEyebrow}}</div>
+<h2 style="margin: 10px 0 0; font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: clamp(34px, 4vw, 56px); line-height: 1.05; letter-spacing: 0.01em; text-transform: uppercase; color: #072039">{{t.involvedA}} {{t.involvedB}}</h2>
+</div>
+<p style="margin: 0; flex: 0 1 440px; font-size: 19px; line-height: 1.65; color: #55524C">{{t.involvedLead}}</p>
+</div>
+<div style="margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px">
+<sc-for list="{{involve}}" as="g" hint-placeholder-count="3">
+<article style="background: #F3EFE6; padding: 0 32px 34px; display: flex; flex-direction: column">
+<span aria-hidden="true" style="display: block; width: 96px; height: 18px; background: {{g.sq}}"></span>
+<h3 style="margin: 32px 0 0; font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: 26px; letter-spacing: 0.02em; text-transform: uppercase">{{g.title}}</h3>
+<p style="margin: 14px 0 0; font-size: 19px; line-height: 1.6; color: #55524C">{{g.text}}</p>
+<ul style="margin: 18px 0 0; padding-left: 18px; font-size: 18px; line-height: 1.9; color: #55524C">
+<sc-for list="{{g.points}}" as="pt" hint-placeholder-count="2"><li>{{pt}}</li></sc-for>
+</ul>
+<div style="flex: 1; min-height: 24px"></div>
+<a href="#contact" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 48px; background: #1A1A1A; color: #FBF8F1; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; padding: 0 22px">{{g.cta}}</a>
+</article>
+</sc-for>
+</div>
+</section>
+
+
+<section id="contact" style="position: relative; background: #FBF8F1; padding: clamp(64px, 7vw, 112px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))">
+<div style="display: flex; flex-wrap: wrap; gap: 48px 64px">
+<div style="flex: 1 1 380px; min-width: 0; display: flex; gap: 32px">
+<div aria-hidden="true" style="writing-mode: vertical-rl; font-weight: 600; font-size: 18px; letter-spacing: 0.16em; text-transform: uppercase">MindMaze</div>
+<div style="min-width: 0">
+<div aria-hidden="true" style="display: flex; flex-direction: column; gap: 6px"><span style="display: block; width: 42px; height: 1px; background: #8F8A80; transform: rotate(-38deg); transform-origin: left center"></span></div>
+<h2 style="margin: 32px 0 0; font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.05; letter-spacing: 0.02em; text-transform: uppercase; color: #072039">{{t.contactTitle}}</h2>
+<p style="margin: 18px 0 0; max-width: 420px; font-size: 19px; line-height: 1.6; color: #55524C">{{t.contactLead}}</p>
+<dl style="margin: 36px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 22px 24px">
+<div><dt style="font-family: 'Instrument Serif', Georgia, serif; font-size: 18px">{{t.email}}</dt><dd style="margin: 6px 0 0; font-weight: 500">[hello@yourdomain.mn]</dd></div>
+<div><dt style="font-family: 'Instrument Serif', Georgia, serif; font-size: 18px">{{t.phone}}</dt><dd style="margin: 6px 0 0; font-weight: 500"><a href="tel:+97695850420" style="text-decoration: none">(+976) 9585-0420</a></dd></div>
+<div><dt style="font-family: 'Instrument Serif', Georgia, serif; font-size: 18px">Instagram</dt><dd style="margin: 6px 0 0; font-weight: 500"><a href="https://www.instagram.com/mindmaze.mongolia/" target="_blank" rel="noopener" style="text-decoration: none">@mindmaze.mongolia</a></dd></div>
+</dl>
+</div>
+</div>
+<form style="flex: 1 1 460px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 26px 24px; align-content: start">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase">{{t.name}} *<input type="text" style="border: 0; border-bottom: 1.5px solid #1A1A1A; padding: 12px 0; background: transparent; color: #1A1A1A; font-size: 19px"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase">{{t.email}} *<input type="email" style="border: 0; border-bottom: 1.5px solid #1A1A1A; padding: 12px 0; background: transparent; color: #1A1A1A; font-size: 19px"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; grid-column: 1 / -1">{{t.phone}}<input type="tel" style="border: 0; border-bottom: 1.5px solid #1A1A1A; padding: 12px 0; background: transparent; color: #1A1A1A; font-size: 19px"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; grid-column: 1 / -1">{{t.message}} *<textarea rows="4" style="border: 0; border-bottom: 1.5px solid #1A1A1A; padding: 12px 0; background: transparent; color: #1A1A1A; font-size: 19px; resize: vertical"></textarea></label>
+<div style="grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<button type="button" style="border: 0; cursor: pointer; min-height: 48px; background: #072039; color: #FFFFFF; font-family: inherit; font-weight: 600; font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; padding: 0 28px">{{t.send}}</button>
+<span aria-hidden="true" style="width: 40px; height: 22px; background: #8B0F0F"></span>
+</div>
+</form>
+</div>
+</section>
+
+<footer style="padding: 28px max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) 36px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; color: #3F3C37">
+<span role="img" aria-label="MindMaze" style="display: inline-flex; align-items: center; gap: 10px"><img src="/_blob/8fb025e091aabb1d723561900d54644c" alt="" style="display: block; height: 28px; width: auto"><img src="/_blob/ae10309f969d5f60013518d57aecf962" alt="" style="display: block; height: 28px; width: auto"></span>
+<p style="margin: 0; font-size: 15px; letter-spacing: 0.08em">© 2026 MindMaze · {{t.footer}}</p>
+
+</footer>
+</div></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#8B0F0F","options":["#8B0F0F","#072039"]},"$preview":{"width":1440,"height":13000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { lang: 'en', hoverProv: null };
+    this.provHandlers = {};
+    this.hoverOn = (name) => { clearTimeout(this.hoverTimer); if (this.state.hoverProv !== name) this.setState({ hoverProv: name }); };
+    this.hoverOff = () => { clearTimeout(this.hoverTimer); this.hoverTimer = setTimeout(() => this.setState({ hoverProv: null }), 140); };
+    this.cardEnter = () => { clearTimeout(this.hoverTimer); };
+    this.cardLeave = () => { this.hoverOff(); };
+    this.provH = (name) => {
+      if (!this.provHandlers[name]) {
+        this.provHandlers[name] = { enter: () => this.hoverOn(name), leave: () => this.hoverOff() };
+      }
+      return this.provHandlers[name];
+    };
+    this.mqRows = {};
+    const mkRow = (key, dir) => {
+      this['setTrack' + key] = (el) => {
+        const r = this.mqRows[key];
+        if (el && (!r || r.el !== el)) this.mqStart(key, el, dir);
+        else if (!el && r) this.mqStop(key);
+      };
+      this['mqPause' + key] = () => { const r = this.mqRows[key]; if (r) r.paused = true; };
+      this['mqPlay' + key] = () => { const r = this.mqRows[key]; if (r) r.paused = false; };
+      this['mqNext' + key] = () => { const r = this.mqRows[key]; if (r) r.kick += Math.max(260, Math.min(560, r.el.parentElement.clientWidth * 0.5)); };
+    };
+    this.figEls = { head: null, hand: null };
+    const figLoop = () => {
+      if (this.figRaf) return;
+      let still = false;
+      try { still = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+      if (still) return;
+      const t0 = performance.now();
+      const ease = (x) => (1 - Math.cos(x)) / 2;                 // smooth 0..1..0
+      const tick = (now) => {
+        const { head, hand } = this.figEls;
+        if (!head && !hand) { this.figRaf = 0; return; }
+        this.figRaf = requestAnimationFrame(tick);
+        const t = (now - t0) / 1000;
+        // head: slow, soft tilt side to side with a tiny rise, like breathing
+        const hk = Math.sin(t * 0.7);
+        if (head) head.style.transform = 'rotate(' + (hk * 1.6).toFixed(3) + 'deg) translateY(' + (-Math.abs(hk) * 2).toFixed(2) + 'px)';
+        // hand: fingers curl in toward the head and relax, a beat behind the head
+        const nk = ease(t * 0.9 + 1.2);
+        if (hand) hand.style.transform = 'rotate(' + (-nk * 2.6).toFixed(3) + 'deg)';
+      };
+      this.figRaf = requestAnimationFrame(tick);
+    };
+    this.setHeadEl = (el) => { this.figEls.head = el; if (el) figLoop(); };
+    this.setHandEl = (el) => { this.figEls.hand = el; if (el) figLoop(); };
+    this.orns = {};
+    const ornLoop = () => {
+      if (this.ornRaf) return;
+      let still = false;
+      try { still = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+      if (still) return;
+      let last = 0;
+      const tick = (now) => {
+        const keys = Object.keys(this.orns);
+        if (!keys.length) { this.ornRaf = 0; return; }
+        this.ornRaf = requestAnimationFrame(tick);
+        const dt = last ? Math.min(0.05, (now - last) / 1000) : 0;
+        last = now;
+        keys.forEach((k) => {
+          const o = this.orns[k];
+          o.x = (o.x + o.dir * 32 * dt) % o.w;
+          o.el.style.backgroundPosition = o.x.toFixed(2) + 'px 0';
+        });
+      };
+      this.ornRaf = requestAnimationFrame(tick);
+    };
+    for (let i = 0; i < 12; i++) {
+      this['setOrn' + i] = (el) => {
+        if (!el) { delete this.orns[i]; return; }
+        const w = parseFloat(el.getAttribute('data-tile')) || 90;
+        this.orns[i] = { el, w, x: 0, dir: i % 2 ? 1 : -1 };
+        el.style.backgroundPosition = '0 0';         // ornament bands stay still (no sliding)
+      };
+    }
+    this.vRow = null;
+    this.setVTrack = (el) => {
+      if (this.vRow) { cancelAnimationFrame(this.vRow.raf); this.vRow = null; }
+      if (!el) return;
+      let still = false;
+      try { still = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+      const r = { el, y: null, paused: false, last: 0, raf: 0 };
+      this.vRow = r;
+      const tick = (now) => {
+        if (this.vRow !== r) return;
+        r.raf = requestAnimationFrame(tick);
+        const dt = r.last ? Math.min(0.05, (now - r.last) / 1000) : 0;
+        r.last = now;
+        const half = el.scrollHeight / 2;
+        if (!half) return;
+        if (r.y === null) r.y = -half;
+        if (!r.paused && !still) r.y += 36 * dt;              // content drifts downward
+        if (r.y >= 0) r.y -= half;
+        el.style.transform = 'translate3d(0,' + r.y.toFixed(2) + 'px,0)';
+      };
+      r.raf = requestAnimationFrame(tick);
+    };
+    this.vPause = () => { if (this.vRow) this.vRow.paused = true; };
+    this.vPlay = () => { if (this.vRow) this.vRow.paused = false; };
+    this.eye = null;
+    this.setEyeEl = (el) => {
+      if (this.eye) { cancelAnimationFrame(this.eye.raf); this.eye = null; }
+      if (!el) return;
+      const q = (n) => el.querySelector('[data-eye="' + n + '"]');
+      const parts = { photo: q('photo'), draw: q('draw'), sprite: q('sprite'), clip: q('clip'), upper: q('upper'), lower: q('lower'), shadow: q('shadow'), lash: q('lash'), lowlash: q('lowlash') };
+      const bez = (t, y) => { const a = 1 - t; return [a * a * 90 + 2 * a * t * 500 + t * t * 910, a * a * 320 + 2 * a * t * y + t * t * 320]; };
+      const tan = (t, y) => [2 * (1 - t) * 410 + 2 * t * 410, 2 * (1 - t) * (y - 320) + 2 * t * (320 - y)];
+      const draw = (k) => {
+        const uy = 380 - 430 * k, ly = 380 + 190 * k;
+        const up = 'M90,320 Q500,' + uy.toFixed(1) + ' 910,320';
+        const lo = 'M90,320 Q500,' + ly.toFixed(1) + ' 910,320';
+        parts.clip.setAttribute('d', up + ' Q500,' + ly.toFixed(1) + ' 90,320 Z');
+        parts.upper.setAttribute('d', up);
+        parts.shadow.setAttribute('d', up);
+        parts.lower.setAttribute('d', lo);
+        let d = '';
+        for (let i = 0; i <= 44; i++) {
+          const t = 0.06 + 0.88 * i / 44;
+          const p = bez(t, uy), g = tan(t, uy);
+          const len = Math.hypot(g[0], g[1]) || 1;
+          let nx = g[1] / len, ny = -g[0] / len;
+          if (ny > 0) { nx = -nx; ny = -ny; }
+          const jit = 0.72 + 0.5 * (Math.sin(i * 12.9898) * 43758.5453 % 1 + 1) % 1;
+          const L = (24 + 40 * Math.sin(Math.PI * t)) * jit * (0.55 + 0.45 * k);
+          const lean = (t - 0.5) * 1.1 + (jit - 0.97) * 0.4;
+          const ex = p[0] + nx * L + lean * L, ey = p[1] + ny * L * (k > 0.25 ? 1 : -0.6);
+          const mx = p[0] + nx * L * 0.5 + lean * L * 0.2, my = p[1] + ny * L * 0.6 * (k > 0.25 ? 1 : -0.6);
+          d += 'M' + p[0].toFixed(1) + ',' + p[1].toFixed(1) + ' Q' + mx.toFixed(1) + ',' + my.toFixed(1) + ' ' + ex.toFixed(1) + ',' + ey.toFixed(1);
+        }
+        parts.lash.setAttribute('d', d);
+        let dl = '';
+        if (k > 0.2) {
+          for (let i = 0; i <= 26; i++) {
+            const t = 0.14 + 0.72 * i / 26;
+            const p = bez(t, ly);
+            const L = (8 + 12 * Math.sin(Math.PI * t)) * k;
+            const lean = (t - 0.5) * 0.6;
+            dl += 'M' + p[0].toFixed(1) + ',' + (p[1] + 2).toFixed(1) + ' l' + (lean * L).toFixed(1) + ',' + L.toFixed(1);
+          }
+        }
+        parts.lowlash.setAttribute('d', dl);
+      };
+      let still = false;
+      try { still = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+      const e = { raf: 0 };
+      this.eye = e;
+      draw(1);
+      if (still) return;
+      const t0 = performance.now();
+      const tick = (now) => {
+        if (this.eye !== e) return;
+        e.raf = requestAnimationFrame(tick);
+        const secs = (now - t0) / 1000;
+        const C = 10.5, t = secs % C;               // photo 4 s, blink, drawing 4.5 s, blink
+        const blinkK = (u) => {                      // u: 0..1 across a 1 s blink
+          const e = u < 0.4 ? u / 0.4 : u < 0.55 ? 1 : 1 - (u - 0.55) / 0.45;
+          return 1 - (0.5 - 0.5 * Math.cos(Math.PI * e));
+        };
+        let k = 1, showDraw;
+        if (t < 4) { showDraw = false; }
+        else if (t < 5) { k = blinkK(t - 4); showDraw = (t - 4) > 0.47; }
+        else if (t < 9.5) { showDraw = true; }
+        else { k = blinkK(t - 9.5); showDraw = (t - 9.5) <= 0.47; }
+        if (showDraw !== e.showDraw) {
+          e.showDraw = showDraw;
+          parts.photo.style.display = showDraw ? 'none' : '';
+          parts.draw.style.display = showDraw ? '' : 'none';
+        }
+        if (showDraw) {
+          const a = (secs * 45) % 360;              // watercolor burr: one full turn every 8 s
+          parts.sprite.setAttribute('transform', 'rotate(' + a.toFixed(2) + ' 500 298)');
+        }
+        draw(k);
+      };
+      e.raf = requestAnimationFrame(tick);
+    };
+    mkRow('A', 1);   // top row: left -> right (existing photos)
+    mkRow('B', -1);  // bottom row: right -> left (coding photos)
+    mkRow('C', 1);   // lead members: left -> right
+    mkRow('D', 1);   // team members: left -> right, same way as the arrow button
+  }
+  componentWillUnmount() { if (this.eye) { cancelAnimationFrame(this.eye.raf); this.eye = null; } if (this.vRow) { cancelAnimationFrame(this.vRow.raf); this.vRow = null; } if (this.ornRaf) { cancelAnimationFrame(this.ornRaf); this.ornRaf = 0; } this.orns = {}; if (this.figRaf) { cancelAnimationFrame(this.figRaf); this.figRaf = 0; } Object.keys(this.mqRows).forEach((k) => this.mqStop(k)); }
+  mqStop(key) { const r = this.mqRows[key]; if (r) { cancelAnimationFrame(r.raf); delete this.mqRows[key]; } }
+  mqStart(key, el, dir) {
+    this.mqStop(key);
+    const r = { el, x: null, paused: false, last: 0, raf: 0, kick: 0 };
+    this.mqRows[key] = r;
+    const speed = 40; // pixels per second
+    const tick = (now) => {
+      if (this.mqRows[key] !== r) return;
+      r.raf = requestAnimationFrame(tick);
+      const dt = r.last ? Math.min(0.05, (now - r.last) / 1000) : 0;
+      r.last = now;
+      const half = el.scrollWidth / 2;
+      if (!half) return;
+      if (r.x === null) r.x = dir > 0 ? -half : 0;
+      if (!r.paused) r.x += dir * speed * dt;
+      if (r.kick > 0.5) { const mv = Math.min(r.kick, Math.max(2, r.kick * Math.min(1, dt * 7))); r.x += dir * mv; r.kick -= mv; } // arrow button: glide ahead to the next pictures
+      if (r.x <= -half) r.x += half;
+      if (r.x > 0) r.x -= half;
+      el.style.transform = 'translate3d(' + r.x.toFixed(2) + 'px,0,0)';
+    };
+    r.raf = requestAnimationFrame(tick);
+  }
+  renderVals() {
+    const B = (id) => '/_blob/' + id;
+    const img = {
+      star: B('917d36f93a7c5935e2aa1f41eddf633c'),
+      snowflake: B('1d85f0273e6ac29cbb533f4812c2bd22'),
+      teacherBoy: B('705f964d52d3c5a0760ad62c17a3267f'),
+      boyCube: B('97ca78b5e392df000f2f41c9ae0a45bf'),
+      ring: B('bda9831b91fe76d1344edb5a53506107'),
+      bone: B('f129ae99795099ee17def44faf8b0be2'),
+      tablet: B('c5b27b4d002fe8e92eb7cb16f3974842'),
+      girls: B('6871d4e08f0a7fc8890b824b43796a9d'),
+      pair: B('079b6f2d3e5cd41fbe6c1484b8401601'),
+      mentor: B('46a8840470e3be9b8717dd0acb6c07b5'),
+      stringClass: B('9a904884f81334bbfd76cc9c89e5635f'),
+      space: B('35c88ac9157b419451e821c9aaeeab6f'),
+      classWide: B('ff719adf90f9d93ebc2158b853568787')
+    };
+    const en = this.state.lang === 'en';
+    const L = (e, m) => (en ? e : m);
+    const accent = this.props.accent ?? '#8B0F0F';
+    const t = {
+      part: L('Part.', 'Хэсэг'),
+      heroWord: L('mindmaze', 'Өв соёл'),
+      heroPlace: L('Mongolia', 'Монгол'),
+      contact: L('Contact', 'Холбоо барих'),
+      heroEyebrow: L('Mongolian traditional puzzles', 'Монголын уламжлалт оньсон тоглоом'),
+      heroA: L('Mongolian heritage,', 'Монгол өв соёл,'),
+      heroB: L('one puzzle at a time.', 'оньсого бүрээр.'),
+      heroSub: L('Traditional wooden puzzles that train focus and critical thinking — brought back into today’s classrooms.', 'Анхаарал төвлөрөл, сэтгэн бодох чадварыг хөгжүүлдэг уламжлалт модон тоглоомуудыг өнөөгийн ангид эргүүлэн авчирч байна.'),
+      btnPrograms: L('Our programs', 'Хөтөлбөрүүд'),
+      btnContact: L('Contact →', 'Холбоо барих →'),
+      proverb: L('Knowledge is a treasure of jewels.', 'Эрдэм ном бол эрдэнийн сан.'),
+      proverbBy: L('Mongolian proverb', 'Монгол зүйр үг'),
+      whyEyebrow: L('WHAT WE SERVE', 'БИДНИЙ ҮЙЛЧИЛДЭГ ЗҮЙЛ'),
+      storyTitle: L('Why we started', 'Бид яагаад эхэлсэн бэ'),
+      storyLead: L('MindMaze began with a simple worry: the wooden puzzles our grandparents solved beside the ger stove were disappearing, and with them a way of thinking that schools rarely teach.', 'MindMaze энгийн нэгэн санаа зовнилоос эхэлсэн: өвөө эмээ нарын маань гэрийн зуухны дэргэд тайлдаг байсан модон оньсого мартагдаж, түүнтэй хамт сургууль бараг заадаггүй сэтгэх арга ухаан ч алга болж байлаа.'),
+      storyQuote: L('Our grandparents taught us to think with our hands. We did not want that to end with our generation.', 'Өвөө эмээ маань биднийг гараараа сэтгэж сургасан. Энэ уламжлал манай үеэр тасрахыг бид хүсээгүй.'),
+      storyQuoteBy: L('The MindMaze team', 'MindMaze баг'),
+      burrHint: L('Six-piece wooden puzzle · scroll to take it apart', 'Зургаан хэсэгтэй модон оньсого · гүйлгэж задлаарай'),
+      whyA: L('MindMaze was founded to ignite curiosity, sharpen focus, and restore the joy of ', 'MindMaze нь хүүхдийн сониуч занг сэрээж, анхаарлыг нь хурцалж, '),
+      whyHi: L('hands-on play', 'гараараа тоглох баяр баясгаланг'),
+      whyB: L('. We bring educational value to young minds through cultural games that are slowly being forgotten.', ' сэргээх зорилгоор байгуулагдсан. Бид мартагдаж буй соёлын тоглоомуудаар дамжуулан бяцхан хүүхдүүдэд боловсролын үнэ цэнийг хүргэдэг.'),
+      eduTitle: L('Puzzles in the classroom', 'Ангид оньсого'),
+      eduLead: L('We bring traditional Mongolian puzzles into the school day: short, hands-on sessions where children slow down, test ideas and explain their thinking. Here is how a program works and what we are measuring.', 'Бид Монголын уламжлалт оньсон тоглоомыг хичээлийн цагт авчирдаг: хүүхдүүд тайван бодож, санаагаа туршиж, бодлоо тайлбарладаг богино, гар ажиллагаатай хичээл. Хөтөлбөр хэрхэн явагддаг, бид юуг хэмжиж байгааг доор харуулав.'),
+      glanceLabel: L('At a glance', 'Товчхондоо'),
+      learnLabel: L('What students learn', 'Сурагчид юу сурдаг вэ'),
+      impactLabel: L('Impact so far', 'Үр дүн'),
+      impactNote: L('We are surveying students and teachers. Results will be added here.', 'Бид сурагч, багш нараас санал асуулга авч байна. Үр дүнг энд нэмнэ.'),
+      voicesLabel: L("In students' words", 'Сурагчдын сэтгэгдэл'),
+      eduMore: L('See our next partner schools →', 'Дараагийн хамтрагч сургуулиуд →'),
+      successLead: L('Students who took their puzzle and coding skills further.', 'Оньсого, кодлолын чадвараа цааш хөгжүүлсэн сурагчид.'),
+      inspireEyebrow: L('Words that inspire us', 'Биднийг урамшуулдаг үгс'),
+      impactTitle: L('Impact', 'Үр нөлөө'),
+      whereA: L('Where', 'Бид хаана'),
+      whereB: L('we work', 'ажилладаг вэ'),
+      whereLead: L('', '5 аймаг · 12 сургууль · 5000+ хүүхэд. Аймаг дээр хулганаа аваачиж сурагчдын бүтээлийг үзээрэй.'),
+      kEyebrow: L('Khentii · Featured project', 'Хэнтий · Онцлох төсөл'),
+      kDesc: L('A word-guessing game: pick letters to uncover the hidden word before the drawing is complete.', 'Үг таах тоглоом: зураг дуусахаас өмнө үсгээ сонгож нууц үгийг тайлаарай.'),
+      kPlay: L('Play the game', 'Тоглох'),
+      learnMore: L('Learn more', 'Дэлгэрэнгүй'),
+      cardEyebrow: L('Mini projects by local students', 'Орон нутгийн сурагчдын төслүүд'),
+      openProject: L('Open project ↗', 'Төслийг нээх ↗'),
+      cardHint: L('Click the province to open the project ↗', 'Төслийг нээхийн тулд аймаг дээр дарна уу ↗'),
+      mapPin: L('Ulaanbaatar, Töv', 'Улаанбаатар, Төв'),
+      mapStats: L('5 aimags · 12 schools · 5000+ children', '5 аймаг · 12 сургууль · 5000+ хүүхэд'),
+      programsEyebrow: L('Our programs', 'Хөтөлбөрүүд'),
+      programsLead: L('We bring traditional puzzles into school classrooms — and we are growing aimag by aimag.', 'Бид уламжлалт оньсон тоглоомыг сургуулийн ангид авчирч, аймаг аймгаар тэлж байна.'),
+      puzzlesA: L('Games our', 'Өвөг дээдсийн'),
+      puzzlesB: L('ancestors played', 'тоглоомууд'),
+      puzzlesLead: L('Carved from wood and bone, Mongolian puzzles lock, interlock and untangle — tests of logic, patience and dexterity.', 'Мод, ясаар урласан монгол оньсон тоглоомууд түгжиж, угсарч, тайлагддаг — логик, тэвчээр, авхаалж самбааг сорьдог.'),
+      importanceLabel: L('Why it matters', 'Ач холбогдол'),
+      importance: L('By reviving traditional games and building thinking skills at the same time, MindMaze connects cultural heritage with modern education — turning old puzzles into a new way to learn.', 'Монголын уламжлалт тоглоомуудыг сэргээн хөгжүүлэхийн зэрэгцээ сэтгэн бодох чадварыг хөгжүүлэх зорилготой MindMaze нь соёлын өвийг орчин үеийн боловсролтой уялдуулан, уламжлалт тоглоомыг суралцах шинэ хэлбэр болгон хөгжүүлж байна.'),
+      successA: L('Student', 'Сурагчдын'),
+      successB: L('success', 'амжилт'),
+      successName: L('[Student or school name]', '[Сурагч эсвэл сургуулийн нэр]'),
+      successWhat: L('[Achievement]', '[Амжилт]'),
+      successWhere: L('[Competition or school]', '[Тэмцээн эсвэл сургууль]'),
+      podcastTitle: L('Podcast', 'Подкаст'),
+      podcast: L('Podcast', 'Подкаст'),
+      ep: L('Episode', 'Дугаар'),
+      epTitle: L('21th school', '[Дугаарын нэр]'),
+      epDesc: L('', '[Товч тайлбар]'),
+      comingSoon: L('Coming soon', 'Тун удахгүй'),
+      speakersTitle: L('Lead members\n', 'Илтгэгчид'),
+      speakerName: L('', '[Илтгэгчийн нэр]'),
+      speakerSchool: L('', '[Их сургууль, төгсөх он]'),
+      teamTitle: L('Meet the team', 'Манай хамт олон'),
+      leadsLabel: L('Lead members', 'Удирдах гишүүд'),
+      membersLabel: L('Our team', 'Манай баг'),
+      teamLead: L('', 'Манай хамт олонтой танилцаарай.'),
+      progEyebrow: L('Our programs', 'Хөтөлбөрүүд'),
+      progA: L('Our', 'Бидний'),
+      progB: L('approach', 'арга барил'),
+      progLead: L('From educating young children to bridging the educational gap for teenagers, MindMaze serves every age through coding lessons and the freedom to build your own games and ideas. The goal stays the same: spark curiosity, unravel inspiration, and share the true merit of learning.', 'Бага насны хүүхдүүдийг сургахаас эхлээд өсвөр насныхны боловсролын зөрүүг нөхөх хүртэл MindMaze кодлолын хичээл болон өөрийн тоглоом, санаагаа бүтээх эрх чөлөөгөөр дамжуулан бүх насныханд үйлчилдэг. Зорилго маань хэвээрээ: сониуч занг асааж, урам зоригийг нээж, суралцахын жинхэнэ үнэ цэнийг хуваалцах.'),
+      involvedEyebrow: L('Get involved', 'Нэгдээрэй'),
+      involvedA: L('Bring MindMaze', 'MindMaze-г'),
+      involvedB: L('to you', 'танд хүргэе'),
+      involvedLead: L('We work with schools across Mongolia, student volunteers and organisations who care about how children learn.', 'Бид Монгол даяарх сургууль, сайн дурын оюутнууд болон хүүхдийн суралцахуйд анхаардаг байгууллагуудтай хамтран ажилладаг.'),
+      contactTitle: L('Contact', 'Холбоо барих'),
+      contactLead: L('Have a question, want to bring MindMaze to your school, or support our work? Write to us — we would love to hear from you.', 'Асуулт байна уу? MindMaze-г сургуульдаа авчрах эсвэл бидний ажлыг дэмжихийг хүсвэл бидэнд бичээрэй.'),
+      email: L('Email', 'Имэйл'),
+      phone: L('Phone', 'Утас'),
+      name: L('Name', 'Нэр'),
+      message: L('Message', 'Зурвас'),
+      send: L('Send message', 'Илгээх'),
+      footer: L('Mongolian heritage, one puzzle at a time.', 'hehehhe')
+    };
+    const nav = [                                   // one link per section on this page, named like its heading
+      { href: '#top', label: L('Home', 'Нүүр') },
+      { href: '#why', label: L('about', 'Бидний үйлчилдэг зүйл') },
+      { href: '#story', label: L('Our story', 'Бидний түүх') },
+      { href: '#our-programs', label: L('approach', 'Хоёр арга') },
+      { href: '#impact', label: L('Impact', 'Үр нөлөө') },
+      { href: '#team', label: L('Team', 'Хамт олон') },
+      { href: '#involved', label: L('Get involved', 'Нэгдээрэй') },
+      { href: '#contact', label: L('Contact', 'Холбоо барих') }
+    ];
+    const vOnce = [
+      { img: B('6d7b07d19d89ac27c85255c91e38ceb0'), alt: 'Students cup a wooden burr puzzle together in their hands' },
+      { img: B('57b48f4bb694a7bae51bcc3e2aca0795'), alt: 'A boy assembles a wooden puzzle at his desk' },
+      { img: B('63e8a5d759c8af8dc32625f94043c96e'), alt: 'Two boys work a wooden cross puzzle together' },
+      { img: B('ae4e4fb8fe980c71504ad4555a4d2036'), alt: 'Students fit the pieces of a wooden puzzle together' },
+      { img: B('4504b7a14aa019336758573bdc1f5094'), alt: 'A mentor shows two students a round wooden puzzle' },
+      { img: B('58082a3be1c62e50173fb9eda497d3a6'), alt: 'Two students hold a wooden star puzzle in their hands' },
+      { img: B('fe472fef0eaa23f0e710f3d7579204ae'), alt: 'A student writes code at an iMac' },
+      { img: B('a79e3eda1dc04abf37481273e852a77d'), alt: 'A student codes at an iMac in a computer lab' }
+    ];
+    const vPhotos = vOnce.concat(vOnce);
+    const eduGlance = [
+      { k: L('Where', 'Хаана'), v: L('5 aimags · 12 schools', '5 аймаг · 12 сургууль') },
+      { k: L('Reach', 'Хамрах хүрээ'), v: L('5000+ children', '5000+ хүүхэд') },
+      { k: L('Format', 'Хэлбэр'), v: L('In-class sessions during the school day', 'Хичээлийн цагаар ангид явагдах сургалт') },
+      { k: L('Grades', 'Анги'), v: L('[Grades]', '[Анги]') },
+      { k: L('Puzzles', 'Оньсого'), v: L('6 traditional puzzles', '6 уламжлалт оньсого') },
+      { k: L('Team', 'Баг'), v: L('[Number] mentors & volunteers', '[Тоо] ментор, сайн дурын ажилтан') },
+      { k: L('Partners', 'Түншүүд'), v: L('[Partner schools & sponsors]', '[Хамтрагч сургууль, ивээн тэтгэгч]') }
+    ];
+    const eduLearn = [
+      { n: '01', title: L('Interlocking puzzles', 'Угсрах оньсого'), text: L('Star, cross and snowflake burrs: take them apart and put them back together.', 'Од, загалмай, цасан ширхэг түгжээг задалж, буцаан угсрах.'), points: [L('Spatial reasoning', 'Орон зайн сэтгэлгээ'), L('Step-by-step planning', 'Алхам алхмаар төлөвлөх')] },
+      { n: '02', title: L('Disentangling puzzles', 'Салгах оньсого'), text: L('Ring and bone-and-string puzzles that reward patience over force.', 'Хүчээр биш, тэвчээрээр тайлагддаг цагираг, яс утастай оньсого.'), points: [L('Patience', 'Тэвчээр'), L('Sequencing', 'Дараалал гаргах')] },
+      { n: '03', title: L('Thinking out loud', 'Бодлоо хуваалцах'), text: L('Students explain their strategy to a partner and solve together.', 'Сурагчид арга барилаа хамтрагчдаа тайлбарлаж, хамтдаа тайлдаг.'), points: [L('Teamwork', 'Багаар ажиллах'), L('Communication', 'Харилцаа')] },
+      { n: '04', title: L('Coding', 'Кодлол'), text: L('Break a problem down, try, debug, repeat, and ship a small project.', 'Асуудлыг задалж, туршиж, алдаагаа засаж, жижиг төсөл бүтээх.'), points: [L('Problem decomposition', 'Асуудлыг задлах'), L('Mini projects like quiz and word games', 'Асуулт хариулт, үгийн тоглоом зэрэг жижиг төсөл')] }
+    ];
+    const eduImpact = [
+      { num: '[X]%', label: L('solved a puzzle on their own', 'оньсогоо бие даан тайлсан') },
+      { num: '[X]%', label: L('focus longer in class, say teachers', 'хичээлд илүү удаан анхаарал төвлөрүүлдэг (багш нарын үнэлгээ)') },
+      { num: '[X]%', label: L('want another session', 'дахин хичээлд суухыг хүссэн') }
+    ];
+    const eduVoices = [1, 2, 3].map(() => ({ text: L('[Student quote]', '[Сурагчийн сэтгэгдэл]'), by: L('[Student name], grade [X]', '[Сурагчийн нэр], [X]-р анги') }));
+    const wins = ['#072039', '#8B0F0F', '#072039', '#8B0F0F'].map((bg) => ({ bg }));
+    const stats = [
+      { num: '5', label: L('Aimags', 'Аймаг'), sq: '#E2574C' },
+      { num: '12', label: L('Schools', 'Сургууль'), sq: '#F3EFE6' },
+      { num: '840+', label: L('Children reached', 'Хүүхэд'), sq: '#E2574C' }
+    ];
+    const quotes = [
+      { text: L('Play is the work of the child.', 'Тоглоом бол хүүхдийн хөдөлмөр.'), by: 'Maria Montessori' },
+      { text: L('Play is the highest expression of human development in childhood.', 'Тоглоом бол бага насны хүүхдийн хөгжлийн хамгийн дээд илэрхийлэл.'), by: 'Friedrich Fröbel' },
+      { text: L('Enthusiasm is common. Endurance is rare.', 'Урам зориг түгээмэл. Тэсвэр тэвчээр ховор.'), by: L('Angela Duckworth, Grit', 'Анжела Дакворт, Grit') }
+    ].map((q, i) => Object.assign(q, { color: i % 2 ? '#072039' : '#8B0F0F' }));
+    const programs = [
+      { n: '01', title: L('Classroom puzzle sessions', 'Ангийн оньсогын хичээл'), status: L('Ongoing', 'Хэрэгжиж буй'), badgeBg: '#1A1A1A', badgeFg: '#FBF8F1', text: L('5 aimags · 12 schools · 5000+ children solving traditional puzzles together in class.', '5 аймаг · 12 сургууль · 5000+ хүүхэд ангидаа уламжлалт оньсого хамтдаа тайлж байна.'), hasSchools: false, schools: [] },
+      { n: '02', title: L('Our partner schools', 'Дараагийн хамтрагч сургуулиуд'), status: L('Coming soon', 'Тун удахгүй'), badgeBg: '#8B0F0F', badgeFg: '#FFFFFF', text: L('MindMaze puzzle sessions are coming to five more schools in Ulaanbaatar, Uvurkhangai and Erdenet.', 'MindMaze-ийн оньсогын хичээл Улаанбаатар, Өвөрхангай, Эрдэнэт дэх таван сургуульд удахгүй хүрнэ.'), hasSchools: true, schools: [
+        L('21st Secondary School, Ulaanbaatar', 'Улаанбаатар хотын 21-р дунд сургууль'),
+        L('24th School, Ulaanbaatar', 'Улаанбаатар хотын 24-р сургууль'),
+        L('1st School, Uvurkhangai', 'Өвөрхангай аймгийн 1-р сургууль'),
+        L('2nd School, Uvurkhangai', 'Өвөрхангай аймгийн 2-р сургууль'),
+        L('1st School, Erdenet', 'Эрдэнэт хотын 1-р сургууль')
+      ] }
+    ];
+    const INT = { tag: L('Interlocking', 'Угсрах'), tagFg: '#8B0F0F' };
+    const DIS = { tag: L('Disentangling', 'Салгах'), tagFg: '#8B0F0F' };
+    const puzzles = [
+      Object.assign({ name: L('Star puzzle', 'Одон оньсого'), sub: L('Six-piece star burr', 'Зургаан хэсэгтэй од'), img: img.star, fit: 'contain', alt: 'Wooden star burr puzzle and its pieces' }, INT),
+      Object.assign({ name: L('Cross puzzle', 'Загалмай оньсого'), sub: L('Six-piece burr', 'Зургаан хэсэгтэй түгжээ'), img: img.teacherBoy, fit: 'cover', alt: 'A volunteer and a girl assembling burr pieces' }, INT),
+      Object.assign({ name: L('Cross lock', 'Загалмай түгжээ'), sub: L('Three-piece burr', 'Гурван хэсэгтэй түгжээ'), img: img.boyCube, fit: 'cover', alt: 'A boy holding up a solved wooden burr' }, INT),
+      Object.assign({ name: L('Oyun tulkhuur', 'Оюун түлхүүр'), sub: L('Ring puzzle', 'Цагираган оньсого'), img: img.ring, fit: 'cover', alt: 'A girl working a ring puzzle with a teacher' }, DIS),
+      Object.assign({ name: L('Bugj niiluulekh', 'Бугж нийлүүлэх'), sub: L('Bone & string puzzle', 'Яс, утастай оньсого'), img: img.bone, fit: 'cover', alt: 'Children untangling a bone and string puzzle' }, DIS),
+      Object.assign({ name: L('Snowflake puzzle', 'Цасан ширхэг'), sub: L('Interlocking burr', 'Угсардаг түгжээ'), img: img.snowflake, fit: 'cover', alt: 'A solved snowflake puzzle held up in class' }, INT)
+    ].map((p, i) => Object.assign(p, { n: '0' + (i + 1) }));
+    // Marquee photos: new classroom shots mixed with the Figma photos.
+    // w = width at 340px height (portrait 255px, landscape 453px, square-ish 299px).
+    const P = '255px', W = '453px', S = '299px';
+    // Marquee photos: new 1800px classroom shots + AI-upscaled Figma photos. w = width at 340px height.
+    const photos = [
+      { img: B('6d6535198893d3984dd633bcccbe2994'), w: '453px', alt: 'A boy holds up the wooden puzzle he solved' },
+      { img: B('705f964d52d3c5a0760ad62c17a3267f'), w: '233px', alt: 'A volunteer shows a smiling girl how to assemble burr pieces' },
+      { img: B('a0d362b47bb52fabdb96905c3a4ba3a7'), w: '255px', alt: 'Girls lean in together over a small wooden puzzle' },
+      { img: B('8d4a40df32b25c9c4d6409476af54708'), w: '453px', alt: 'A mentor works through a puzzle with two students' },
+      { img: B('9a904884f81334bbfd76cc9c89e5635f'), w: '509px', alt: 'A teacher demonstrates a string puzzle to a crowd of students' },
+      { img: B('381eb04b0622409559863dbdac1e6c2c'), w: '255px', alt: 'Two girls pose with their puzzles in front of class artwork' },
+      { img: B('91730b2f237ced1326202138e691816c'), w: '453px', alt: 'A full classroom working on puzzles at their desks' },
+      { img: B('079b6f2d3e5cd41fbe6c1484b8401601'), w: '297px', alt: 'A student and mentor comparing puzzle pieces' },
+      { img: B('85c3fd420c1caa3b45516b47e39cd448'), w: '453px', alt: 'Students and a volunteer show off their solved puzzles' },
+      { img: B('2ebafec98b326fe2d4a40f3d9d1adc3d'), w: '453px', alt: 'A girl concentrates on a wooden puzzle at her desk' },
+      { img: B('bda9831b91fe76d1344edb5a53506107'), w: '526px', alt: 'A girl works a puzzle with a teacher' },
+      { img: B('ce6530da0884e38bbc26bdab65702082'), w: '255px', alt: 'Three girls solve a puzzle together by the window' },
+      { img: B('17c1762258e831ff2738fa0e93e67dbf'), w: '453px', alt: 'A classroom during a MindMaze puzzle session' },
+      { img: B('46a8840470e3be9b8717dd0acb6c07b5'), w: '297px', alt: 'A mentor guiding a student through a puzzle' },
+      { img: B('6027490db2b03f5cb61fdbb780c304fd'), w: '453px', alt: 'Students and mentors gathered around desks with puzzles' },
+      { img: B('35c88ac9157b419451e821c9aaeeab6f'), w: '526px', alt: 'Students with puzzles on their desks under a painted space mural' },
+      { img: B('722120e1f8548aaf91d088f993c5d4bb'), w: '453px', alt: 'A boy shows his puzzle to the camera' },
+      { img: B('f129ae99795099ee17def44faf8b0be2'), w: '297px', alt: 'Children untangling a bone and string puzzle' },
+      { img: B('676eafd65dc82ec1c4c4bdb23216aecc'), w: '453px', alt: 'A bright classroom of students solving puzzles' },
+      { img: B('ff719adf90f9d93ebc2158b853568787'), w: '526px', alt: 'A full classroom raising hands during a session' },
+      { img: B('1580bff8fbba99918bde3d5b236ec983'), w: '453px', alt: 'Students at their desks working on puzzles' }
+    ];
+    const at300 = (p) => Object.assign({}, p, { w: Math.round(parseInt(p.w, 10) * 300 / 340) + 'px' });
+    const success = photos.concat(photos).map(at300);
+    // Bottom row: coding-class photos. w = width at 300px height.
+    const coding = [
+      ['fbf15ebcf7c20d1c6b51837b12b8112b', 225, 'A student writes code on an iMac'],
+      ['e4e71cf9e0192af1103357ddcc971eb9', 400, 'A mentor helps a student with his code'],
+      ['f1e2536ae8a4654625e43fcb1bd5b7a1', 225, 'A student in a hoodie works through a coding exercise'],
+      ['6fb4e2c6daf9f39d3ca86bc14f06c5a9', 225, 'A student focuses on code at his desk'],
+      ['8f6073d20316fcdaa2b3e81b37d1fb1c', 225, 'A coding classroom with students at their computers'],
+      ['b196852f0313dc867205e03fc419cf32', 225, 'A student types code during class'],
+      ['18dd08be500119697ebb9158121c8393', 400, 'A mentor and two students review a program together'],
+      ['abc80ec0eedb35e7aba4f3b5ee439774', 225, 'A student coding at a bright workstation'],
+      ['bc0ce02557ad3450ddba03882dddbe76', 225, 'Students working in a row of computers']
+    ].map(([id, w, alt]) => ({ img: B(id), w: w + 'px', alt }));
+    const successB = coding.concat(coding); // two identical halves for a seamless loop
+    // Province outlines traced from the map image (viewBox 1300x614).
+    const PROV = [
+      { name: "Khövsgöl", mn: "Хөвсгөл", d: "M443,40 L440,53 L433,58 L430,58 L427,61 L424,61 L421,66 L421,73 L411,78 L410,88 L406,95 L406,101 L411,106 L411,112 L413,115 L413,118 L423,125 L421,130 L422,135 L415,148 L412,151 L407,153 L406,156 L404,156 L403,154 L400,154 L397,156 L397,159 L391,164 L385,166 L380,165 L379,170 L372,177 L372,186 L381,195 L389,194 L410,204 L425,203 L432,206 L437,204 L440,198 L450,197 L452,199 L456,215 L450,228 L451,242 L463,243 L471,241 L473,239 L473,234 L475,232 L489,235 L491,231 L498,230 L495,224 L495,221 L498,212 L502,210 L501,204 L505,200 L508,193 L532,205 L542,205 L541,198 L545,191 L547,191 L554,183 L567,180 L574,170 L580,169 L578,165 L564,160 L558,155 L558,152 L565,144 L568,137 L576,130 L576,125 L571,120 L571,118 L565,116 L565,112 L563,110 L563,102 L559,93 L558,87 L559,81 L546,76 L541,76 L539,74 L532,76 L528,72 L524,72 L504,61 L479,60 L476,56 L476,52 L469,53 L467,49 L459,50 L455,46 L452,46 L448,43 L446,40 Z" },
+      { name: "Uvs", mn: "Увс", d: "M125,148 L125,152 L129,157 L132,166 L143,175 L149,187 L153,187 L156,189 L160,202 L168,207 L172,218 L174,218 L184,207 L194,206 L195,214 L199,215 L205,224 L214,224 L225,227 L230,223 L235,223 L239,227 L241,232 L247,234 L250,230 L254,229 L258,221 L265,219 L270,215 L273,215 L279,218 L293,218 L294,220 L306,219 L315,213 L320,213 L322,198 L327,189 L327,185 L319,177 L317,170 L317,164 L320,158 L319,155 L304,154 L302,150 L290,150 L286,143 L281,140 L279,126 L275,121 L269,120 L253,121 L248,119 L234,121 L230,118 L231,111 L229,110 L224,110 L221,115 L217,115 L216,111 L212,111 L209,107 L207,107 L207,112 L204,115 L187,114 L181,122 L176,124 L174,128 L169,128 L166,130 L157,130 L155,134 L150,136 L149,140 L141,140 L137,142 L133,147 Z" },
+      { name: "Bayan-Ölgii", mn: "Баян-Өлгий", d: "M59,180 L58,188 L50,196 L47,196 L47,207 L44,209 L44,212 L48,216 L54,219 L52,227 L55,229 L61,230 L66,235 L69,235 L73,239 L73,246 L82,251 L85,251 L89,257 L97,257 L101,254 L107,254 L110,256 L111,261 L116,266 L121,266 L121,263 L125,262 L127,264 L126,269 L137,276 L137,279 L141,284 L142,295 L149,307 L156,312 L158,316 L158,321 L168,326 L174,333 L176,333 L180,329 L189,329 L191,325 L174,313 L174,299 L167,291 L167,281 L165,278 L165,273 L161,270 L158,258 L153,251 L152,229 L150,224 L157,223 L164,219 L170,219 L169,213 L167,209 L159,203 L155,190 L150,190 L146,186 L141,174 L130,165 L126,155 L122,153 L112,156 L110,160 L113,162 L114,166 L104,170 L101,173 L96,173 L93,179 L90,180 L83,179 L82,181 L67,179 Z" },
+      { name: "Khovd", mn: "Ховд", d: "M184,209 L172,222 L165,220 L157,225 L152,225 L154,229 L155,252 L160,259 L163,270 L167,273 L167,278 L169,281 L169,291 L176,299 L176,313 L192,325 L192,328 L190,331 L180,331 L176,334 L172,334 L168,328 L164,326 L161,327 L162,337 L160,343 L157,346 L157,349 L161,356 L161,361 L149,377 L148,389 L151,392 L152,398 L156,402 L156,404 L164,404 L170,409 L176,408 L179,411 L197,410 L201,413 L208,413 L212,415 L221,412 L226,412 L229,414 L237,414 L235,403 L234,376 L243,369 L246,357 L253,343 L251,330 L255,329 L257,331 L260,331 L265,325 L275,324 L279,321 L279,319 L274,313 L268,296 L261,292 L257,286 L250,281 L252,275 L244,269 L238,262 L238,258 L246,249 L248,242 L247,237 L241,234 L235,225 L230,225 L225,229 L215,226 L204,226 L200,217 L197,217 L192,213 L192,208 Z" },
+      { name: "Zavkhan", mn: "Завхан", d: "M332,150 L332,154 L324,155 L321,158 L319,164 L319,171 L321,177 L329,185 L328,192 L324,198 L322,213 L320,215 L315,215 L308,220 L301,222 L293,222 L292,220 L280,220 L274,217 L270,217 L258,223 L256,229 L248,234 L249,238 L248,248 L246,252 L239,259 L239,261 L246,269 L253,274 L275,268 L284,273 L303,275 L306,280 L323,281 L347,297 L350,304 L351,317 L360,313 L364,313 L372,325 L373,330 L383,331 L388,327 L395,329 L399,323 L400,314 L405,305 L405,302 L407,300 L414,300 L419,296 L419,287 L424,281 L424,278 L421,277 L416,271 L418,254 L422,251 L432,250 L436,246 L449,241 L449,227 L454,218 L450,199 L440,200 L440,202 L436,206 L430,208 L426,205 L416,205 L415,206 L407,205 L396,198 L390,196 L381,196 L377,191 L370,186 L370,177 L377,170 L379,164 L378,161 L376,161 L374,158 L368,157 L353,158 L347,153 L337,152 Z" },
+      { name: "Arkhangai", mn: "Архангай", d: "M419,256 L418,271 L421,275 L427,276 L432,272 L439,271 L442,280 L447,285 L456,285 L463,279 L474,277 L476,285 L480,292 L481,305 L487,302 L498,300 L500,310 L504,312 L508,318 L547,317 L552,311 L559,308 L566,308 L569,311 L573,312 L574,305 L579,298 L578,290 L580,288 L592,292 L598,298 L601,299 L610,299 L614,296 L614,292 L604,283 L598,274 L593,272 L592,267 L585,262 L583,252 L577,245 L572,244 L567,240 L566,235 L562,231 L561,221 L559,216 L553,217 L551,213 L546,212 L543,207 L532,207 L512,196 L508,196 L508,198 L503,203 L503,206 L505,207 L505,209 L499,214 L497,220 L497,225 L500,229 L499,232 L493,232 L490,237 L485,237 L479,234 L475,234 L475,238 L471,243 L461,245 L455,245 L448,243 L437,247 L431,252 L421,253 Z" },
+      { name: "Bulgan", mn: "Булган", d: "M577,131 L571,135 L568,142 L560,152 L560,155 L566,159 L577,163 L582,167 L582,169 L577,172 L574,172 L567,182 L554,185 L548,192 L545,193 L543,197 L544,207 L546,210 L551,211 L554,215 L559,214 L561,216 L563,222 L563,229 L568,235 L568,239 L573,243 L577,243 L585,253 L587,262 L593,266 L594,270 L597,271 L605,282 L616,292 L616,295 L631,294 L631,290 L629,287 L630,283 L638,277 L644,277 L648,274 L653,274 L651,268 L651,260 L640,259 L639,253 L637,251 L637,247 L644,238 L645,234 L645,223 L644,222 L645,215 L637,209 L624,205 L624,203 L629,198 L634,199 L645,198 L650,179 L651,169 L650,165 L644,159 L644,153 L646,152 L645,145 L640,140 L637,140 L632,145 L628,145 L624,143 L614,145 L609,142 L601,142 L599,136 L586,136 L582,131 Z" },
+      { name: "Selenge", mn: "Сэлэнгэ", d: "M641,136 L641,139 L647,145 L648,153 L646,154 L646,159 L653,167 L652,179 L646,197 L648,205 L642,209 L642,211 L646,215 L647,223 L662,229 L666,229 L679,224 L679,217 L682,214 L688,212 L696,212 L700,214 L700,221 L707,221 L718,228 L725,228 L729,225 L740,224 L743,227 L745,227 L750,224 L755,223 L759,217 L759,212 L754,208 L754,205 L756,202 L760,200 L768,200 L771,202 L775,202 L782,198 L789,197 L789,188 L786,186 L785,183 L782,182 L781,177 L776,176 L768,170 L767,156 L763,156 L760,153 L746,153 L740,151 L735,146 L734,141 L728,136 L719,134 L713,136 L702,135 L700,131 L673,128 L669,131 L658,131 L648,136 Z" },
+      { name: "Töv", mn: "Төв", d: "M790,199 L781,200 L775,204 L771,204 L766,201 L758,203 L756,205 L756,208 L761,212 L760,221 L756,225 L752,225 L746,228 L742,228 L740,226 L732,226 L726,230 L719,230 L707,223 L699,223 L698,215 L694,213 L687,214 L680,217 L681,224 L666,231 L662,231 L654,227 L647,226 L647,235 L639,247 L639,251 L641,253 L642,258 L651,258 L653,260 L654,275 L648,276 L644,279 L638,279 L631,284 L631,287 L633,290 L634,302 L640,310 L640,315 L636,317 L636,319 L641,326 L641,333 L649,341 L651,341 L661,331 L664,331 L675,337 L678,337 L688,324 L693,324 L703,329 L704,331 L723,331 L729,333 L737,340 L748,340 L757,333 L763,331 L764,323 L766,321 L773,319 L788,321 L795,317 L798,313 L798,309 L794,306 L783,284 L783,280 L778,279 L777,267 L783,259 L786,260 L795,259 L802,252 L806,244 L806,234 L801,216 Z" },
+      { name: "Khentii", mn: "Хэнтий", d: "M915,185 L903,185 L898,188 L890,187 L870,196 L863,196 L859,193 L856,193 L851,196 L845,196 L839,194 L827,193 L817,187 L809,188 L792,187 L791,199 L798,206 L802,214 L809,240 L803,254 L793,262 L788,262 L785,285 L794,303 L801,310 L804,317 L808,320 L806,338 L812,342 L813,347 L816,352 L830,354 L839,346 L842,340 L841,331 L847,330 L860,346 L864,356 L877,358 L884,351 L887,342 L886,329 L892,321 L892,311 L897,297 L906,289 L916,291 L915,288 L916,277 L928,269 L938,267 L933,251 L932,232 L922,213 L924,204 L921,199 L920,190 Z" },
+      { name: "Dornod", mn: "Дорнод", d: "M918,183 L918,186 L922,190 L923,200 L926,204 L924,213 L934,232 L935,253 L939,263 L942,278 L949,277 L958,280 L973,281 L981,285 L991,295 L1004,303 L1003,319 L1019,335 L1028,333 L1042,333 L1050,330 L1066,330 L1072,335 L1077,346 L1084,345 L1088,342 L1106,343 L1109,333 L1111,331 L1115,331 L1118,334 L1122,335 L1128,329 L1132,329 L1141,323 L1146,325 L1152,324 L1159,325 L1159,323 L1162,322 L1166,323 L1170,328 L1175,328 L1177,330 L1180,330 L1181,328 L1193,329 L1195,326 L1198,326 L1199,318 L1196,311 L1193,308 L1193,304 L1191,300 L1185,296 L1185,294 L1177,287 L1176,284 L1170,281 L1170,275 L1158,270 L1154,266 L1150,258 L1139,256 L1133,256 L1130,258 L1123,257 L1109,275 L1105,274 L1098,267 L1089,264 L1080,264 L1076,266 L1066,265 L1062,267 L1057,274 L1055,274 L1042,261 L1041,249 L1050,243 L1050,229 L1060,215 L1059,210 L1082,163 L1082,158 L1079,155 L1065,150 L1057,153 L1050,158 L1044,158 L1031,153 L1022,143 L1018,141 L1003,140 L1000,138 L996,138 L982,147 L977,148 L972,153 L969,153 L967,156 L960,160 L957,163 L953,172 L946,177 L930,178 Z" },
+      { name: "Sükhbaatar", mn: "Сүхбаатар", d: "M898,298 L894,312 L894,320 L888,329 L889,341 L886,351 L899,357 L903,362 L905,367 L904,387 L912,399 L913,410 L929,410 L936,419 L943,423 L966,427 L975,427 L981,421 L991,416 L991,414 L1003,403 L1005,396 L1007,394 L1014,392 L1019,395 L1030,395 L1047,391 L1057,381 L1065,378 L1068,375 L1066,366 L1077,351 L1070,335 L1066,332 L1049,332 L1045,334 L1032,334 L1025,336 L1018,336 L1001,319 L1002,303 L993,298 L980,286 L974,283 L959,282 L950,279 L941,280 L939,269 L930,270 L919,276 L917,282 L918,290 L917,293 L906,291 Z" },
+      { name: "Dornogovi", mn: "Дорноговь", d: "M845,331 L843,331 L844,339 L840,347 L830,356 L816,354 L812,349 L810,342 L807,340 L803,342 L800,348 L795,353 L788,383 L790,396 L795,410 L788,413 L787,419 L785,422 L765,424 L763,435 L760,440 L759,454 L764,463 L770,484 L769,506 L772,511 L771,550 L790,549 L796,551 L803,551 L807,549 L824,549 L837,540 L846,539 L859,531 L879,503 L888,499 L895,494 L898,494 L907,484 L912,483 L911,475 L899,462 L896,453 L893,450 L893,447 L898,438 L898,431 L905,417 L911,412 L910,398 L902,386 L903,380 L902,364 L898,358 L886,352 L884,352 L876,360 L863,358 L859,347 L851,336 Z" },
+      { name: "Dundgovi", mn: "Дундговь", d: "M776,329 L769,323 L766,323 L765,332 L762,334 L758,334 L754,339 L748,342 L737,342 L728,334 L724,333 L704,333 L692,325 L687,326 L678,339 L665,333 L660,333 L650,343 L648,354 L645,357 L638,357 L631,375 L629,377 L618,377 L614,381 L614,389 L620,397 L620,405 L624,404 L631,405 L635,421 L639,426 L660,432 L681,431 L691,452 L697,457 L708,456 L729,444 L741,441 L754,441 L761,436 L764,422 L784,421 L786,413 L792,410 L792,405 L787,389 L787,378 L789,367 L780,365 L777,362 L774,354 L774,351 L777,346 L774,338 L774,333 Z" },
+      { name: "Ömnögovi", mn: "Өмнөговь", d: "M758,441 L753,443 L743,442 L729,446 L707,458 L697,459 L689,451 L681,433 L660,434 L640,428 L636,425 L633,420 L630,406 L619,407 L615,414 L600,427 L589,451 L591,457 L590,461 L565,461 L548,466 L545,469 L527,478 L512,478 L511,479 L496,479 L492,477 L485,468 L476,462 L470,462 L463,464 L464,497 L469,526 L469,542 L480,539 L492,539 L494,537 L510,537 L548,547 L557,561 L568,565 L582,565 L603,578 L620,583 L630,583 L645,580 L646,581 L646,591 L648,592 L660,591 L662,593 L665,593 L671,586 L674,586 L686,577 L723,559 L741,555 L749,549 L754,551 L768,551 L769,550 L770,510 L767,506 L768,484 L762,462 L757,453 Z" },
+      { name: "Övörkhangai", mn: "Өвөрхангай", d: "M632,295 L616,297 L609,301 L599,301 L592,294 L579,290 L580,299 L576,304 L576,310 L573,314 L562,309 L553,312 L548,318 L532,320 L532,323 L537,332 L538,346 L536,355 L530,361 L531,377 L524,393 L524,409 L527,415 L533,417 L540,423 L540,435 L544,443 L548,464 L566,459 L589,459 L588,450 L599,426 L614,413 L618,406 L618,397 L613,391 L612,381 L619,375 L629,375 L636,357 L638,355 L646,354 L648,348 L648,342 L639,333 L639,325 L635,319 L635,317 L638,315 L638,310 L632,301 Z" },
+      { name: "Bayankhongor", mn: "Баянхонгор", d: "M431,274 L427,278 L426,282 L421,286 L420,297 L414,302 L410,301 L407,302 L406,307 L402,314 L401,323 L397,329 L397,332 L403,348 L420,365 L426,373 L428,380 L427,401 L419,420 L419,437 L416,444 L410,448 L409,488 L406,500 L403,505 L404,536 L427,540 L467,542 L467,525 L462,495 L461,464 L463,462 L469,460 L476,460 L482,464 L493,476 L528,476 L546,466 L546,460 L541,439 L537,432 L538,423 L533,419 L527,417 L523,411 L523,391 L529,378 L528,361 L535,353 L536,336 L535,331 L529,320 L526,319 L508,320 L505,315 L498,310 L497,302 L481,306 L479,304 L478,292 L474,284 L473,278 L462,281 L456,287 L447,287 L440,281 L438,274 Z" },
+      { name: "Govi-Altai", mn: "Говь-Алтай", d: "M255,276 L252,279 L252,281 L255,282 L262,291 L269,295 L275,311 L281,319 L281,322 L273,326 L266,326 L259,333 L253,331 L255,342 L248,356 L246,367 L235,377 L237,385 L237,404 L239,415 L244,415 L246,417 L251,417 L255,419 L258,423 L274,432 L280,438 L280,440 L283,440 L286,442 L293,450 L298,451 L302,454 L309,454 L316,452 L319,453 L316,466 L323,468 L335,501 L335,505 L353,526 L354,534 L376,533 L380,531 L384,531 L402,535 L401,507 L407,490 L408,449 L416,441 L417,420 L425,402 L426,380 L424,372 L416,362 L400,346 L398,336 L395,332 L390,329 L387,329 L383,333 L373,332 L371,326 L364,315 L359,315 L354,318 L351,318 L349,315 L347,299 L343,295 L339,294 L324,283 L314,281 L306,282 L303,277 L286,275 L276,270 L272,270 Z" }
+    ];
+    // Mini projects by children from each province. Add more provinces here.
+    const ICON = {
+      hangman: 'M4 21h10M7 21V3h8v3M15 7.5a1.5 1.5 0 1 0 0 3a1.5 1.5 0 1 0 0-3M15 10.5v5M15 12.5l-2 2M15 12.5l2 2M15 15.5l-2 3M15 15.5l2 3',
+      movie: 'M3 5h18v14H3zM7 5v14M17 5v14M3 9.5h4M3 14.5h4M17 9.5h4M17 14.5h4',
+      food: 'M5 8h14l-1.2 12H6.2L5 8zM9 8V6.5a3 3 0 0 1 6 0V8',
+      wordle: 'M3 3h5v5H3zM9.5 3h5v5h-5zM16 3h5v5h-5zM3 9.5h5v5H3zM9.5 9.5h5v5h-5zM16 9.5h5v5h-5zM3 16h5v5H3zM9.5 16h5v5h-5z',
+      quiz: 'M12 22a10 10 0 1 0 0-20a10 10 0 1 0 0 20M9.2 9a3 3 0 1 1 4.3 2.7c-.9.4-1.5 1.1-1.5 2.1M12 17.2v.1'
+    };
+    // Mini projects by children from each province. side: which side of the province the card opens on.
+    const PROJECTS = {
+      'Khentii': { side: 'left', vy: 50, list: [{ title: 'Hangman Game', url: 'https://hangman-mocha-mu.vercel.app/', icon: ICON.hangman, desc: L('A word-guessing game: pick letters to uncover the hidden word.', 'Үг таах тоглоом: үсгээ сонгож нууц үгийг тайлаарай.') }] },
+      'Khovd': { side: 'right', vy: 50, list: [{ title: 'Movie App', url: 'https://movie-app-five-delta-71.vercel.app/', icon: ICON.movie, desc: L('Browse upcoming, popular and top-rated films, with ratings and trailers.', 'Удахгүй гарах, алдартай, өндөр үнэлгээтэй киног үнэлгээ, трейлертэй нь үзээрэй.') }] },
+      'Khövsgöl': { side: 'right', vy: 25, list: [{ title: 'Food Delivery App', url: 'https://food-delivery-app-seven-inky.vercel.app/login', icon: ICON.food, desc: L('A food-ordering app with sign-up and log-in for customers.', 'Хэрэглэгч бүртгүүлж, нэвтэрч хоол захиалах апп.') }] },
+      'Ömnögovi': { side: 'right', vy: 80, list: [{ title: 'Wordle Game', url: 'https://wordle-ten-kappa.vercel.app/', icon: ICON.wordle, desc: L('Guess the hidden word letter by letter with the on-screen keyboard.', 'Дэлгэцийн гараар үсэг оруулж нууц үгийг таагаарай.') }] },
+      'Dornod': { side: 'left', vy: 50, list: [{ title: 'Quiz App', url: 'https://quiz-tau-dun.vercel.app/', icon: ICON.quiz, desc: L('Play ready-made quizzes or create your own, with sign-up and log-in.', 'Бэлэн асуулт хариултад оролцох эсвэл өөрийн шалгалтыг үүсгээрэй.') }] }
+    };
+    const LABEL_AT = {'Khövsgöl': [491.0, 129.0], 'Uvs': [241.0, 173.0], 'Bayan-Ölgii': [111.5, 212.0], 'Khovd': [213.0, 291.0], 'Zavkhan': [366.0, 246.0], 'Arkhangai': [531.5, 267.0], 'Bulgan': [593.0, 210.0], 'Selenge': [709.0, 174.5], 'Töv': [718.5, 279.0], 'Khentii': [864.0, 251.5], 'Dornod': [990.0, 215.0], 'Sükhbaatar': [960.0, 357.0], 'Dornogovi': [830.5, 464.5], 'Dundgovi': [709.5, 387.5], 'Ömnögovi': [644.5, 507.5], 'Övörkhangai': [578.5, 355.5], 'Bayankhongor': [475.5, 358.0], 'Govi-Altai': [322.5, 381.0]}; // where each province name sits on the map
+    const CENTER = { 'Khentii': [858, 263], 'Khovd': [206, 315], 'Khövsgöl': [480, 140], 'Ömnögovi': [631, 506], 'Dornod': [1038, 249] };
+    const hov = this.state.hoverProv;
+    const provinces = PROV.map((p) => {
+      const h = this.provH(p.name);
+      const projs = PROJECTS[p.name] && PROJECTS[p.name].list;
+      const on = hov === p.name;
+      return {
+        d: p.d, label: en ? p.name : p.mn,
+        lxPct: ((LABEL_AT[p.name] || [0, 0])[0] / 13).toFixed(2), lyPct: ((LABEL_AT[p.name] || [0, 0])[1] / 6.14).toFixed(2),
+        fill: on ? 'rgba(139,15,15,0.16)' : 'rgba(0,0,0,0)',
+        stroke: on ? '#8B0F0F' : 'none', sw: on ? 3 : 0,
+        cursor: projs ? 'pointer' : 'default',
+        enter: h.enter, leave: h.leave,
+        click: () => { if (projs) window.open(projs[0].url, '_blank', 'noopener'); },
+        on
+      };
+    }).sort((x, y) => (x.on ? 1 : 0) - (y.on ? 1 : 0));
+    const hovP = PROV.find((p) => p.name === hov);
+    const pInfo = hov ? PROJECTS[hov] : null;
+    const cardProjects = pInfo ? pInfo.list.map((x) => Object.assign({ tag: L('Live', 'Нээлттэй') }, x)) : [];
+    let cardPos = '';
+    if (pInfo) {
+      const c = CENTER[hov];
+      const xPct = (c[0] / 1300 * 100).toFixed(2), yPct = (c[1] / 614 * 100).toFixed(2);
+      cardPos = (pInfo.side === 'right' ? 'left: calc(' + xPct + '% + 12px);' : 'right: calc(' + (100 - xPct).toFixed(2) + '% + 12px);')
+        + ' top: ' + yPct + '%; transform: translateY(-' + pInfo.vy + '%);';
+    }
+    const showCard = cardProjects.length > 0;
+    const cardRegion = hovP ? (en ? hovP.name : hovP.mn) : '';
+    const progCards = [
+      { dir: 'row', sq: '#072039', puz: true, code: false, bg: 'linear-gradient(135deg, #4F0808 0%, #7E0E0E 55%, #A81A15 100%)', glow: 'radial-gradient(55% 75% at 88% 18%, rgba(255,150,120,0.30) 0%, rgba(255,150,120,0) 70%)', fg: '#FFFFFF', sub: 'rgba(255,255,255,0.80)', link: '#F5B9A8', more: '#involved', img: B('9fc8ee90d5070beb45d32114201ee56a'), alt: 'A hand holds up a bone-and-string puzzle in front of a painted space mural', label: L('Puzzle', 'Оньсого'), title: L('Traditional puzzle lessons', 'Уламжлалт оньсогын хичээл'), text: L('Hands-on sessions with interlocking wood, string-and-ring puzzles and puzzle locks. Students slow down, test ideas and finish what they start.', 'Модон түгжээ, утас цагирагтай оньсого, оньсон цоожоор гар ажиллагаатай хичээл. Сурагчид тайван бодож, санаагаа туршиж, эхэлснээ дуусгаж сурдаг.'),
+        tags: [{ label: L('School workshops', 'Сургуулийн сургалт'), href: '#involved' }, { label: L('Curriculum lessons', 'Хөтөлбөрийн хичээл'), href: '#involved' }] },
+      { dir: 'row-reverse', sq: '#8B0F0F', puz: false, code: true, bg: 'linear-gradient(135deg, #0D1A2B 0%, #15304A 58%, #1F4566 100%)', glow: 'radial-gradient(55% 75% at 88% 18%, rgba(132,178,226,0.30) 0%, rgba(132,178,226,0) 70%)', fg: '#FFFFFF', sub: 'rgba(255,255,255,0.74)', link: '#8FB4D8', more: '#involved', img: B('384de71f7e5afc649c9f73176bb7c061'), alt: 'A student writes code at an iMac in front of a wood-panelled wall', label: L('Coding', 'Кодлол'), title: L('Coding classes', 'Кодлолын хичээл'), text: L('For kids who already live online, we turn screen time into making time: break a problem down, try, debug, repeat.', 'Онлайн орчинд өсөж буй хүүхдүүдэд дэлгэцийн цагийг бүтээх цаг болгоно: асуудлыг задлах, туршиж үзэх, алдаагаа засах, давтах.'),
+        tags: [{ label: L('Coding classes', 'Кодлолын хичээл'), href: '#where' }, { label: L('Project-based', 'Төсөлд суурилсан'), href: '#where' }] }
+    ];
+    const storyBeats = [                              // the three steps of how MindMaze came to be
+      { sq: '#072039', title: L('The spark', 'Эхлэл'), text: L('Many of us grew up untangling string puzzles and wooden locks at our grandparents’ homes. Years later, we realised how much patience and logic they had quietly taught us.', 'Бидний ихэнх нь өвөө эмээгийндээ утсан оньсого, модон түгжээ тайлж өссөн. Олон жилийн дараа тэд бидэнд хичнээн их тэвчээр, логикийг чимээгүйхэн зааж өгснийг ойлгосон.') },
+      { sq: '#8B0F0F', title: L('The gap', 'Орхигдсон зүйл'), text: L('When we visited classrooms, most children had never held a traditional puzzle. Screens filled their free time, and the old games were fading from everyday life.', 'Ангиудаар явахад ихэнх хүүхэд уламжлалт оньсого гартаа барьж үзээгүй байв. Чөлөөт цагийг нь дэлгэц эзэлж, эртний тоглоомууд өдөр тутмын амьдралаас алга болж байлаа.') },
+      { sq: '#072039', title: L('Our answer', 'Бидний шийдэл'), text: L('So we started bringing puzzles back into lessons, and paired them with coding, so the same curiosity carries children from wood to screen.', 'Тиймээс бид оньсогыг хичээлд эргүүлэн авчирч, кодлолтой хослуулсан. Ингэснээр нэг л сониуч зан хүүхдийг модон тоглоомоос дэлгэц хүртэл хөтөлнө.') }
+    ];
+    const involve = [
+      { title: L('Schools', 'Сургуулиуд'), text: L('Host a workshop or adapt puzzle lessons into your curriculum.', 'Сургалт зохион байгуулах эсвэл оньсогын хичээлийг сургалтын хөтөлбөртөө оруулаарай.'), points: [L('Workshops for any grade', 'Бүх ангид зориулсан сургалт'), L('Lesson plans for teachers', 'Багш нарт зориулсан хичээлийн төлөвлөгөө')], cta: L('Request a workshop', 'Сургалт захиалах'), sq: '#8B0F0F' },
+      { title: L('Students', 'Оюутнууд'), text: L('Start or join a university chapter and lead sessions in local schools.', 'Их сургуульдаа салбар байгуулж эсвэл нэгдэж, орон нутгийн сургуулиудад хичээл удирдаарай.'), points: [L('Training from our team', 'Манай багаас сургалт авна'), L('Volunteer experience', 'Сайн дурын туршлага')], cta: L('Join a chapter', 'Салбарт нэгдэх'), sq: '#072039' },
+      { title: L('Partners', 'Түншүүд'), text: L('Help us reach more aimags with puzzles, computers and venues.', 'Оньсого, компьютер, байраар дэмжиж илүү олон аймагт хүрэхэд тусална уу.'), points: [L('Sponsor a school', 'Сургуулийг ивээн тэтгэх'), L('Donate puzzle kits', 'Оньсогын иж бүрдэл хандивлах')], cta: L('Partner with us', 'Хамтран ажиллах'), sq: '#8B0F0F' }
+    ];
+    const soon = [{ n: '02' }, { n: '03' }];
+    const curriculumSchools = [
+      { name: L('24th Secondary School', '24-р дунд сургууль'), img: B('11b19b4c12ad73934c4fbbe1ae218046'), alt: 'Students at 24th Secondary School doing a warm-up exercise in class' },
+      { name: L('1st Secondary School of Uvurkhangai', 'Өвөрхангай аймгийн 1-р дунд сургууль'), img: B('81a74c28010c0b4813c1600d905a8f9f'), alt: 'A classroom at 1st Secondary School of Uvurkhangai' }
+    ];
+    const speakers = [{ n: '01' }, { n: '02' }, { n: '03' }, { n: '04' }];
+    const person = (m, i) => Object.assign(m, { hasPhoto: !!m.img, noPhoto: !m.img, cap: !m.poster, bg: ['#072039', '#8B0F0F', '#072039', '#8B0F0F'][i % 4] });
+    const leads = [
+      { ini: 'АӨ', name: L('Anujin Ulziidelger', 'Анужин Өлзийдэлгэр'), role: L('Founder & President', 'Үүсгэн байгуулагч, Ерөнхийлөгч'), img: B('cd048eecf80469ed02d2a3288bcdcf77'), poster: true },
+      { ini: 'ЭГ', name: L('Erkhem Ganzorig', 'Эрхэм Ганзориг'), role: L('Chief Technology Officer', 'Технологийн захирал'), img: B('dcc00b6d0eab1d4bd2d3f0a6997b6810'), poster: true },
+      { ini: 'МЧ', name: L('Michid-Erdene Chadraabal', 'Мичид-Эрдэнэ Чадраабал'), role: L('Lead member', 'Удирдах гишүүн'), img: B('48927a094aa6084d881cd76a28ca8d54'), poster: true },
+      { ini: 'ОН', name: L('Odbayar Nyambayar', 'Одбаяр Нямбаяр'), role: L('Lead member', 'Удирдах гишүүн'), img: B('57f73ea335c251b0c3c1442ce3694be3'), poster: true }
+    ].map(person);
+    const members = [
+      { ini: 'ДУ', name: L('Dulguun Uuganbaatar', 'Дөлгөөн Ууганбаатар'), role: L('UW Chapter Leader', 'Вашингтоны их сургуулийн салбарын ахлагч'), img: B('d967f981655b5e83531052a80573b5c8'), poster: true },
+      { ini: 'МБ', name: L('Munkhdalai Batbayar', 'Мөнхдалай Батбаяр'), role: L('School Administrator', 'Сургуулийн администратор'), img: B('6b92678bb898a1dba561b7a2e903be54'), poster: true },
+      { ini: 'УГ', name: L('', 'Ундрам Ганзориг'), role: L('Team member', 'Багийн гишүүн') }
+    ].map(person);
+    const team = leads.concat(members);
+    // Sliding rows repeat the people until each half is wider than a big screen; repeats are hidden from screen readers.
+    const loopOf = (arr) => {
+      const k = Math.max(1, Math.ceil(12 / arr.length)); // enough people per half to cover very wide screens
+      const half = Array.from({ length: arr.length * k }, (_, i) => Object.assign({}, arr[i % arr.length], { hid: i >= arr.length ? 'true' : 'false' }));
+      return half.concat(half.map((m) => Object.assign({}, m, { hid: 'true' })));
+    };
+    const leadsLoop = loopOf(leads), membersLoop = loopOf(leads.concat(members)); // one row: lead members first, then the team
+    return {
+      curriculumSchools, involve, progCards, storyBeats,
+      t, nav, stats, quotes, programs, puzzles, success, soon, speakers, team, leads, members,
+      leadsLoop, membersLoop, setTrackC: this.setTrackC, mqPauseC: this.mqPauseC, mqPlayC: this.mqPlayC, setTrackD: this.setTrackD, mqPauseD: this.mqPauseD, mqPlayD: this.mqPlayD,
+      accent, accentInk: '#072039',
+      isEn: en ? 'true' : 'false',
+      isMn: en ? 'false' : 'true',
+      enBg: en ? '#1A1A1A' : 'transparent', enFg: en ? '#FBF8F1' : '#1A1A1A',
+      mnBg: en ? 'transparent' : '#1A1A1A', mnFg: en ? '#1A1A1A' : '#FBF8F1',
+      setHeadEl: this.setHeadEl,
+      setEyeEl: this.setEyeEl,
+      enBgD: en ? '#F3EFE6' : 'transparent', enFgD: en ? '#0B1528' : '#F3EFE6',
+      mnBgD: en ? 'transparent' : '#F3EFE6', mnFgD: en ? '#F3EFE6' : '#0B1528',
+      eduGlance, eduLearn, eduImpact, eduVoices, wins,
+      vPhotos, setVTrack: this.setVTrack, vPause: this.vPause, vPlay: this.vPlay,
+      setOrn0: this.setOrn0,
+      setOrn1: this.setOrn1,
+      setOrn2: this.setOrn2,
+      setOrn3: this.setOrn3,
+      setOrn4: this.setOrn4,
+      setOrn5: this.setOrn5,
+      setOrn6: this.setOrn6,
+      setOrn7: this.setOrn7,
+      setOrn8: this.setOrn8,
+      setOrn9: this.setOrn9,
+      setOrn10: this.setOrn10,
+      setOrn11: this.setOrn11,
+      setHandEl: this.setHandEl,
+      setTrackA: this.setTrackA, mqPauseA: this.mqPauseA, mqPlayA: this.mqPlayA, mqNextA: this.mqNextA, mqNextC: this.mqNextC, mqNextD: this.mqNextD,
+      setTrackB: this.setTrackB, mqPauseB: this.mqPauseB, mqPlayB: this.mqPlayB,
+      successB,
+      provinces, showCard, cardRegion, cardProjects, cardPos, cardEnter: this.cardEnter, cardLeave: this.cardLeave,
+      setEn: () => this.setState({ lang: 'en' }),
+      setMn: () => this.setState({ lang: 'mn' })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -56,7 +56,7 @@ export function codingContent(lang: Lang) {
     fmtT2: L('format', 'хэлбэрээ сонго'),
     c1T: L('Summer in-person class', 'Зуны танхимын хичээл'),
     c1: L('A 14-day coding program with Pinecone Academy, fully covered by scholarships.', 'Pinecone Academy-тай хамтарсан, бүрэн тэтгэлэгтэй 14 хоногийн кодлолын хөтөлбөр.'),
-    c1b1: L('21 students from two provinces and the rural districts of Ulaanbaatar', 'Хоёр аймаг болон Улаанбаатарын алслагдсан дүүргүүдийн 21 сурагч'),
+    c1b1: L('21 students from two provinces and the rural districts of Ulaanbaatar', 'Хоёр аймаг болон Улаанбаатарын алслагдсан дүүргүүдийн 20 сурагч'),
     c1b2: L('14 days, in person', '14 хоног, танхимаар'),
     c1b3: L('Three projects built by each student', 'Сурагч бүр гурван төсөл бүтээсэн'),
     c1b4: L('Fully covered by scholarships', 'Бүрэн тэтгэлэгтэй'),
@@ -144,7 +144,7 @@ export function codingContent(lang: Lang) {
   ];
 
   const stats = [
-    { n: '21', label: t.st1 },
+    { n: '20', label: t.st1 },
     { n: '14', label: t.st2 },
     { n: '3', label: t.st3 },
     { n: '7', label: t.st4 },
