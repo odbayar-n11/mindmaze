@@ -65,9 +65,7 @@ export function homeContent(lang: Lang) {
     { img: '/media/63e8a5d759c8af8dc32625f94043c96e.jpg', alt: 'Two boys work a wooden cross puzzle together' },
     { img: '/media/ae4e4fb8fe980c71504ad4555a4d2036.jpg', alt: 'Students fit the pieces of a wooden puzzle together' },
     { img: '/media/4504b7a14aa019336758573bdc1f5094.jpg', alt: 'A mentor shows two students a round wooden puzzle' },
-    { img: '/media/58082a3be1c62e50173fb9eda497d3a6.jpg', alt: 'Two students hold a wooden star puzzle in their hands' },
-    { img: '/media/fe472fef0eaa23f0e710f3d7579204ae.jpg', alt: 'A student writes code at an iMac' },
-    { img: '/media/a79e3eda1dc04abf37481273e852a77d.jpg', alt: 'A student codes at an iMac in a computer lab' }
+    { img: '/media/58082a3be1c62e50173fb9eda497d3a6.jpg', alt: 'Two students hold a wooden star puzzle in their hands' }
   ];
   const vPhotos = vOnce.concat(vOnce);
   const stats = [
