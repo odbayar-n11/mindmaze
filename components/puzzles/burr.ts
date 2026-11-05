@@ -26,7 +26,7 @@ export function burrMaterial(loader: THREE.TextureLoader, seed: number, maxAniso
     t.anisotropy = maxAniso;
     t.repeat.set(0.55, 0.5);
     t.offset.set((seed * 0.173) % 1, (seed * 0.311) % 1);
-    t.needsUpdate = true;
+    // no needsUpdate here: the image is not loaded yet, and TextureLoader flags the upload itself on load
   });
   map.encoding = THREE.sRGBEncoding;
   return new THREE.MeshStandardMaterial({

@@ -5,13 +5,23 @@ export default function About({ v }: { v: HomeVals }) {
   return (
     <section
       id="why"
+      className="why"
       style={{
         position: 'relative',
-        background: '#FFFFFF',
+        background: 'var(--hm-bg)',
         padding: 'clamp(64px, 7vw, 112px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
       }}
     >
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '48px 72px', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '48px 56px', alignItems: 'center' }}>
+        <div className="why-mn">
+          <span lang="mn-Mong" aria-hidden="true" className="why-mn-a">
+            ᠮᠣᠩᠭᠣᠯ ᠥᠪ ᠰᠣᠶᠣᠯ
+          </span>
+          <span aria-hidden="true" className="why-mn-line" />
+          <span lang="mn-Mong" aria-label="Ухаалаг ирээдүй (Smart future)" className="why-mn-b">
+            ᠤᠬᠠᠭᠠᠯᠠᠭ ᠢᠷᠡᠭᠡᠳᠦᠢ
+          </span>
+        </div>
         <div style={{ flex: '1 1 480px', minWidth: '0' }}>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: '10px' }}>
             <span
@@ -31,7 +41,7 @@ export default function About({ v }: { v: HomeVals }) {
                 fontSize: 'clamp(30px, 3.4vw, 46px)',
                 lineHeight: '1',
                 letterSpacing: '0.02em',
-                color: '#8B0F0F',
+                color: 'var(--hm-red)',
               }}
             >
               01
@@ -46,7 +56,7 @@ export default function About({ v }: { v: HomeVals }) {
               lineHeight: '1.05',
               letterSpacing: '0.01em',
               textTransform: 'uppercase',
-              color: '#072039',
+              color: 'var(--hm-navy)',
             }}
           >
             {t.whyEyebrow}

@@ -17,22 +17,110 @@
     max-width: none;
   }
 }
+/* ---------------------------------------------------------------- light / dark theme
+   Light is the default. Dark follows the system setting until the visitor picks one with the
+   header toggle (ThemeToggle), which sets data-home-theme on <html> and remembers it. */
+.page-home {
+  --hm-bg: #f3f1e8;
+  --hm-card: #ebe8dd;
+  --hm-ink: #1a1a1a;
+  --hm-navy: #072039;
+  --hm-muted: #55524c;
+  --hm-red: #8b0f0f;
+  --hm-title: #072039;
+  --hm-rule: #d6d1c5;
+  --hm-script: #000000;
+  --hm-line: rgba(26, 26, 26, 0.25);
+  --hm-map: #2f5a3c;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-home-theme='light']) .page-home {
+    --hm-bg: #10151f;
+    --hm-card: #1a2230;
+    --hm-ink: #ece7dc;
+    --hm-navy: #e9e4d8;
+    --hm-muted: #aaa498;
+    --hm-red: #f0857a;
+    --hm-title: #e9e4d8;
+    --hm-rule: rgba(236, 231, 220, 0.16);
+    --hm-script: #ece7dc;
+    --hm-line: rgba(236, 231, 220, 0.3);
+  --hm-map: #9cc7a8;
+    color-scheme: dark;
+  }
+  html:not([data-home-theme='light']) body:has(.page-home) {
+    background: #10151f;
+  }
+}
+html[data-home-theme='dark'] .page-home {
+  --hm-bg: #10151f;
+  --hm-card: #1a2230;
+  --hm-ink: #ece7dc;
+  --hm-navy: #e9e4d8;
+  --hm-muted: #aaa498;
+  --hm-red: #f0857a;
+  --hm-title: #e9e4d8;
+  --hm-rule: rgba(236, 231, 220, 0.16);
+  --hm-script: #ece7dc;
+  --hm-line: rgba(236, 231, 220, 0.3);
+  --hm-map: #9cc7a8;
+  color-scheme: dark;
+}
 body:has(.page-home) {
   margin: 0;
-  background: #ffffff;
+  background: #f3f1e8;
+  transition: background-color 0.3s ease;
 }
+html[data-home-theme='dark'] body:has(.page-home) {
+  background: #10151f;
+}
+.page-home section,
+.page-home .home-body > div {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* the map picture has dark green lines: flip its lightness (same hue) on the dark background */
+html[data-home-theme='dark'] .page-home .map-img {
+  filter: invert(1) hue-rotate(180deg);
+}
+/* the engraved eye: its outline follows the text colour */
+.page-home .story-eye [stroke='#072039'],
+.page-home .story-eye [stroke='#0B1528'] {
+  stroke: var(--hm-navy);
+}
+/* header sun/moon button */
+.page-home .theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(243, 239, 230, 0.6);
+  background: transparent;
+  color: #f3efe6;
+  cursor: pointer;
+}
+.page-home .theme-toggle:hover {
+  background: rgba(243, 239, 230, 0.12);
+}
+.page-home .theme-toggle:focus-visible {
+  outline: 3px solid #e2574c;
+  outline-offset: 2px;
+}
+
 .page-home a {
-  color: #1a1a1a;
+  color: var(--hm-ink);
 }
 .page-home a:hover {
-  color: #8b0f0f;
+  color: var(--hm-red);
 }
 .page-home .navlink {
-  color: #1a1a1a;
+  color: var(--hm-ink);
   text-decoration: none;
 }
 .page-home .navlink:hover {
-  color: #8b0f0f;
+  color: var(--hm-red);
 }
 .page-home .zoom {
   transition: transform 0.6s ease;
@@ -69,8 +157,8 @@ body:has(.page-home) {
     color 0.2s ease;
 }
 .page-home .pill:hover {
-  background: #1a1a1a !important;
-  color: #fbf8f1 !important;
+  background: var(--hm-ink) !important;
+  color: var(--hm-bg) !important;
 }
 .page-home .mq-next {
   position: absolute;
@@ -105,393 +193,603 @@ body:has(.page-home) {
 .page-home input:focus,
 .page-home textarea:focus {
   outline: none;
-  border-bottom-color: #072039 !important;
-}
-.page-home .orn {
-  display: block;
-  height: 52px;
-  background-repeat: repeat-x;
-  background-size: auto 100%;
-  background-position: 0 0;
-}
-.page-home .orn1 {
-  background-image: url(/media/20c9978d6f1f7e5fa0fa1214faf69f48.jpg);
-}
-.page-home .orn2 {
-  background-image: url(/media/fd8bc08d78cf7080cd1d1f76adff77ec.jpg);
-}
-.page-home .orn3 {
-  background-image: url(/media/1385a28ed8dba1ed701910c19b397c14.jpg);
-}
-.page-home .orn4 {
-  background-image: url(/media/68c3371cc46ab1186c8231ae9403c539.jpg);
+  border-bottom-color: var(--hm-navy) !important;
 }
 .page-home .vloop {
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 8%, #000 92%, transparent 100%);
   mask-image: linear-gradient(180deg, transparent 0, #000 8%, #000 92%, transparent 100%);
 }
 
-/* ---------------------------------------------------------------- hero
-   The hero always fills the screen. Below the header, the composition from the design
-   (1274 x 709 px of content at 1440 px wide) is scaled as one piece: --u is one design pixel,
-   as large as fits both the width (same side margins as the header) and the height left
-   under the header. Phones get a stacked version further down. */
-.page-home .hero {
+/* ---------------------------------------------------------------- page inset
+   Below the hero, every section sits 66px in from the page edges (33px on phones), with room under the footer. */
+.page-home .home-body {
+  --inset: 66px; /* the Part 04/05 photo strips extend back out by this much to reach the screen edges */
   position: relative;
-  background: #0b1528;
-  color: #f3efe6;
-  display: flex;
-  flex-direction: column;
-  /* the fixed header sits above the hero (body is padded by its height), so take that off */
-  height: calc(100vh - var(--site-nav-height, 89px));
-  height: calc(100svh - var(--site-nav-height, 89px));
-  min-height: 600px;
+  padding: 0 var(--inset);
 }
-.page-home .hero .hero-frame {
-  flex: 1;
-  min-height: 0;
-  container-type: size;
-  display: flex;
-  align-items: center;
+@media (max-width: 760px) {
+  .page-home .home-body {
+    --inset: 33px;
+    padding: 0 var(--inset);
+  }
 }
-.page-home .hero .hero-stage {
-  --pad: max(clamp(24px, 5vw, 64px), calc((100cqw - 1360px) / 2));
-  --u: min(calc((100cqw - 2 * var(--pad)) / 1274), calc(100cqh / 769));
-  position: relative;
-  z-index: 1;
-  box-sizing: border-box;
-  width: 100%;
-  height: calc(var(--u) * 769);
-  padding: calc(var(--u) * 28) var(--pad) calc(var(--u) * 32);
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-}
-.page-home .hero .hero-left {
-  flex: none;
-  width: calc(var(--u) * 260);
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--u) * 28);
-}
-.page-home .hero .hero-script {
-  flex: 1;
-  position: relative;
-  display: flex;
-  gap: calc(var(--u) * 18);
-  align-items: flex-start;
-}
-.page-home .hero .hero-script-a,
-.page-home .hero .hero-script-b {
-  writing-mode: vertical-lr;
-  font-family: 'Noto Sans Mongolian', serif;
-  line-height: 1;
-  color: #e2574c;
-}
-.page-home .hero .hero-script-a {
-  font-size: calc(var(--u) * 22);
-}
-.page-home .hero .hero-script-b {
-  position: absolute;
-  left: calc(var(--u) * 61);
-  top: calc(var(--u) * 262);
-  font-size: calc(var(--u) * 24);
-  white-space: nowrap;
-}
-.page-home .hero .hero-script-line {
-  width: 1px;
-  align-self: stretch;
-  min-height: calc(var(--u) * 120);
-  background: rgba(243, 239, 230, 0.3);
-}
-.page-home .hero .hero-sub {
-  margin: 0;
-  font-size: calc(var(--u) * 15);
-  line-height: 1.65;
-  color: #b9bfcc;
-  max-width: calc(var(--u) * 300);
-}
-.page-home .hero .hero-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: calc(var(--u) * 10);
-}
-.page-home .hero .hero-btn {
-  display: inline-flex;
-  align-items: center;
-  min-height: calc(var(--u) * 48);
-  padding: 0 calc(var(--u) * 22);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: calc(var(--u) * 13);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.page-home .hero .hero-btn-solid {
-  background: #f3efe6;
-  color: #0b1528;
-}
-.page-home .hero .hero-btn-line {
-  border: 1px solid #f3efe6;
-  color: #f3efe6;
-}
-.page-home .hero .hero-mid {
-  flex: none;
-  width: calc(var(--u) * 798);
-  min-width: 0;
-  min-height: 0;
-  display: flex;
-  align-items: flex-end;
-  gap: calc(var(--u) * 20);
-}
-.page-home .hero .hero-eye {
-  position: relative;
-  width: 100%;
-  max-width: calc(var(--u) * 940);
-  margin: auto 0;
-}
-.page-home .hero .hero-word,
-.page-home .hero .hero-place {
-  position: absolute;
-  white-space: nowrap;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #e2574c;
-}
-.page-home .hero .hero-word {
-  right: calc(var(--u) * 638);
-  top: calc(var(--u) * -17);
-  font-size: calc(var(--u) * 56);
-  text-align: right;
-}
-.page-home .hero .hero-place {
-  left: calc(var(--u) * 568);
-  top: calc(var(--u) * 533);
-  font-size: calc(var(--u) * 43);
-}
-.page-home .hero .hero-spacer {
-  margin-top: auto;
-  height: calc(var(--u) * 56);
-}
-.page-home .hero .hero-right {
-  flex: none;
-  width: calc(var(--u) * 120);
-  min-width: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: stretch;
-}
-.page-home .hero .hero-right-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: calc(var(--u) * 28);
-}
-.page-home .hero .hero-tagline {
-  margin: 0;
-  writing-mode: vertical-rl;
-  font-weight: 600;
-  font-size: calc(var(--u) * 37.44);
-  line-height: 1.2;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  max-height: calc(var(--u) * 560);
-  color: #f3efe6;
-}
-.page-home .hero .hero-tagline span {
-  font-weight: 500;
-}
-.page-home .hero .hero-square {
+
+/* separating band under the cover: a repeating traditional pattern, full width */
+.page-home .orn {
   display: block;
-  width: calc(var(--u) * 44);
-  height: calc(var(--u) * 30);
-  background: #e2574c;
+  height: 52px;
+  background: url(/media/1385a28ed8dba1ed701910c19b397c14.jpg) 0 0 / auto 100% repeat-x;
 }
 
-/* phones and narrow tablets: the eye on top, then the tagline, then the text and buttons */
-@media (max-width: 900px) {
-  .page-home .hero {
-    height: auto;
-    min-height: 100svh;
-  }
-  .page-home .hero .hero-frame {
-    container-type: inline-size;
-    display: block;
-  }
-  .page-home .hero .hero-stage {
-    --u: calc((100cqw - 2 * var(--pad)) / 778);
-    height: auto;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 28px;
-    padding: 64px var(--pad) 48px;
-  }
-  .page-home .hero .hero-mid {
-    order: 1;
-    width: 100%;
-    display: block;
-  }
-  .page-home .hero .hero-eye {
-    max-width: none;
-  }
-  .page-home .hero .hero-word {
-    right: auto;
-    left: 0;
-    top: -38px;
-    font-size: clamp(30px, 9vw, 56px);
-  }
-  .page-home .hero .hero-place {
-    left: auto;
-    right: 0;
-    top: auto;
-    bottom: -10px;
-    font-size: clamp(24px, 7vw, 43px);
-  }
-  .page-home .hero .hero-spacer {
-    display: none;
-  }
-  .page-home .hero .hero-right {
-    order: 2;
-    width: 100%;
-    margin-top: 28px;
-  }
-  .page-home .hero .hero-right-inner {
-    width: 100%;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  .page-home .hero .hero-tagline {
-    writing-mode: horizontal-tb;
-    max-height: none;
-    font-size: clamp(20px, 5.4vw, 30px);
-  }
-  .page-home .hero .hero-square {
-    flex: none;
-    width: 44px;
-    height: 30px;
-  }
-  .page-home .hero .hero-left {
-    order: 3;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 24px;
-  }
-  .page-home .hero .hero-script {
-    flex: none;
-    gap: 18px;
-  }
-  .page-home .hero .hero-script-a {
-    font-size: 22px;
-  }
-  .page-home .hero .hero-script-b {
-    position: static;
-    font-size: 24px;
-  }
-  .page-home .hero .hero-script-line {
-    min-height: 120px;
-  }
-  .page-home .hero .hero-sub {
-    flex: 1 1 200px;
-    font-size: 15px;
-    max-width: 300px;
-  }
-  .page-home .hero .hero-ctas {
-    width: 100%;
-    gap: 10px;
-  }
-  .page-home .hero .hero-btn {
-    min-height: 48px;
-    padding: 0 22px;
-    font-size: 13px;
-  }
-}
-
-/* ---------------------------------------------------------------- approach cards
-   Full-bleed photo with rounded corners, a dark fade at the bottom and the text on top. */
-.page-home .prog-card {
+/* ---------------------------------------------------------------- hero (#top)
+   Full-screen photo, a dark fade behind the header and a soft wash on the left, title on top.
+   The header is pinned (components/navigation/PinnedHeader): transparent over the photo until you scroll. */
+.page-home #top {
   position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  aspect-ratio: 5 / 4;
-  min-height: 360px;
-  border-radius: 20px;
   background: #0b1528;
-  color: #fff;
+  color: #f3efe6;
+  /* fills the screen (svh: the visible height on phones, without the browser bars) */
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+  box-sizing: border-box; /* on phones the header's top padding counts inside the screen height */
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  cursor: pointer;
+  overflow: hidden;
 }
-.page-home .prog-card-img {
+.page-home #top [data-scroll-header]:not([data-scrolled='true']) {
+  background: transparent !important;
+}
+.page-home #top .hero-img {
   position: absolute;
   inset: 0;
-  z-index: -2;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 0% 50%; /* when the sides crop, crop the right so the figure stays clear of the title */
 }
-.page-home .prog-card-shade {
+.page-home #top .hero-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 190px;
+  background: linear-gradient(180deg, rgba(11, 21, 40, 0.85) 0%, rgba(11, 21, 40, 0.45) 55%, rgba(11, 21, 40, 0) 100%);
+}
+.page-home #top .hero-wash {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 62%;
+  background: linear-gradient(90deg, rgba(11, 21, 40, 0.5) 0%, rgba(11, 21, 40, 0.32) 50%, rgba(11, 21, 40, 0) 100%);
+}
+.page-home #top .hero-title {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 1;
+  left: 89px;
+  top: 0;
+  bottom: 0;
+  width: 564px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.page-home #top .hero-title h1 {
+  margin: 0;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-size: min(98px, 7vw);
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 2px 28px rgba(11, 21, 40, 0.55), 0 1px 3px rgba(11, 21, 40, 0.35);
+}
+.page-home #top .hero-title h1 span {
+  display: block;
+}
+.page-home #top .hero-rule {
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin-top: 28px;
+  background: #e2574c;
+}
+.page-home #top .hero-lead {
+  margin: 24px 0 0;
+  max-width: 470px;
+  font-family: 'Jost', 'Futura', sans-serif;
+  font-weight: 400;
+  font-size: clamp(17px, 1.45vw, 21px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 16px rgba(11, 21, 40, 0.6), 0 1px 2px rgba(11, 21, 40, 0.4);
+}
+/* phones: header and title on a navy band, the photo below them */
+@media (max-width: 760px) {
+  .page-home #top {
+    height: auto;
+    min-height: 100svh;
+    padding-top: var(--site-nav-height, 89px);
+  }
+  /* the photo takes whatever height is left under the title and description, at least 240px */
+  .page-home #top .hero-img {
+    position: static;
+    order: 2;
+    flex: 1 1 240px;
+    height: auto;
+    min-height: 240px;
+    object-position: 50% 40%; /* the figure and her puzzle in the middle */
+  }
+  .page-home #top .hero-fade,
+  .page-home #top .hero-wash {
+    display: none;
+  }
+  .page-home #top .hero-title {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 36px 24px 32px;
+    order: 1;
+  }
+  .page-home #top .hero-title h1 {
+    font-size: 52px;
+  }
+}
+
+/* ---------------------------------------------------------------- Part 01 fills a screen on its own
+   (the screen height under the pinned header), with its content centred in it */
+.page-home .why {
+  box-sizing: border-box;
+  min-height: calc(100vh - var(--site-nav-height, 89px));
+  min-height: calc(100svh - var(--site-nav-height, 89px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (max-width: 760px) {
+  .page-home .why {
+    min-height: 100svh; /* the header is not pinned on phones */
+  }
+}
+
+/* ---------------------------------------------------------------- Part 01: traditional script column */
+.page-home .why-mn {
+  flex: 0 0 auto;
+  height: 420px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.page-home .why-mn-a,
+.page-home .why-mn-b {
+  writing-mode: vertical-lr;
+  font-family: 'Noto Sans Mongolian', serif;
+  line-height: 1;
+  color: var(--hm-script);
+}
+.page-home .why-mn-a {
+  font-size: 22px;
+}
+.page-home .why-mn-b {
+  align-self: flex-end;
+  font-size: 24px;
+  white-space: nowrap;
+}
+.page-home .why-mn-line {
+  width: 1px;
+  align-self: stretch;
+  background: var(--hm-line);
+}
+@media (max-width: 760px) {
+  .page-home .why-mn {
+    height: 220px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ---------------------------------------------------------------- "Part. 0N" + heading */
+.page-home .part-label {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+.page-home .part-word {
+  font-family: 'Jost', 'Futura', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  padding-bottom: 4px;
+}
+.page-home .part-num {
+  font-family: 'Jost', 'Futura', sans-serif;
+  font-weight: 700;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--hm-red);
+}
+.page-home .part-title {
+  margin: 0 0 0 clamp(14px, 2vw, 28px);
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--hm-navy);
+}
+
+/* ---------------------------------------------------------------- Part 02: why we started */
+.page-home .story {
+  position: relative;
+  background: var(--hm-bg);
+  padding: clamp(24px, 3vw, 48px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) clamp(56px, 6vw, 96px);
+}
+.page-home .story-head,
+.page-home .approach-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 64px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.page-home .story-lead {
+  margin: 4px 0 0;
+  flex: 1 1 520px;
+  max-width: 700px;
+  font-size: 24px;
+  line-height: 1.65;
+  color: var(--hm-muted);
+}
+.page-home .story-row {
+  margin-top: clamp(36px, 4vw, 60px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 80px;
+  align-items: flex-start;
+}
+.page-home .story-quote {
+  margin: 0;
+  flex: 1 1 380px;
+  min-width: 0;
+  padding: 4px 0 4px 28px;
+  border-left: 3px solid var(--hm-red);
+}
+.page-home .story-quote p {
+  margin: 0;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(28px, 2.9vw, 42px);
+  line-height: 1.22;
+  color: var(--hm-navy);
+}
+.page-home .story-by {
+  margin-top: 24px;
+  font-family: 'Jost', 'Futura', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hm-muted);
+}
+.page-home .story-beats {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex: 1.35 1 520px;
+  min-width: 0;
+  border-bottom: 1px solid var(--hm-rule);
+}
+.page-home .story-beats li {
+  display: flex;
+  gap: 24px;
+  padding: 22px 0 24px;
+  border-top: 1px solid var(--hm-rule);
+}
+.page-home .story-beats li > span {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  margin-top: 7px;
+}
+.page-home .story-beats li > div {
+  min-width: 0;
+}
+.page-home .story-beats h3 {
+  margin: 0;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--hm-navy);
+}
+.page-home .story-beats p {
+  margin: 8px 0 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--hm-muted);
+}
+.page-home .story-eye {
+  margin: clamp(36px, 4vw, 64px) auto 0;
+  max-width: 1040px;
+}
+
+/* ---------------------------------------------------------------- Part 03: our approach */
+.page-home .approach {
+  position: relative;
+  box-sizing: border-box;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--hm-bg);
+  padding: clamp(32px, 3vw, 64px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2));
+}
+.page-home .approach-lead {
+  margin: 4px 0 0;
+  flex: 1 1 520px;
+  max-width: 700px;
+  font-size: 21px;
+  line-height: 1.65;
+  color: var(--hm-muted);
+}
+.page-home .pcards {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 28px;
+}
+.page-home .pcard {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: calc(clamp(220px, 19vw, 400px) + 215px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  padding: clamp(28px, 3.2vw, 46px) clamp(26px, 3.2vw, 46px) clamp(24px, 2.6vw, 38px);
+  border-radius: 18px;
+  font-family: 'Jost', 'Futura', sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease;
+}
+.page-home .pcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 44px rgba(7, 32, 57, 0.24);
+}
+.page-home .pc-glow {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  background: linear-gradient(180deg, rgba(11, 21, 40, 0) 35%, rgba(11, 21, 40, 0.55) 62%, rgba(11, 21, 40, 0.85) 100%);
+  pointer-events: none;
 }
-.page-home .prog-card-body {
-  padding: clamp(24px, 3.5vw, 56px);
-  padding-top: 0;
+.page-home .pc-body {
+  position: relative;
+  min-width: 0;
 }
-.page-home .prog-card-title {
+.page-home .pc-body h3 {
   margin: 0;
   font-family: 'Jost', 'Futura', sans-serif;
-  font-weight: 600;
-  font-size: clamp(28px, 2.8vw, 44px);
-  line-height: 1.1;
+  font-weight: 500;
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1.12;
   letter-spacing: -0.01em;
+  max-width: 12ch;
 }
-.page-home .prog-card-text {
-  margin: 14px 0 0;
-  max-width: 520px;
-  font-size: clamp(16px, 1.25vw, 19px);
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
+.page-home .pc-body p {
+  margin: 18px 0 0;
+  font-family: 'Jost', 'Futura', sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 340px;
 }
-.page-home .prog-card-link {
+.page-home .pc-more {
+  position: relative;
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 26px;
-  padding-bottom: 8px;
-  border-bottom: 1.5px solid currentColor;
-  color: #fff;
+  gap: 16px;
+  min-height: 44px;
   font-family: 'Jost', 'Futura', sans-serif;
-  font-size: clamp(17px, 1.3vw, 20px);
+  font-size: 13px;
   font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-decoration: none;
 }
-.page-home .prog-card-link::after {
-  content: '';
+.page-home .pc-more svg {
+  transition: transform 0.2s ease;
+}
+.page-home .pcard:hover .pc-more svg {
+  transform: translate(2px, -2px);
+}
+.page-home .pcard:hover .pc-more {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.page-home .pcard:focus-visible {
+  outline: 3px solid #e2574c;
+  outline-offset: 4px;
+}
+.page-home .pc-art {
   position: absolute;
-  inset: 0;
+  display: block;
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.page-home .prog-card-arrow {
-  transition: transform 0.3s ease;
+.page-home .pc-ball {
+  width: clamp(180px, 17.5vw, 246px);
+  bottom: -40px;
+  right: -34px;
+  transform: rotate(-10deg);
+  filter: drop-shadow(0 22px 26px rgba(40, 0, 0, 0.45));
 }
-.page-home .prog-card:hover .prog-card-arrow {
-  transform: translateX(4px);
+.page-home .pc-star {
+  width: clamp(128px, 12.5vw, 176px);
+  bottom: -30px;
+  right: clamp(146px, 14vw, 196px);
+  transform: rotate(14deg);
+  filter: drop-shadow(0 18px 22px rgba(40, 0, 0, 0.45));
 }
-.page-home .prog-card-link:focus-visible {
-  outline: none;
+.page-home .pc-code {
+  width: clamp(300px, 34vw, 480px);
+  right: clamp(-150px, -10vw, -90px);
+  bottom: -30px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #121314;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 30px 60px rgba(2, 8, 18, 0.55), 0 6px 16px rgba(2, 8, 18, 0.35);
+  transform: perspective(1100px) rotateY(-14deg) rotateX(6deg);
+  transform-origin: left bottom;
 }
-.page-home .prog-card:has(.prog-card-link:focus-visible) {
-  outline: 2px solid #e2574c;
-  outline-offset: 3px;
+.page-home .pc-code img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.page-home .pc-win-bar {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px;
+  background: #1c1e21;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.page-home .pc-win-bar i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+.page-home .pc-win-bar i:nth-child(2) {
+  background: #febc2e;
+}
+.page-home .pc-win-bar i:nth-child(3) {
+  background: #28c840;
+}
+.page-home .pcard:hover .pc-ball {
+  transform: rotate(-4deg) translateY(-4px);
+}
+.page-home .pcard:hover .pc-star {
+  transform: rotate(20deg);
+}
+.page-home .pcard:hover .pc-code {
+  transform: perspective(1100px) rotateY(-9deg) rotateX(4deg) translateY(-4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-home .pcard,
+  .page-home .pc-more svg,
+  .page-home .pc-art {
+    transition: none;
+  }
+  .page-home .pcard:hover {
+    transform: none;
+  }
+}
+@media (max-width: 760px) {
+  .page-home .pcard {
+    padding-bottom: 150px;
+  }
+  .page-home .pc-ball {
+    width: 150px;
+    top: auto;
+    bottom: -34px;
+    right: -30px;
+  }
+  .page-home .pc-star {
+    width: 104px;
+    bottom: -22px;
+    right: 118px;
+  }
+  .page-home .pc-code {
+    width: 250px;
+    bottom: -20px;
+    right: -70px;
+  }
+}
+
+/* phones: like the design, the tall wrapped header scrolls away with the hero instead of staying pinned
+   (pinned, it covered a third of the screen), so section links need no header offset either */
+@media (max-width: 760px) {
+  .page-home #top [data-scroll-header] {
+    position: absolute !important;
+  }
+  html:has(.page-home) {
+    scroll-padding-top: 12px;
+  }
+}
+/* very small phones: a long heading drops under "Part. 0N" instead of running off the edge */
+@media (max-width: 360px) {
+  .page-home .part-label {
+    flex-wrap: wrap;
+  }
+  .page-home .part-title {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+}
+
+/* ---------------------------------------------------------------- titles
+   Every heading on the homepage: Poppins Bold in dark navy (--hm-title) (Poppins has no Cyrillic, so Mongolian
+   titles fall back to Montserrat Bold, which matches it closely). !important beats the inline styles. */
+.page-home h1,
+.page-home h2,
+.page-home h3 {
+  font-family: 'Poppins', 'Montserrat', 'Jost', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  color: var(--hm-title) !important;
+}
+/* headings on dark backgrounds keep their light colour (blue would not read there) */
+.page-home #top h1,
+.page-home .pcard h3 {
+  color: #ffffff !important;
+}
+
+/* scrolled header in dark mode (the light version is in app/globals.css) */
+html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] {
+  background: #10151f !important;
+  color: #ece7dc;
+  border-bottom-color: rgba(236, 231, 220, 0.14) !important;
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
+}
+html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] .navlink {
+  color: #ece7dc !important;
+}
+html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] .navlink:hover {
+  color: #f0857a !important;
+}
+html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] > a[aria-label] img {
+  filter: brightness(0) invert(1) !important;
+}
+html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] [role='group'] {
+  border-color: rgba(236, 231, 220, 0.5) !important;
+}
+html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] [role='group'] button {
+  color: #ece7dc !important;
+}
+html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] [role='group'] button[aria-pressed='true'] {
+  color: #10151f !important;
+  background: #ece7dc !important;
+}
+/* light scrolled header: the toggle turns dark like the language buttons */
+html:not([data-home-theme='dark']) .page-home [data-scroll-header][data-scrolled='true'] .theme-toggle {
+  color: #0b1528;
+  border-color: rgba(11, 21, 40, 0.45);
+}
+html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] .theme-toggle {
+  color: #ece7dc;
+  border-color: rgba(236, 231, 220, 0.5);
 }

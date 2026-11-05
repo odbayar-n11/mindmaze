@@ -11,7 +11,7 @@ export default function Footer({ v }: { v: HomeVals }) {
         alignItems: 'center',
         justifyContent: 'space-between',
         gap: '16px',
-        color: '#3F3C37',
+        color: 'var(--hm-muted)',
       }}
     >
       <span

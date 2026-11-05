@@ -23,9 +23,9 @@ export default function Impact({ v }: { v: HomeVals }) {
       id="impact"
       style={{
         position: 'relative',
-        background: '#FFFFFF',
+        background: 'var(--hm-bg)',
         padding: 'clamp(48px, 5vw, 80px) 0',
-        overflow: 'hidden',
+        overflow: 'visible', // lets the photo strip reach the screen edges; the page wrapper clips sideways
       }}
     >
       <div
@@ -57,10 +57,10 @@ export default function Impact({ v }: { v: HomeVals }) {
                 fontSize: 'clamp(30px, 3.4vw, 46px)',
                 lineHeight: '1',
                 letterSpacing: '0.02em',
-                color: '#8B0F0F',
+                color: 'var(--hm-red)',
               }}
             >
-              03
+              04
             </span>
             <h2
               style={{
@@ -71,7 +71,7 @@ export default function Impact({ v }: { v: HomeVals }) {
                 lineHeight: '1.05',
                 letterSpacing: '0.01em',
                 textTransform: 'uppercase',
-                color: '#072039',
+                color: 'var(--hm-navy)',
               }}
             >
               {t.impactTitle}
@@ -79,7 +79,15 @@ export default function Impact({ v }: { v: HomeVals }) {
           </div>
         </div>
       </div>
-      <div style={{ marginTop: '28px', position: 'relative' }}>
+      {/* full screen width: pulled out past the page inset on both sides */}
+      <div
+        style={{
+          marginTop: '28px',
+          marginLeft: 'calc(-1 * var(--inset))',
+          marginRight: 'calc(-1 * var(--inset))',
+          position: 'relative',
+        }}
+      >
         <div
           className="marquee"
           aria-label="Photos from MindMaze puzzle sessions"
@@ -94,13 +102,13 @@ export default function Impact({ v }: { v: HomeVals }) {
                 className="card"
                 style={{ margin: '0', paddingRight: '16px', flex: '0 0 auto' }}
               >
-                <div style={{ overflow: 'hidden', background: '#E9E6DF' }}>
+                <div style={{ overflow: 'hidden', background: 'var(--hm-card)' }}>
                   <img
                     className="zoom"
                     src={item.img}
                     alt={item.alt}
                     loading="eager"
-                    style={{ display: 'block', height: '300px', width: item.w, objectFit: 'cover' }}
+                    style={{ display: 'block', height: '270px', width: item.w, objectFit: 'cover' }}
                   />
                 </div>
               </figure>
@@ -122,7 +130,7 @@ export default function Impact({ v }: { v: HomeVals }) {
             style={{
               width: '100%',
               boxSizing: 'border-box',
-              padding: '0 max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) 24px',
+              padding: '0 calc(var(--inset) + max(clamp(24px, 5vw, 64px), calc((100% - 2 * var(--inset) - 1360px) / 2))) 24px',
               display: 'flex',
               flexWrap: 'wrap',
               justifyContent: 'center',
@@ -175,7 +183,7 @@ export default function Impact({ v }: { v: HomeVals }) {
           className="mq-next"
           aria-label="Show the next photos"
           onClick={mqNextA}
-          style={{ top: '16px', right: 'max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))' }}
+          style={{ top: '16px', right: 'calc(var(--inset) + max(clamp(24px, 5vw, 64px), calc((100% - 2 * var(--inset) - 1360px) / 2)))' }}
         >
           <svg
             width="22"
@@ -206,7 +214,7 @@ export default function Impact({ v }: { v: HomeVals }) {
           <div style={{ flex: '1 1 320px', minWidth: '0' }}>
             <span
               aria-hidden="true"
-              style={{ display: 'block', width: '92px', height: '18px', backgroundColor: '#072039' }}
+              style={{ display: 'block', width: '92px', height: '18px', backgroundColor: 'var(--hm-navy)' }}
             />
             <div
               style={{
@@ -222,7 +230,7 @@ export default function Impact({ v }: { v: HomeVals }) {
                 margin: '12px 0 0',
                 fontSize: '19px',
                 lineHeight: '1.6',
-                color: '#55524C',
+                color: 'var(--hm-muted)',
                 maxWidth: '360px',
               }}
             >
@@ -233,7 +241,7 @@ export default function Impact({ v }: { v: HomeVals }) {
             {programs?.map((item, i) => (
               <div
                 key={i}
-                style={{ display: 'flex', gap: '28px', padding: '26px 0', borderBottom: '1px solid #D6D1C5' }}
+                style={{ display: 'flex', gap: '28px', padding: '26px 0', borderBottom: '1px solid var(--hm-rule)' }}
               >
                 <div
                   style={{
@@ -241,7 +249,7 @@ export default function Impact({ v }: { v: HomeVals }) {
                     fontSize: '44px',
                     lineHeight: '0.9',
                     minWidth: '64px',
-                    color: '#8B0F0F',
+                    color: 'var(--hm-red)',
                   }}
                 >
                   {item.n}
@@ -260,21 +268,8 @@ export default function Impact({ v }: { v: HomeVals }) {
                     >
                       {item.title}
                     </h3>
-                    <span
-                      style={{
-                        fontSize: '13px',
-                        fontWeight: '600',
-                        letterSpacing: '0.12em',
-                        textTransform: 'uppercase',
-                        padding: '6px 10px',
-                        background: item.badgeBg,
-                        color: item.badgeFg,
-                      }}
-                    >
-                      {item.status}
-                    </span>
                   </div>
-                  <p style={{ margin: '8px 0 0', fontSize: '18px', lineHeight: '1.6', color: '#55524C' }}>
+                  <p style={{ margin: '8px 0 0', fontSize: '18px', lineHeight: '1.6', color: 'var(--hm-muted)' }}>
                     {item.text}
                   </p>
                   {item.hasSchools ? (
@@ -295,13 +290,13 @@ export default function Impact({ v }: { v: HomeVals }) {
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '8px',
-                            border: '1px solid #1A1A1A',
+                            border: '1px solid var(--hm-ink)',
                             padding: '8px 12px',
                             fontSize: '15px',
                             fontWeight: '500',
                           }}
                         >
-                          <span style={{ width: '8px', height: '8px', background: '#072039' }} />
+                          <span style={{ width: '8px', height: '8px', background: 'var(--hm-navy)' }} />
                           {s}
                         </li>
                       ))}
@@ -316,7 +311,7 @@ export default function Impact({ v }: { v: HomeVals }) {
           style={{
             marginTop: '40px',
             paddingTop: '36px',
-            borderTop: '1px solid #1A1A1A',
+            borderTop: '1px solid var(--hm-ink)',
             display: 'flex',
             flexWrap: 'wrap',
             gap: '32px 56px',
@@ -340,6 +335,7 @@ export default function Impact({ v }: { v: HomeVals }) {
             <figure style={{ margin: '0', position: 'relative', width: '100%' }}>
               <div style={{ position: 'relative', width: '100%', aspectRatio: '1300 / 614' }}>
                 <img
+                  className="map-img"
                   src="/media/755601d532d87e5f8e850f759c68f6c6.png"
                   alt="Map of Mongolia's aimags, with Töv aimag and Ulaanbaatar marked"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
@@ -358,7 +354,7 @@ export default function Impact({ v }: { v: HomeVals }) {
                         fontWeight: '400',
                         fontSize: 'clamp(8px, 1.04vw, 16px)',
                         lineHeight: '1',
-                        color: '#2F5A3C',
+                        color: 'var(--hm-map)',
                       }}
                     >
                       {pv.label}
@@ -443,8 +439,8 @@ export default function Impact({ v }: { v: HomeVals }) {
                                 flex: '0 0 auto',
                                 width: '44px',
                                 height: '44px',
-                                background: '#1A1A1A',
-                                color: '#FBF8F1',
+                                background: 'var(--hm-ink)',
+                                color: 'var(--hm-bg)',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -493,7 +489,7 @@ export default function Impact({ v }: { v: HomeVals }) {
                                   marginTop: '3px',
                                   fontSize: '15px',
                                   lineHeight: '1.45',
-                                  color: '#55524C',
+                                  color: 'var(--hm-muted)',
                                 }}
                               >
                                 {pj.desc}
@@ -509,8 +505,8 @@ export default function Impact({ v }: { v: HomeVals }) {
                               display: 'inline-flex',
                               alignItems: 'center',
                               minHeight: '44px',
-                              background: '#1A1A1A',
-                              color: '#FBF8F1',
+                              background: 'var(--hm-ink)',
+                              color: 'var(--hm-bg)',
                               textDecoration: 'none',
                               fontWeight: '600',
                               fontSize: '14px',
@@ -531,7 +527,7 @@ export default function Impact({ v }: { v: HomeVals }) {
                 <div style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: '24px' }}>
                   {t.cardEyebrow}
                 </div>
-                <p style={{ margin: '10px 0 0', fontSize: '18px', lineHeight: '1.6', color: '#55524C' }}>
+                <p style={{ margin: '10px 0 0', fontSize: '18px', lineHeight: '1.6', color: 'var(--hm-muted)' }}>
                   {t.cardHint}
                 </p>
               </div>

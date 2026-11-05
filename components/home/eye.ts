@@ -1,15 +1,13 @@
 import { prefersReducedMotion } from '@/lib/motion';
 
 /**
- * The hero eye: a photo of an eye that blinks into a watercolor drawing (with the burr
- * puzzle as the iris) and blinks back again, on a 10.5 s loop.
+ * The eye in Part 02: an engraved eye whose pupil is a watercolor wooden burr puzzle that keeps
+ * turning; the eye blinks twice on a 10.5 s loop.
  * The lids, lashes and clip path are SVG paths redrawn every frame from the openness `k`.
  * Returns a function that stops the animation.
  */
 export function animateEye(root: Element): () => void {
   const q = <T extends Element>(n: string) => root.querySelector<T>('[data-eye="' + n + '"]');
-  const photo = q<SVGElement>('photo');
-  const drawing = q<SVGElement>('draw');
   const sprite = q<SVGElement>('sprite');
   const clip = q<SVGPathElement>('clip');
   const upper = q<SVGPathElement>('upper');
@@ -17,7 +15,7 @@ export function animateEye(root: Element): () => void {
   const shadow = q<SVGPathElement>('shadow');
   const lash = q<SVGPathElement>('lash');
   const lowlash = q<SVGPathElement>('lowlash');
-  if (!photo || !drawing || !sprite || !clip || !upper || !lower || !shadow || !lash || !lowlash) return () => {};
+  if (!sprite || !clip || !upper || !lower || !shadow || !lash || !lowlash) return () => {};
 
   const bez = (t: number, y: number) => {
     const a = 1 - t;
@@ -78,32 +76,14 @@ export function animateEye(root: Element): () => void {
     return 1 - (0.5 - 0.5 * Math.cos(Math.PI * e));
   };
   let raf = 0;
-  let showing: boolean | undefined;
   const t0 = performance.now();
   const tick = (now: number) => {
     raf = requestAnimationFrame(tick);
     const secs = (now - t0) / 1000;
-    const t = secs % 10.5; // photo 4 s, blink, drawing 4.5 s, blink
-    let k = 1;
-    let showDraw: boolean;
-    if (t < 4) showDraw = false;
-    else if (t < 5) {
-      k = blinkK(t - 4);
-      showDraw = t - 4 > 0.47;
-    } else if (t < 9.5) showDraw = true;
-    else {
-      k = blinkK(t - 9.5);
-      showDraw = t - 9.5 <= 0.47;
-    }
-    if (showDraw !== showing) {
-      showing = showDraw;
-      photo.style.display = showDraw ? 'none' : '';
-      drawing.style.display = showDraw ? '' : 'none';
-    }
-    if (showDraw) {
-      const a = (secs * 45) % 360; // watercolor burr: one full turn every 8 s
-      sprite.setAttribute('transform', 'rotate(' + a.toFixed(2) + ' 500 298)');
-    }
+    const t = secs % 10.5; // open 4 s, blink, open 4.5 s, blink
+    const k = t >= 4 && t < 5 ? blinkK(t - 4) : t >= 9.5 ? blinkK(t - 9.5) : 1;
+    const a = (secs * 45) % 360; // watercolor burr: one full turn every 8 s
+    sprite.setAttribute('transform', 'rotate(' + a.toFixed(2) + ' 500 298)');
     draw(k);
   };
   raf = requestAnimationFrame(tick);

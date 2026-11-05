@@ -7,7 +7,7 @@ export default function Involved({ v }: { v: HomeVals }) {
       id="involved"
       style={{
         position: 'relative',
-        background: '#FFFFFF',
+        background: 'var(--hm-bg)',
         padding: 'clamp(64px, 7vw, 112px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
       }}
     >
@@ -39,10 +39,10 @@ export default function Involved({ v }: { v: HomeVals }) {
                 fontSize: 'clamp(30px, 3.4vw, 46px)',
                 lineHeight: '1',
                 letterSpacing: '0.02em',
-                color: '#8B0F0F',
+                color: 'var(--hm-red)',
               }}
             >
-              05
+              06
             </span>
           </div>
           <div
@@ -59,13 +59,13 @@ export default function Involved({ v }: { v: HomeVals }) {
               lineHeight: '1.05',
               letterSpacing: '0.01em',
               textTransform: 'uppercase',
-              color: '#072039',
+              color: 'var(--hm-navy)',
             }}
           >
             {t.involvedA} {t.involvedB}
           </h2>
         </div>
-        <p style={{ margin: '0', flex: '0 1 440px', fontSize: '19px', lineHeight: '1.65', color: '#55524C' }}>
+        <p style={{ margin: '0', flex: '0 1 440px', fontSize: '19px', lineHeight: '1.65', color: 'var(--hm-muted)' }}>
           {t.involvedLead}
         </p>
       </div>
@@ -81,7 +81,7 @@ export default function Involved({ v }: { v: HomeVals }) {
           <article
             key={i}
             style={{
-              background: '#F4F4F4',
+              background: 'var(--hm-card)',
               padding: '0 32px 34px',
               display: 'flex',
               flexDirection: 'column',
@@ -103,7 +103,7 @@ export default function Involved({ v }: { v: HomeVals }) {
             >
               {g.title}
             </h3>
-            <p style={{ margin: '14px 0 0', fontSize: '19px', lineHeight: '1.6', color: '#55524C' }}>
+            <p style={{ margin: '14px 0 0', fontSize: '19px', lineHeight: '1.6', color: 'var(--hm-muted)' }}>
               {g.text}
             </p>
             <ul
@@ -112,7 +112,7 @@ export default function Involved({ v }: { v: HomeVals }) {
                 paddingLeft: '18px',
                 fontSize: '18px',
                 lineHeight: '1.9',
-                color: '#55524C',
+                color: 'var(--hm-muted)',
               }}
             >
               {g.points?.map((pt, j) => <li key={j}>{pt}</li>)}
@@ -125,8 +125,8 @@ export default function Involved({ v }: { v: HomeVals }) {
                 display: 'inline-flex',
                 alignItems: 'center',
                 minHeight: '48px',
-                background: '#1A1A1A',
-                color: '#FBF8F1',
+                background: 'var(--hm-ink)',
+                color: 'var(--hm-bg)',
                 textDecoration: 'none',
                 fontWeight: '600',
                 fontSize: '14px',

@@ -7,7 +7,7 @@ export default function Contact({ v }: { v: HomeVals }) {
       id="contact"
       style={{
         position: 'relative',
-        background: '#FFFFFF',
+        background: 'var(--hm-bg)',
         padding: 'clamp(64px, 7vw, 112px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
       }}
     >
@@ -47,7 +47,7 @@ export default function Contact({ v }: { v: HomeVals }) {
                 lineHeight: '1.05',
                 letterSpacing: '0.02em',
                 textTransform: 'uppercase',
-                color: '#072039',
+                color: 'var(--hm-navy)',
               }}
             >
               {t.contactTitle}
@@ -58,7 +58,7 @@ export default function Contact({ v }: { v: HomeVals }) {
                 maxWidth: '420px',
                 fontSize: '19px',
                 lineHeight: '1.6',
-                color: '#55524C',
+                color: 'var(--hm-muted)',
               }}
             >
               {t.contactLead}
@@ -126,15 +126,15 @@ export default function Contact({ v }: { v: HomeVals }) {
               textTransform: 'uppercase',
             }}
           >
-            {t.name} *
+            <span>{t.name}</span> *
             <input
               type="text"
               style={{
                 border: '0',
-                borderBottom: '1.5px solid #1A1A1A',
+                borderBottom: '1.5px solid var(--hm-ink)',
                 padding: '12px 0',
                 background: 'transparent',
-                color: '#1A1A1A',
+                color: 'var(--hm-ink)',
                 fontSize: '19px',
               }}
             />
@@ -150,15 +150,15 @@ export default function Contact({ v }: { v: HomeVals }) {
               textTransform: 'uppercase',
             }}
           >
-            {t.email} *
+            <span>{t.email}</span> *
             <input
               type="email"
               style={{
                 border: '0',
-                borderBottom: '1.5px solid #1A1A1A',
+                borderBottom: '1.5px solid var(--hm-ink)',
                 padding: '12px 0',
                 background: 'transparent',
-                color: '#1A1A1A',
+                color: 'var(--hm-ink)',
                 fontSize: '19px',
               }}
             />
@@ -180,10 +180,10 @@ export default function Contact({ v }: { v: HomeVals }) {
               type="tel"
               style={{
                 border: '0',
-                borderBottom: '1.5px solid #1A1A1A',
+                borderBottom: '1.5px solid var(--hm-ink)',
                 padding: '12px 0',
                 background: 'transparent',
-                color: '#1A1A1A',
+                color: 'var(--hm-ink)',
                 fontSize: '19px',
               }}
             />
@@ -200,15 +200,15 @@ export default function Contact({ v }: { v: HomeVals }) {
               gridColumn: '1 / -1',
             }}
           >
-            {t.message} *
+            <span>{t.message}</span> *
             <textarea
               rows={4}
               style={{
                 border: '0',
-                borderBottom: '1.5px solid #1A1A1A',
+                borderBottom: '1.5px solid var(--hm-ink)',
                 padding: '12px 0',
                 background: 'transparent',
-                color: '#1A1A1A',
+                color: 'var(--hm-ink)',
                 fontSize: '19px',
                 resize: 'vertical',
               }}

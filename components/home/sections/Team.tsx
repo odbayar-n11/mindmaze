@@ -8,8 +8,8 @@ export default function Team({ v }: { v: HomeVals }) {
       style={{
         position: 'relative',
         padding: 'clamp(64px, 7vw, 112px) 0',
-        overflow: 'hidden',
-        backgroundColor: '#ffffff',
+        overflow: 'visible', // lets the team strip reach the screen edges; the page wrapper clips sideways
+        backgroundColor: 'var(--hm-bg)',
       }}
     >
       <div
@@ -41,10 +41,10 @@ export default function Team({ v }: { v: HomeVals }) {
                 fontSize: 'clamp(30px, 3.4vw, 46px)',
                 lineHeight: '1',
                 letterSpacing: '0.02em',
-                color: '#8B0F0F',
+                color: 'var(--hm-red)',
               }}
             >
-              04
+              05
             </span>
             <h2
               style={{
@@ -55,14 +55,14 @@ export default function Team({ v }: { v: HomeVals }) {
                 lineHeight: '1.05',
                 letterSpacing: '0.01em',
                 textTransform: 'uppercase',
-                color: '#072039',
+                color: 'var(--hm-navy)',
               }}
             >
               {t.teamTitle}
             </h2>
           </div>
         </div>
-        <p style={{ margin: '0', fontSize: '18px', color: '#55524C' }}>{t.teamLead}</p>
+        <p style={{ margin: '0', fontSize: '18px', color: 'var(--hm-muted)' }}>{t.teamLead}</p>
       </div>
       <div style={{ marginTop: '56px' }}>
         <h3
@@ -84,14 +84,20 @@ export default function Team({ v }: { v: HomeVals }) {
         <div
           className="marquee"
           aria-label="Team members"
-          style={{ margin: '6px 0 -18px', padding: '18px 0', position: 'relative', overflow: 'hidden' }}
+          // full screen width: pulled out past the page inset on both sides
+          style={{
+            margin: '6px calc(-1 * var(--inset)) -18px',
+            padding: '18px 0',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
         >
           <button
             type="button"
             className="mq-next"
             aria-label="Show the next team members"
             onClick={mqNextD}
-            style={{ top: '34px', right: 'max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))' }}
+            style={{ top: '34px', right: 'calc(var(--inset) + max(clamp(24px, 5vw, 64px), calc((100% - 2 * var(--inset) - 1360px) / 2)))' }}
           >
             <svg
               width="22"
@@ -174,7 +180,7 @@ export default function Team({ v }: { v: HomeVals }) {
                         fontFamily: "'Instrument Serif', Georgia, serif",
                         fontSize: '18px',
                         lineHeight: '1.4',
-                        color: '#55524C',
+                        color: 'var(--hm-muted)',
                       }}
                     >
                       <br />

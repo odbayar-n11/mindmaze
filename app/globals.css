@@ -92,18 +92,18 @@ html:has(.page-coding) {
   padding-top: var(--site-nav-height, 89px);
 }
 
-/* A light navigation surface after leaving the top of the page. */
+/* A light navigation surface after leaving the top of the page: the same cream as the homepage (#f3f1e8). */
 [data-scroll-header] {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 [data-scroll-header][data-scrolled='true'] {
-  background: #fff !important;
+  background: #f3f1e8 !important;
   color: #0b1528;
   border-bottom-color: rgba(11, 21, 40, 0.12) !important;
   box-shadow: 0 3px 16px rgba(11, 21, 40, 0.08);
   color-scheme: light;
   --ink: #0b1528;
-  --bg: #fff;
+  --bg: #f3f1e8;
 }
 [data-scroll-header][data-scrolled='true'] .navlink {
   color: #0b1528 !important;

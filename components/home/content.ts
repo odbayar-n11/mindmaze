@@ -11,18 +11,17 @@ export function homeContent(lang: Lang) {
 
   const t = {
     part: L('Part.', 'Хэсэг'),
-    heroWord: L('mindmaze', 'Өв соёл'),
     heroPlace: L('Mongolia', 'Монгол'),
-    heroA: L('Mongolian heritage,', 'Монгол өв соёл,'),
-    heroB: L('one puzzle at a time.', 'оньсого бүрээр.'),
-    heroSub: L('Traditional wooden puzzles that train focus and critical thinking — brought back into today’s classrooms.', 'Анхаарал төвлөрөл, сэтгэн бодох чадварыг хөгжүүлдэг уламжлалт модон тоглоомуудыг өнөөгийн ангид эргүүлэн авчирч байна.'),
-    btnPrograms: L('Our programs', 'Хөтөлбөрүүд'),
-    btnContact: L('Contact →', 'Холбоо барих →'),
-    readMore: L('Read more', 'Дэлгэрэнгүй'),
+    heroLead: L('MindMaze is a cultural anchor promoting Mongolian cultural heritage and cognitive exercises with traditional puzzle games.', 'MindMaze бол уламжлалт оньсон тоглоомоор дамжуулан Монголын соёлын өв болон оюун ухааны дасгалыг түгээн дэлгэрүүлдэг соёлын тулгуур юм.'),
+    learnMore: L('Learn more', 'Дэлгэрэнгүй'),
     whyEyebrow: L('WHAT WE SERVE', 'БИДНИЙ ҮЙЛЧИЛДЭГ ЗҮЙЛ'),
     whyA: L('MindMaze was founded to ignite curiosity, sharpen focus, and restore the joy of ', 'MindMaze нь хүүхдийн сониуч занг сэрээж, анхаарлыг нь хурцалж, '),
     whyHi: L('hands-on play', 'гараараа тоглох баяр баясгаланг'),
     whyB: L('. We bring educational value to young minds through cultural games that are slowly being forgotten.', ' сэргээх зорилгоор байгуулагдсан. Бид мартагдаж буй соёлын тоглоомуудаар дамжуулан бяцхан хүүхдүүдэд боловсролын үнэ цэнийг хүргэдэг.'),
+    storyTitle: L('Why we started', 'Бид яагаад эхэлсэн бэ'),
+    storyLead: L('MindMaze began with a simple worry: the wooden puzzles our grandparents solved beside the ger stove were disappearing, and with them a way of thinking that schools rarely teach.', 'MindMaze энгийн нэгэн санаа зовнилоос эхэлсэн: өвөө эмээ нарын маань гэрийн зуухны дэргэд тайлдаг байсан модон оньсого мартагдаж, түүнтэй хамт сургууль бараг заадаггүй сэтгэх арга ухаан ч алга болж байлаа.'),
+    storyQuote: L('Our grandparents taught us to think with our hands. We did not want that to end with our generation.', 'Өвөө эмээ маань биднийг гараараа сэтгэж сургасан. Энэ уламжлал манай үеэр тасрахыг бид хүсээгүй.'),
+    storyQuoteBy: L('The MindMaze team', 'MindMaze баг'),
     impactTitle: L('Impact', 'Үр нөлөө'),
     cardEyebrow: L('Mini projects by local students', 'Орон нутгийн сурагчдын төслүүд'),
     openProject: L('Open project ↗', 'Төслийг нээх ↗'),
@@ -53,6 +52,7 @@ export function homeContent(lang: Lang) {
   const nav = [
     { href: '#top', label: L('Home', 'Нүүр') },
     { href: '#why', label: L('about', 'Бидний үйлчилдэг зүйл') },
+    { href: '#story', label: L('Our story', 'Бидний түүх') },
     { href: '#our-programs', label: L('approach', 'Хоёр арга') },
     { href: '#impact', label: L('Impact', 'Үр нөлөө') },
     { href: '#team', label: L('Team', 'Хамт олон') },
@@ -76,8 +76,8 @@ export function homeContent(lang: Lang) {
     { num: '840+', label: L('Children reached', 'Хүүхэд'), sq: '#E2574C' }
   ];
   const programs = [
-    { n: '01', title: L('Classroom puzzle sessions', 'Ангийн оньсогын хичээл'), status: L('Ongoing', 'Хэрэгжиж буй'), badgeBg: '#1A1A1A', badgeFg: '#FBF8F1', text: L('5 aimags · 12 schools · 5000+ children solving traditional puzzles together in class.', '5 аймаг · 12 сургууль · 5000+ хүүхэд ангидаа уламжлалт оньсого хамтдаа тайлж байна.'), hasSchools: false, schools: [] as string[] },
-    { n: '02', title: L('Our partner schools', 'Дараагийн хамтрагч сургуулиуд'), status: L('Coming soon', 'Тун удахгүй'), badgeBg: '#8B0F0F', badgeFg: '#FFFFFF', text: L('MindMaze puzzle sessions are coming to five more schools in Ulaanbaatar, Uvurkhangai and Erdenet.', 'MindMaze-ийн оньсогын хичээл Улаанбаатар, Өвөрхангай, Эрдэнэт дэх таван сургуульд удахгүй хүрнэ.'), hasSchools: true, schools: [
+    { n: '01', title: L('Classroom puzzle sessions', 'Ангийн оньсогын хичээл'), text: L('5 aimags · 12 schools · 5000+ children solving traditional puzzles together in class.', '5 аймаг · 12 сургууль · 5000+ хүүхэд ангидаа уламжлалт оньсого хамтдаа тайлж байна.'), hasSchools: false, schools: [] as string[] },
+    { n: '02', title: L('Our partner schools', 'Дараагийн хамтрагч сургуулиуд'), text: L('MindMaze puzzle sessions are coming to five more schools in Ulaanbaatar, Uvurkhangai and Erdenet.', 'MindMaze-ийн оньсогын хичээл Улаанбаатар, Өвөрхангай, Эрдэнэт дэх таван сургуульд удахгүй хүрнэ.'), hasSchools: true, schools: [
       L('21st Secondary School, Ulaanbaatar', 'Улаанбаатар хотын 21-р дунд сургууль'),
       L('24th School, Ulaanbaatar', 'Улаанбаатар хотын 24-р сургууль'),
       L('1st School, Uvurkhangai', 'Өвөрхангай аймгийн 1-р сургууль'),
@@ -109,15 +109,24 @@ export function homeContent(lang: Lang) {
     { img: '/media/ff719adf90f9d93ebc2158b853568787.jpg', w: '526px', alt: 'A full classroom raising hands during a session' },
     { img: '/media/1580bff8fbba99918bde3d5b236ec983.jpg', w: '453px', alt: 'Students at their desks working on puzzles' }
   ];
-  const at300 = (p: Photo): Photo => ({ ...p, w: Math.round((parseInt(p.w, 10) * 300) / 340) + 'px' });
-  const success = photos.concat(photos).map(at300);
+  // the strip is 270px tall (a tenth less than the design's 300px); widths scale with it so photos keep their shape
+  const STRIP_H = 270;
+  const atStrip = (p: Photo): Photo => ({ ...p, w: Math.round((parseInt(p.w, 10) * STRIP_H) / 340) + 'px' });
+  const success = photos.concat(photos).map(atStrip);
+  // Part 03 cards: gradient background + glow; puz = white puzzles art, code = code screenshot in an editor window
   const progCards = [
-    { sq: '#072039', img: '/media/9fc8ee90d5070beb45d32114201ee56a.jpg', alt: 'A hand holds up a bone-and-string puzzle in front of a painted space mural', href: '/puzzles', label: L('Puzzle', 'Оньсого'), title: L('Traditional puzzle lessons', 'Уламжлалт оньсогын хичээл'), text: L('Hands-on sessions with interlocking wood, string-and-ring puzzles and puzzle locks. Students slow down, test ideas and finish what they start.', 'Модон түгжээ, утас цагирагтай оньсого, оньсон цоожоор гар ажиллагаатай хичээл. Сурагчид тайван бодож, санаагаа туршиж, эхэлснээ дуусгаж сурдаг.') },
-    { sq: '#8B0F0F', img: '/media/384de71f7e5afc649c9f73176bb7c061.jpg', alt: 'A student writes code at an iMac in front of a wood-panelled wall', href: '/coding', label: L('Coding', 'Кодлол'), title: L('Coding classes', 'Кодлолын хичээл'), text: L('For kids who already live online, we turn screen time into making time: break a problem down, try, debug, repeat.', 'Онлайн орчинд өсөж буй хүүхдүүдэд дэлгэцийн цагийг бүтээх цаг болгоно: асуудлыг задлах, туршиж үзэх, алдаагаа засах, давтах.') }
+    { puz: true, code: false, bg: 'linear-gradient(135deg, #4F0808 0%, #7E0E0E 55%, #A81A15 100%)', glow: 'radial-gradient(55% 75% at 88% 18%, rgba(255,150,120,0.30) 0%, rgba(255,150,120,0) 70%)', fg: '#FFFFFF', sub: 'rgba(255,255,255,0.80)', link: '#F5B9A8', more: '/puzzles', title: L('Traditional puzzle lessons', 'Уламжлалт оньсогын хичээл'), text: L('Hands-on sessions with interlocking wood, string-and-ring puzzles and puzzle locks. Students slow down, test ideas and finish what they start.', 'Модон түгжээ, утас цагирагтай оньсого, оньсон цоожоор гар ажиллагаатай хичээл. Сурагчид тайван бодож, санаагаа туршиж, эхэлснээ дуусгаж сурдаг.') },
+    { puz: false, code: true, bg: 'linear-gradient(135deg, #0D1A2B 0%, #15304A 58%, #1F4566 100%)', glow: 'radial-gradient(55% 75% at 88% 18%, rgba(132,178,226,0.30) 0%, rgba(132,178,226,0) 70%)', fg: '#FFFFFF', sub: 'rgba(255,255,255,0.74)', link: '#8FB4D8', more: '/coding', title: L('Coding classes', 'Кодлолын хичээл'), text: L('For kids who already live online, we turn screen time into making time: break a problem down, try, debug, repeat.', 'Онлайн орчинд өсөж буй хүүхдүүдэд дэлгэцийн цагийг бүтээх цаг болгоно: асуудлыг задлах, туршиж үзэх, алдаагаа засах, давтах.') }
+  ];
+  // the three steps of how MindMaze came to be (Part 02)
+  const storyBeats = [
+    { sq: 'var(--hm-navy)', title: L('The spark', 'Эхлэл'), text: L('Many of us grew up untangling string puzzles and wooden locks at our grandparents’ homes. Years later, we realised how much patience and logic they had quietly taught us.', 'Бидний ихэнх нь өвөө эмээгийндээ утсан оньсого, модон түгжээ тайлж өссөн. Олон жилийн дараа тэд бидэнд хичнээн их тэвчээр, логикийг чимээгүйхэн зааж өгснийг ойлгосон.') },
+    { sq: '#8B0F0F', title: L('The gap', 'Орхигдсон зүйл'), text: L('When we visited classrooms, most children had never held a traditional puzzle. Screens filled their free time, and the old games were fading from everyday life.', 'Ангиудаар явахад ихэнх хүүхэд уламжлалт оньсого гартаа барьж үзээгүй байв. Чөлөөт цагийг нь дэлгэц эзэлж, эртний тоглоомууд өдөр тутмын амьдралаас алга болж байлаа.') },
+    { sq: 'var(--hm-navy)', title: L('Our answer', 'Бидний шийдэл'), text: L('So we started bringing puzzles back into lessons, and paired them with coding, so the same curiosity carries children from wood to screen.', 'Тиймээс бид оньсогыг хичээлд эргүүлэн авчирч, кодлолтой хослуулсан. Ингэснээр нэг л сониуч зан хүүхдийг модон тоглоомоос дэлгэц хүртэл хөтөлнө.') }
   ];
   const involve = [
     { title: L('Schools', 'Сургуулиуд'), text: L('Host a workshop or adapt puzzle lessons into your curriculum.', 'Сургалт зохион байгуулах эсвэл оньсогын хичээлийг сургалтын хөтөлбөртөө оруулаарай.'), points: [L('Workshops for any grade', 'Бүх ангид зориулсан сургалт'), L('Lesson plans for teachers', 'Багш нарт зориулсан хичээлийн төлөвлөгөө')], cta: L('Request a workshop', 'Сургалт захиалах'), sq: '#8B0F0F' },
-    { title: L('Students', 'Оюутнууд'), text: L('Start or join a university chapter and lead sessions in local schools.', 'Их сургуульдаа салбар байгуулж эсвэл нэгдэж, орон нутгийн сургуулиудад хичээл удирдаарай.'), points: [L('Training from our team', 'Манай багаас сургалт авна'), L('Volunteer experience', 'Сайн дурын туршлага')], cta: L('Join a chapter', 'Салбарт нэгдэх'), sq: '#072039' },
+    { title: L('Students', 'Оюутнууд'), text: L('Start or join a university chapter and lead sessions in local schools.', 'Их сургуульдаа салбар байгуулж эсвэл нэгдэж, орон нутгийн сургуулиудад хичээл удирдаарай.'), points: [L('Training from our team', 'Манай багаас сургалт авна'), L('Volunteer experience', 'Сайн дурын туршлага')], cta: L('Join a chapter', 'Салбарт нэгдэх'), sq: 'var(--hm-navy)' },
     { title: L('Partners', 'Түншүүд'), text: L('Help us reach more aimags with puzzles, computers and venues.', 'Оньсого, компьютер, байраар дэмжиж илүү олон аймагт хүрэхэд тусална уу.'), points: [L('Sponsor a school', 'Сургуулийг ивээн тэтгэх'), L('Donate puzzle kits', 'Оньсогын иж бүрдэл хандивлах')], cta: L('Partner with us', 'Хамтран ажиллах'), sq: '#8B0F0F' }
   ];
   const person = (m: Person, i: number) => ({
@@ -150,5 +159,5 @@ export function homeContent(lang: Lang) {
   };
   const membersLoop = loopOf(leads.concat(members)); // one row: lead members first, then the team
 
-  return { t, nav, vPhotos, stats, programs, success, progCards, involve, membersLoop };
+  return { t, nav, vPhotos, stats, programs, success, progCards, storyBeats, involve, membersLoop };
 }
