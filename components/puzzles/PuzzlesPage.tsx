@@ -9,7 +9,7 @@ import './puzzles.css';
 
 type Props = Record<string, never>;
 type Section = 'puzzles' | 'games' | 'edu' | 'impact';
-type State = { lang: Lang; active: string };
+type State = { lang: Lang; active: string; still: boolean };
 
 const flag = (on: boolean) => (on ? 'true' : 'false') as 'true' | 'false';
 
@@ -18,7 +18,7 @@ const flag = (on: boolean) => (on ? 'true' : 'false') as 'true' | 'false';
  * section in view, and the language toggle.
  */
 export default class PuzzlesPage extends Component<Props, State> {
-  state: State = { lang: getLang(), active: 'puzzles' };
+  state: State = { lang: getLang(), active: 'puzzles', still: false };
 
   private off: (() => void)[] = [];
   private mountId = 0; // guards the async three.js start against a mount/unmount in between
@@ -38,7 +38,13 @@ export default class PuzzlesPage extends Component<Props, State> {
     // keep the page-transition cover up until the 3D burr has drawn its first frame
     const ready = holdReveal();
     this.off.push(ready);
-    void this.startBurr(id).finally(ready);
+    this.startBurr(id)
+      .catch((err) => {
+        // never let a WebGL failure take the page down: fall back to the still picture
+        console.warn('3D puzzle failed to start', err);
+        this.showStill();
+      })
+      .finally(ready);
   }
 
   componentWillUnmount() {
@@ -50,13 +56,27 @@ export default class PuzzlesPage extends Component<Props, State> {
   private async startBurr(id: number) {
     const { startBurr } = await import('./burr'); // three.js loads only on this page
     const byId = (id: string) => document.getElementById(id);
-    const canvas = byId('burr');
+    const host = byId('burr-host');
     const section = byId('puzzles');
     const floor = byId('floor');
     const count = byId('count');
     const bar = byId('progress');
-    if (id !== this.mountId || !(canvas instanceof HTMLCanvasElement) || !section || !floor || !count || !bar) return;
-    this.off.push(startBurr({ canvas, section, floor, count, bar }));
+    if (id !== this.mountId || !host || !section || !floor || !count || !bar) return;
+    const stop = await startBurr({ host, section, floor, count, bar });
+    if (!stop) {
+      if (id === this.mountId) this.showStill();
+      return;
+    }
+    // unmounted while WebGL was starting: tear it straight down
+    if (id !== this.mountId) stop();
+    else this.off.push(stop);
+  }
+
+  /** No WebGL: a still picture of the assembled burr takes the canvas's place (puzzles.css, .no-3d). */
+  private showStill() {
+    this.setState({ still: true });
+    const count = document.getElementById('count');
+    if (count) count.textContent = '6 / 6';
   }
 
   private setLanguage = (lang: Lang) => {
@@ -65,7 +85,7 @@ export default class PuzzlesPage extends Component<Props, State> {
   };
 
   renderVals() {
-    const { lang, active } = this.state;
+    const { lang, active, still } = this.state;
     const mn = lang === 'mn';
     const nav = {} as Record<Section, string>;
     (['puzzles', 'games', 'edu', 'impact'] as const).forEach((k) => {
@@ -78,8 +98,8 @@ export default class PuzzlesPage extends Component<Props, State> {
       mnP: flag(mn),
       setEn: () => this.setLanguage('en'),
       setMn: () => this.setLanguage('mn'),
-      // the 3D stage is pinned while you scroll through Part 01
-      puzzlesCls: 'pin',
+      // the 3D stage is pinned while you scroll through Part 01; no-3d swaps in the still picture
+      puzzlesCls: still ? 'pin no-3d' : 'pin',
     };
   }
 

@@ -7,7 +7,10 @@ export default function PuzzleStage({ v }: { v: PuzzlesVals }) {
       {' '}
       <div className="stage">
         {' '}
-        <canvas id="burr" aria-label="A six-piece wooden burr puzzle assembling as you scroll" />{' '}
+        {/* the 3D canvas is created in here by burr.ts, fresh on every start */}
+        <div id="burr-host" className="burr-host" />{' '}
+        {/* shown only when WebGL is unavailable; lazy, so it is never downloaded otherwise */}
+        <img className="burr-still" src="/media/burr-still.png" alt="An assembled six-piece wooden burr puzzle" loading="lazy" />{' '}
         <div className="floor" id="floor" />{' '}
         <div className="wrap">
           {' '}

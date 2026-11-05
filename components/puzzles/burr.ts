@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { prefersReducedMotion } from '@/lib/motion';
+import { acquireContext } from '@/lib/webgl';
 
 export const WOOD = '/media/0ef1b9b909cdeb26bf3adac2c221435c.jpg';
 export const WOOD_BUMP = '/media/f555b2b82596755f3aba452e29a2ca85.jpg';
@@ -51,7 +52,8 @@ export function addBurrLights(scene: THREE.Scene) {
 }
 
 type Elements = {
-  canvas: HTMLCanvasElement;
+  /** the element the 3D canvas is created in (a fresh canvas every start; see below) */
+  host: HTMLElement;
   section: HTMLElement;
   floor: HTMLElement;
   count: HTMLElement;
@@ -60,13 +62,40 @@ type Elements = {
 
 /**
  * Part 01 of the puzzle site: the six pieces fly in and lock together as you scroll through
- * the pinned stage; drag to turn the puzzle. Returns a function that tears everything down.
+ * the pinned stage; drag to turn the puzzle. Resolves to a function that tears everything down,
+ * or to null when WebGL is not available (the page then shows a still picture instead).
  */
-export function startBurr({ canvas, section, floor, count, bar }: Elements): () => void {
+export async function startBurr({ host, section, floor, count, bar }: Elements): Promise<(() => void) | null> {
   const reduce = prefersReducedMotion();
   const off: (() => void)[] = [];
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  // A fresh canvas every time, never a reused one: teardown releases the context (forceContextLoss),
+  // and a released canvas only ever returns that dead context. If the browser still hands out a lost
+  // context (Safari does when it is over its limit), try one more fresh canvas, then give up quietly.
+  const attrs = { antialias: true, alpha: true };
+  let canvas: HTMLCanvasElement | null = null;
+  let gl: Awaited<ReturnType<typeof acquireContext>> = null;
+  for (let attempt = 0; attempt < 2 && !gl; attempt++) {
+    canvas?.remove();
+    canvas = document.createElement('canvas');
+    canvas.id = 'burr';
+    canvas.setAttribute('aria-label', 'A six-piece wooden burr puzzle assembling as you scroll');
+    host.prepend(canvas);
+    gl = await acquireContext(canvas, attrs);
+  }
+  if (!canvas || !gl) {
+    canvas?.remove();
+    return null;
+  }
+  let renderer: THREE.WebGLRenderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas, context: gl, ...attrs });
+  } catch (err) {
+    console.warn('3D puzzle: WebGL unavailable, showing the still picture', err);
+    canvas.remove();
+    return null;
+  }
+  const cv = canvas;
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -131,7 +160,7 @@ export function startBurr({ canvas, section, floor, count, bar }: Elements): () 
     dragging = true;
     lx = e.clientX;
     ly = e.clientY;
-    canvas.setPointerCapture(e.pointerId);
+    cv.setPointerCapture(e.pointerId);
   };
   const move = (e: PointerEvent) => {
     if (!dragging) return;
@@ -145,20 +174,20 @@ export function startBurr({ canvas, section, floor, count, bar }: Elements): () 
   const up = () => {
     dragging = false;
   };
-  canvas.addEventListener('pointerdown', down);
-  canvas.addEventListener('pointermove', move);
-  canvas.addEventListener('pointerup', up);
-  canvas.addEventListener('pointercancel', up);
+  cv.addEventListener('pointerdown', down);
+  cv.addEventListener('pointermove', move);
+  cv.addEventListener('pointerup', up);
+  cv.addEventListener('pointercancel', up);
   off.push(() => {
-    canvas.removeEventListener('pointerdown', down);
-    canvas.removeEventListener('pointermove', move);
-    canvas.removeEventListener('pointerup', up);
-    canvas.removeEventListener('pointercancel', up);
+    cv.removeEventListener('pointerdown', down);
+    cv.removeEventListener('pointermove', move);
+    cv.removeEventListener('pointerup', up);
+    cv.removeEventListener('pointercancel', up);
   });
 
   const resize = () => {
-    const w = canvas.clientWidth;
-    const h = canvas.clientHeight;
+    const w = cv.clientWidth;
+    const h = cv.clientHeight;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     const mobile = w < 760;
@@ -216,5 +245,6 @@ export function startBurr({ canvas, section, floor, count, bar }: Elements): () 
     });
     renderer.dispose();
     renderer.forceContextLoss();
+    cv.remove();
   };
 }

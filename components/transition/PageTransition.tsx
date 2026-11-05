@@ -43,8 +43,11 @@ export default function PageTransition({ children }: { children: ReactNode }) {
   const loadBurr = useCallback(async () => {
     if (burr.current || !canvas.current) return burr.current;
     try {
-      const { MiniBurr } = await import('./miniBurr');
-      if (!burr.current && canvas.current) burr.current = new MiniBurr(canvas.current);
+      const [{ MiniBurr }, { acquireContext }] = await Promise.all([import('./miniBurr'), import('@/lib/webgl')]);
+      if (burr.current || !canvas.current) return burr.current;
+      // only start three.js on a live context; without one the panel just runs without the burr
+      const gl = await acquireContext(canvas.current, { antialias: true, alpha: true });
+      if (gl && !burr.current && canvas.current) burr.current = new MiniBurr(canvas.current, gl);
     } catch {
       burr.current = null; // no WebGL: the panel still works without the burr
     }

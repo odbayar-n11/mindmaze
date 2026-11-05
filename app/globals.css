@@ -111,7 +111,7 @@ html:has(.page-coding) {
 [data-scroll-header][data-scrolled='true'] .navlink:hover {
   color: #e2574c !important;
 }
-[data-scroll-header][data-scrolled='true'] > a[aria-label] img {
+[data-scroll-header][data-scrolled='true'] a[aria-label] img {
   filter: brightness(0) !important;
 }
 [data-scroll-header][data-scrolled='true'] [role='group'] {
@@ -124,6 +124,101 @@ html:has(.page-coding) {
 [data-scroll-header][data-scrolled='true'] [role='group'] button[aria-pressed='true'] {
   color: #fff !important;
   background: #0b1528 !important;
+}
+/* the shared site header (components/navigation/SiteHeader): logo + light/dark switch | links | language + log in.
+   Wide screens (1360px+, where every link fits on one row): three columns, the outer two equal,
+   so the links sit in the exact middle.
+   Narrower: logo and buttons on the first row, the links centred on a row of their own. */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 32px;
+}
+.site-header-start,
+.site-header-end {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.site-header-start {
+  gap: 20px;
+}
+/* until the three columns fit: logo and buttons share the first row, the links get a centred row below */
+.site-header-end {
+  margin-left: auto;
+}
+.site-header-links {
+  order: 3;
+  flex: 1 1 100%;
+}
+@media (min-width: 1360px) {
+  .site-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .site-header-links {
+    order: 0;
+    flex: none;
+  }
+  .site-header-end {
+    justify-self: end;
+  }
+}
+/* light/dark switch in the header, boxed like the language buttons */
+[data-scroll-header] .theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(243, 239, 230, 0.6);
+  background: transparent;
+  color: #f3efe6;
+  cursor: pointer;
+}
+[data-scroll-header] .theme-toggle:hover {
+  background: rgba(243, 239, 230, 0.12);
+}
+[data-scroll-header] .theme-toggle:focus-visible {
+  outline: 3px solid #e2574c;
+  outline-offset: 2px;
+}
+html:not([data-theme='dark']) [data-scroll-header][data-scrolled='true'] .theme-toggle {
+  color: #0b1528;
+  border-color: rgba(11, 21, 40, 0.45);
+}
+/* scrolled header in dark mode: the page's own dark colour (--hdr-dark-bg) with light text */
+html[data-theme='dark'] [data-scroll-header][data-scrolled='true'] {
+  background: var(--hdr-dark-bg, #10151f) !important;
+  color: #ece7dc;
+  border-bottom-color: rgba(236, 231, 220, 0.14) !important;
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
+}
+html[data-theme='dark'] [data-scroll-header][data-scrolled='true'] .navlink {
+  color: #ece7dc !important;
+}
+html[data-theme='dark'] [data-scroll-header][data-scrolled='true'] .navlink:hover {
+  color: #f0857a !important;
+}
+html[data-theme='dark'] [data-scroll-header][data-scrolled='true'] a[aria-label] img {
+  filter: brightness(0) invert(1) !important;
+}
+html[data-theme='dark'] [data-scroll-header][data-scrolled='true'] [role='group'] {
+  border-color: rgba(236, 231, 220, 0.5) !important;
+}
+html[data-theme='dark'] [data-scroll-header][data-scrolled='true'] [role='group'] button {
+  color: #ece7dc !important;
+}
+html[data-theme='dark'] [data-scroll-header][data-scrolled='true'] [role='group'] button[aria-pressed='true'] {
+  color: #10151f !important;
+  background: #ece7dc !important;
+}
+html[data-theme='dark'] [data-scroll-header][data-scrolled='true'] .theme-toggle {
+  color: #ece7dc;
+  border-color: rgba(236, 231, 220, 0.5);
 }
 @media (prefers-reduced-motion: reduce) {
   [data-scroll-header] { transition: none; }

@@ -16,8 +16,9 @@ export class MiniBurr {
   private raf = 0;
   private t0 = 0;
 
-  constructor(private canvas: HTMLCanvasElement) {
-    this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  /** `gl` must be a live context for `canvas` (lib/webgl acquireContext). */
+  constructor(private canvas: HTMLCanvasElement, gl: WebGLRenderingContext | WebGL2RenderingContext) {
+    this.renderer = new THREE.WebGLRenderer({ canvas, context: gl, antialias: true, alpha: true });
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;

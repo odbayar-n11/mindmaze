@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ThemeToggle from '../../navigation/ThemeToggle';
 import type { PuzzlesVals } from '../PuzzlesPage';
 
 export default function Header({ v }: { v: PuzzlesVals }) {
@@ -9,10 +10,13 @@ export default function Header({ v }: { v: PuzzlesVals }) {
       <div className="progress" id="progress" />{' '}
       <nav className="wrap nav" aria-label="Main">
         {' '}
-        <Link className="logo" href="/" aria-label="MindMaze home">
-          <span className="logo-icon" aria-hidden="true" />
-          <span className="logo-word" aria-hidden="true" style={{ width: '53px', height: '37px' }} />
-        </Link>{' '}
+        <div className="nav-start">
+          <Link className="logo" href="/" aria-label="MindMaze home">
+            <span className="logo-icon" aria-hidden="true" />
+            <span className="logo-word" aria-hidden="true" style={{ width: '53px', height: '37px' }} />
+          </Link>
+          <ThemeToggle />
+        </div>{' '}
         <ul className="links">
           {' '}
           <li>

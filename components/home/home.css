@@ -19,7 +19,7 @@
 }
 /* ---------------------------------------------------------------- light / dark theme
    Light is the default. Dark follows the system setting until the visitor picks one with the
-   header toggle (ThemeToggle), which sets data-home-theme on <html> and remembers it. */
+   header toggle (components/navigation/ThemeToggle), shared with /puzzles and /coding. */
 .page-home {
   --hm-bg: #f3f1e8;
   --hm-card: #ebe8dd;
@@ -35,7 +35,7 @@
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
-  html:not([data-home-theme='light']) .page-home {
+  html:not([data-theme='light']) .page-home {
     --hm-bg: #10151f;
     --hm-card: #1a2230;
     --hm-ink: #ece7dc;
@@ -49,11 +49,11 @@
   --hm-map: #9cc7a8;
     color-scheme: dark;
   }
-  html:not([data-home-theme='light']) body:has(.page-home) {
+  html:not([data-theme='light']) body:has(.page-home) {
     background: #10151f;
   }
 }
-html[data-home-theme='dark'] .page-home {
+html[data-theme='dark'] .page-home {
   --hm-bg: #10151f;
   --hm-card: #1a2230;
   --hm-ink: #ece7dc;
@@ -72,7 +72,7 @@ body:has(.page-home) {
   background: #f3f1e8;
   transition: background-color 0.3s ease;
 }
-html[data-home-theme='dark'] body:has(.page-home) {
+html[data-theme='dark'] body:has(.page-home) {
   background: #10151f;
 }
 .page-home section,
@@ -80,33 +80,13 @@ html[data-home-theme='dark'] body:has(.page-home) {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 /* the map picture has dark green lines: flip its lightness (same hue) on the dark background */
-html[data-home-theme='dark'] .page-home .map-img {
+html[data-theme='dark'] .page-home .map-img {
   filter: invert(1) hue-rotate(180deg);
 }
 /* the engraved eye: its outline follows the text colour */
 .page-home .story-eye [stroke='#072039'],
 .page-home .story-eye [stroke='#0B1528'] {
   stroke: var(--hm-navy);
-}
-/* header sun/moon button */
-.page-home .theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 1px solid rgba(243, 239, 230, 0.6);
-  background: transparent;
-  color: #f3efe6;
-  cursor: pointer;
-}
-.page-home .theme-toggle:hover {
-  background: rgba(243, 239, 230, 0.12);
-}
-.page-home .theme-toggle:focus-visible {
-  outline: 3px solid #e2574c;
-  outline-offset: 2px;
 }
 
 .page-home a {
@@ -755,41 +735,4 @@ html[data-home-theme='dark'] .page-home .map-img {
 .page-home #top h1,
 .page-home .pcard h3 {
   color: #ffffff !important;
-}
-
-/* scrolled header in dark mode (the light version is in app/globals.css) */
-html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] {
-  background: #10151f !important;
-  color: #ece7dc;
-  border-bottom-color: rgba(236, 231, 220, 0.14) !important;
-  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
-  color-scheme: dark;
-}
-html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] .navlink {
-  color: #ece7dc !important;
-}
-html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] .navlink:hover {
-  color: #f0857a !important;
-}
-html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] > a[aria-label] img {
-  filter: brightness(0) invert(1) !important;
-}
-html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] [role='group'] {
-  border-color: rgba(236, 231, 220, 0.5) !important;
-}
-html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] [role='group'] button {
-  color: #ece7dc !important;
-}
-html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] [role='group'] button[aria-pressed='true'] {
-  color: #10151f !important;
-  background: #ece7dc !important;
-}
-/* light scrolled header: the toggle turns dark like the language buttons */
-html:not([data-home-theme='dark']) .page-home [data-scroll-header][data-scrolled='true'] .theme-toggle {
-  color: #0b1528;
-  border-color: rgba(11, 21, 40, 0.45);
-}
-html[data-home-theme='dark'] .page-home [data-scroll-header][data-scrolled='true'] .theme-toggle {
-  color: #ece7dc;
-  border-color: rgba(236, 231, 220, 0.5);
 }

@@ -7,28 +7,13 @@ import { codingContent } from './content';
 import './coding.css';
 
 type Props = Record<string, never>;
-type State = { lang: Lang; showSol: boolean; open: number; scrolled: boolean };
+type State = { lang: Lang; showSol: boolean; open: number };
 
-const ACCENT = '#E2574C';
 const flag = (on: boolean) => (on ? 'true' : 'false') as 'true' | 'false';
 
 /** Coding page: language toggle, the "Show a solution" switch and the questions accordion. */
 export default class CodingPage extends Component<Props, State> {
-  state: State = { lang: getLang(), showSol: false, open: 0, scrolled: false };
-
-  componentDidMount() {
-    this.onScroll();
-    window.addEventListener('scroll', this.onScroll, { passive: true });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll);
-  }
-
-  private onScroll = () => {
-    const scrolled = window.scrollY > 0;
-    if (scrolled !== this.state.scrolled) this.setState({ scrolled });
-  };
+  state: State = { lang: getLang(), showSol: false, open: 0 };
 
   private toggleSol = () => this.setState((s) => ({ showSol: !s.showSol }));
 
@@ -40,7 +25,7 @@ export default class CodingPage extends Component<Props, State> {
   };
 
   renderVals() {
-    const { lang, showSol, open, scrolled } = this.state;
+    const { lang, showSol, open } = this.state;
     const en = lang === 'en';
     const content = codingContent(lang);
     return {
@@ -51,13 +36,8 @@ export default class CodingPage extends Component<Props, State> {
       toggleSol: this.toggleSol,
       open,
       toggleQuestion: this.toggleQuestion,
-      scrolled,
       isEn: flag(en),
       isMn: flag(!en),
-      enBg: en ? ACCENT : 'transparent',
-      enFg: en ? '#FFFFFF' : '#D9D9D9',
-      mnBg: en ? 'transparent' : ACCENT,
-      mnFg: en ? '#D9D9D9' : '#FFFFFF',
       setEn: () => this.setLanguage('en'),
       setMn: () => this.setLanguage('mn'),
     };

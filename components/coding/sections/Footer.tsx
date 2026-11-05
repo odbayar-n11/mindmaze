@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import type { CodingVals } from '../CodingPage';
 
 export default function Footer({ v }: { v: CodingVals }) {
@@ -6,7 +5,7 @@ export default function Footer({ v }: { v: CodingVals }) {
   return (
     <footer className="cfoot">
       <nav aria-label="Footer">
-        <Link href="/">{t.navHome}</Link>
+        <a href="#top">{t.navHome}</a>
         {footerNav.map((item) => (
           <a key={item.href} href={item.href}>
             {item.label}

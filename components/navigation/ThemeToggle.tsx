@@ -1,49 +1,64 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { THEME_KEY } from './theme';
 
-const KEY = 'mindmaze-home-theme';
 type Theme = 'light' | 'dark';
 
-function readSaved(): Theme | null {
+function saved(): Theme | null {
   try {
-    const v = localStorage.getItem(KEY);
+    const v = localStorage.getItem(THEME_KEY);
     return v === 'light' || v === 'dark' ? v : null;
   } catch {
     return null;
   }
 }
 
-/**
- * Sun/moon button for the homepage header. The theme is set as data-home-theme on <html>
- * (home.css reads it). With no saved choice it follows the system setting, live.
- */
-export default function ThemeToggle() {
+function systemTheme(): Theme {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function apply(t: Theme) {
+  document.documentElement.dataset.theme = t;
+}
+
+/** Sun/moon button. Every page's header renders one; they all share the same saved setting (see ./theme). */
+export default function ThemeToggle({ className = '' }: { className?: string }) {
   const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
+    const current = saved() ?? systemTheme();
+    apply(current);
+    setTheme(current);
+
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const apply = (t: Theme) => {
-      document.documentElement.dataset.homeTheme = t;
+    const onSystem = () => {
+      if (saved()) return;
+      const t = systemTheme();
+      apply(t);
       setTheme(t);
     };
-    apply(readSaved() ?? (mq.matches ? 'dark' : 'light'));
-    const onSystem = (e: MediaQueryListEvent) => {
-      if (!readSaved()) apply(e.matches ? 'dark' : 'light');
+    // a choice made in another tab applies here too
+    const onStorage = (e: StorageEvent) => {
+      if (e.key !== THEME_KEY) return;
+      const t = saved() ?? systemTheme();
+      apply(t);
+      setTheme(t);
     };
     mq.addEventListener('change', onSystem);
+    window.addEventListener('storage', onStorage);
     return () => {
       mq.removeEventListener('change', onSystem);
-      delete document.documentElement.dataset.homeTheme;
+      window.removeEventListener('storage', onStorage);
     };
   }, []);
 
   const toggle = () => {
     const next: Theme = theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.homeTheme = next;
+    apply(next);
     setTheme(next);
     try {
-      localStorage.setItem(KEY, next);
+      localStorage.setItem(THEME_KEY, next);
     } catch {
       /* private mode: the choice just isn't remembered */
     }
@@ -53,7 +68,7 @@ export default function ThemeToggle() {
   return (
     <button
       type="button"
-      className="theme-toggle"
+      className={`theme-toggle ${className}`.trim()}
       onClick={toggle}
       aria-pressed={dark}
       aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}

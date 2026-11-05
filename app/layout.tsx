@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import PageTransition from '@/components/transition/PageTransition';
+import { THEME_SCRIPT } from '@/components/navigation/theme';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -19,8 +20,10 @@ const FONTS =
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    // the inline script sets data-theme (light/dark) before the first paint; React must keep it
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href={FONTS} />
