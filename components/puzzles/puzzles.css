@@ -131,6 +131,17 @@ body:has(.page-puzzles) {
   align-items: center;
   gap: 20px;
 }
+/* small laptops (and zoomed-in screens): tighter spacing so the links stay on one row in both languages */
+@media (min-width: 861px) and (max-width: 1100px) {
+  .page-puzzles .links {
+    flex-wrap: nowrap;
+    gap: 4px 16px;
+  }
+  .page-puzzles .links a {
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+}
 @media (min-width: 861px) {
   .page-puzzles .nav.wrap {
     display: grid;

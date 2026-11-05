@@ -15,21 +15,6 @@ html:has(.page-coding) {
 .page-coding [data-scroll-header]:not([data-scrolled='true']) {
   background: transparent !important;
 }
-/* this page's six links fit between equal side columns from 1280px, earlier than the homepage's eight
-   (app/globals.css), so the three-column header starts there */
-@media (min-width: 1280px) {
-  .page-coding .site-header {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-  }
-  .page-coding .site-header-links {
-    order: 0;
-    flex: none;
-  }
-  .page-coding .site-header-end {
-    justify-self: end;
-  }
-}
 /* phones: the wrapped header would pin a third of the screen, so it scrolls away with the photo */
 @media (max-width: 760px) {
   .page-coding [data-scroll-header] {
