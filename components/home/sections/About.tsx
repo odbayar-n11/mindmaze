@@ -9,10 +9,12 @@ export default function About({ v }: { v: HomeVals }) {
       style={{
         position: 'relative',
         background: 'var(--hm-bg)',
-        padding: 'clamp(64px, 7vw, 112px) max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2))',
+        // the card brings its own inner padding, so the section only centres it on very wide screens
+        padding: 'clamp(48px, 6vw, 96px) max(0px, calc((100% - 1360px) / 2))',
       }}
     >
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '48px 56px', alignItems: 'center' }}>
+      {/* Part 01 sits in a card (home.css, .why-card) */}
+      <div className="why-card" style={{ display: 'flex', flexWrap: 'wrap', gap: '40px 48px', alignItems: 'center' }}>
         <div className="why-mn">
           <span lang="mn-Mong" aria-hidden="true" className="why-mn-a">
             ᠮᠣᠩᠭᠣᠯ ᠥᠪ ᠰᠣᠶᠣᠯ
@@ -22,7 +24,7 @@ export default function About({ v }: { v: HomeVals }) {
             ᠤᠬᠠᠭᠠᠯᠠᠭ ᠢᠷᠡᠭᠡᠳᠦᠢ
           </span>
         </div>
-        <div style={{ flex: '1 1 480px', minWidth: '0' }}>
+        <div style={{ flex: '1 1 380px', minWidth: '0' }}>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: '10px' }}>
             <span
               style={{

@@ -23,6 +23,10 @@
 .page-home {
   --hm-bg: #f3f1e8;
   --hm-card: #ebe8dd;
+  --hm-panel: #ecebe2;
+  --hm-panel-border: rgba(7, 32, 57, 0.09);
+  --hm-panel-glow: rgba(7, 32, 57, 0.07);
+  --hm-panel-shadow: 0 1px 2px rgba(40, 36, 28, 0.04);
   --hm-ink: #1a1a1a;
   --hm-navy: #072039;
   --hm-muted: #55524c;
@@ -38,6 +42,10 @@
   html:not([data-theme='light']) .page-home {
     --hm-bg: #10151f;
     --hm-card: #1a2230;
+    --hm-panel: #0c111a;
+    --hm-panel-border: rgba(236, 231, 220, 0.09);
+    --hm-panel-glow: rgba(143, 179, 255, 0.07);
+    --hm-panel-shadow: none;
     --hm-ink: #ece7dc;
     --hm-navy: #e9e4d8;
     --hm-muted: #aaa498;
@@ -56,6 +64,10 @@
 html[data-theme='dark'] .page-home {
   --hm-bg: #10151f;
   --hm-card: #1a2230;
+  --hm-panel: #0c111a;
+  --hm-panel-border: rgba(236, 231, 220, 0.09);
+  --hm-panel-glow: rgba(143, 179, 255, 0.07);
+  --hm-panel-shadow: none;
   --hm-ink: #ece7dc;
   --hm-navy: #e9e4d8;
   --hm-muted: #aaa498;
@@ -70,14 +82,9 @@ html[data-theme='dark'] .page-home {
 body:has(.page-home) {
   margin: 0;
   background: #f3f1e8;
-  transition: background-color 0.3s ease;
 }
 html[data-theme='dark'] body:has(.page-home) {
   background: #10151f;
-}
-.page-home section,
-.page-home .home-body > div {
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 /* the map picture has dark green lines: flip its lightness (same hue) on the dark background */
 html[data-theme='dark'] .page-home .map-img {
@@ -333,6 +340,57 @@ html[data-theme='dark'] .page-home .map-img {
 @media (max-width: 760px) {
   .page-home .why {
     min-height: 100svh; /* the header is not pinned on phones */
+  }
+}
+/* the card around Part 01: a quiet panel a step darker than the page, hairline border, soft glows in
+   two corners and a faint traditional mountains-and-clouds band along the bottom */
+.page-home .why-card {
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate; /* keeps the grid layer (z-index -1) above the card's background, under its content */
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 45% 70% at 100% 0%, var(--hm-panel-glow), transparent 70%),
+    radial-gradient(ellipse 35% 55% at 0% 100%, var(--hm-panel-glow), transparent 70%),
+    var(--hm-panel);
+  border: 1px solid var(--hm-panel-border);
+  border-radius: 24px;
+  box-shadow: var(--hm-panel-shadow);
+  padding: clamp(28px, 3.6vw, 56px);
+}
+.page-home .why-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* the traditional mountains-and-clouds band (the supplied drawing), faint along the bottom of the card;
+     multiply drops its grey paper so only the linework shows on the cream */
+  /* sits 15px lower than the card's bottom edge, so the band's base is just cut off */
+  background: url(/media/mountains-clouds.jpg) center calc(100% + 15px) / 100% auto no-repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.16;
+  /* fade out towards the top, so the drawing's paper edge never shows as a line */
+  -webkit-mask-image: linear-gradient(to top, #000 15%, transparent 70%);
+  mask-image: linear-gradient(to top, #000 15%, transparent 70%);
+}
+/* dark mode: the same drawing as light lines on the navy */
+html[data-theme='dark'] .page-home .why-card::before {
+  filter: invert(1);
+  mix-blend-mode: screen;
+  opacity: 0.1;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme='light']) .page-home .why-card::before {
+    filter: invert(1);
+    mix-blend-mode: screen;
+    opacity: 0.1;
+  }
+}
+@media (max-width: 760px) {
+  .page-home .why-card {
+    border-radius: 20px;
+    padding: 28px 22px;
   }
 }
 

@@ -18,8 +18,18 @@ function systemTheme(): Theme {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
+/**
+ * Switches the theme in one go. Some elements fade their colours (hover effects, the header), others
+ * change instantly, so a plain switch flips parts of the page at different moments. While the theme
+ * changes, .theme-switching turns every transition off (app/globals.css), for two frames.
+ */
 function apply(t: Theme) {
-  document.documentElement.dataset.theme = t;
+  const root = document.documentElement;
+  if (root.dataset.theme === t) return;
+  root.classList.add('theme-switching');
+  root.dataset.theme = t;
+  void root.offsetHeight; // apply the new colours now, with transitions still off
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('theme-switching')));
 }
 
 /** Sun/moon button. Every page's header renders one; they all share the same saved setting (see ./theme). */

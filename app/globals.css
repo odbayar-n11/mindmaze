@@ -205,6 +205,12 @@ html:has(.page-coding) {
     justify-self: end;
   }
 }
+/* the moment the theme changes, every colour switches at once (components/navigation/ThemeToggle) */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
 /* light/dark switch in the header, boxed like the language buttons */
 [data-scroll-header] .theme-toggle {
   display: inline-flex;
