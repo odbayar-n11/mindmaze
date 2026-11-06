@@ -26,7 +26,7 @@ body {
   height: calc(100% + 104px);
   display: flex;
   flex-direction: column;
-  background: #072039;
+  background: #000000;
   transform: translate3d(0, 100%, 0);
 }
 /* the Mongolian key band that edges every section of the site, leading the panel in and out */
@@ -40,7 +40,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: #072039;
+  background: #000000; /* same black as the panel, so the key pattern joins it */
   -webkit-mask: url(/media/888ba7acba947e81b83283f979c2f407.png) 0 0 / auto 100% repeat-x;
   mask: url(/media/888ba7acba947e81b83283f979c2f407.png) 0 0 / auto 100% repeat-x;
 }

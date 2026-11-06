@@ -86,6 +86,15 @@ body:has(.page-home) {
 html[data-theme='dark'] body:has(.page-home) {
   background: #10151f;
 }
+/* the footer logo is dark navy artwork: in dark mode it turns light, like the text beside it */
+html[data-theme='dark'] .page-home .foot-logo img {
+  filter: brightness(0) invert(0.92);
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme='light']) .page-home .foot-logo img {
+    filter: brightness(0) invert(0.92);
+  }
+}
 /* the map picture has dark green lines: flip its lightness (same hue) on the dark background */
 html[data-theme='dark'] .page-home .map-img {
   filter: invert(1) hue-rotate(180deg);

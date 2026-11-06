@@ -17,6 +17,7 @@ export default function Footer({ v }: { v: HomeVals }) {
       <span
         role="img"
         aria-label="MindMaze"
+        className="foot-logo"
         style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}
       >
         <img
