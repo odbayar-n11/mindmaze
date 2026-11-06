@@ -146,7 +146,7 @@ export function homeContent(lang: Lang) {
     [
     { ini: 'ДУ', name: L('Dulguun Uuganbaatar', 'Дөлгөөн Ууганбаатар'), role: L('UW Chapter Leader', 'Вашингтоны их сургуулийн салбарын ахлагч'), img: '/media/d967f981655b5e83531052a80573b5c8.jpg', poster: true },
     { ini: 'МБ', name: L('Munkhdalai Batbayar', 'Мөнхдалай Батбаяр'), role: L('School Administrator', 'Сургуулийн администратор'), img: '/media/6b92678bb898a1dba561b7a2e903be54.jpg', poster: true },
-    { ini: 'УГ', name: L('', 'Ундрам Ганзориг'), role: L('Team member', 'Багийн гишүүн') }
+    { ini: 'УГ', name: L('Undram Ganzorig', 'Ундрам Ганзориг'), role: L('Team member', 'Багийн гишүүн'), img: '/media/undram-ganzorig.jpg', poster: true }
   ] as Person[]
   ).map(person);
   // Sliding rows repeat the people until each half is wider than a big screen; repeats are hidden from screen readers.
