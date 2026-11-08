@@ -1231,3 +1231,17 @@ html[data-theme='light'] body:has(.page-coding) {
     height: 46px;
   }
 }
+
+/* The hero (cover photo) keeps its original type: Inter for the kicker and description, Anton for the title.
+   !important beats the site-wide title rule in app/globals.css. Fonts come from ./fonts.ts (set in sections/Hero.tsx). */
+.page-coding .hero {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+.page-coding .hero h1 {
+  font-family: var(--hero-head) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.005em !important;
+}
+.page-coding .hero .hero-lead {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
