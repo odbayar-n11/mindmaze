@@ -54,6 +54,11 @@ const EN = {
   ns1: '2nd School of Uvurkhangai',
   ns2: '1st School of Kherlen sum',
   ns3: '3rd School of Arkhangai',
+  ns4: '1st School of Khujirt',
+  ns5: '2nd School of Khujirt',
+  ns6: '47th School of Ulaanbaatar',
+  ns7: '111th School of Ulaanbaatar',
+  ns8: '84th School of Ulaanbaatar',
 
   // moments
   m_e: 'MindMaze in class',
@@ -179,6 +184,11 @@ const MN: Dict = {
   ns1: 'Өвөрхангай аймгийн 2-р сургууль',
   ns2: 'Хэрлэн сумын 1-р сургууль',
   ns3: 'Архангай аймгийн 3-р сургууль',
+  ns4: 'Хужирт сумын 1-р сургууль',
+  ns5: 'Хужирт сумын 2-р сургууль',
+  ns6: 'Улаанбаатар хотын 47-р сургууль',
+  ns7: 'Улаанбаатар хотын 111-р сургууль',
+  ns8: 'Улаанбаатар хотын 84-р сургууль',
 
   // moments
   m_e: 'MindMaze ангид',

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry';
 import { BURR_ORDER, BURR_PIECES, addBurrLights, burrMaterial } from '@/components/puzzles/burr';
 
 /**
