@@ -8,9 +8,9 @@ import Rise from './Rise';
 
 /* ── Timing: tweak these ──────────────────────────────────────────────────────────────────────── */
 /** How long each photo rests in the middle before the next step starts. */
-const HOLD_MS = 2500;
+const HOLD_MS = 1600;
 /** One step: every card slides, resizes and re-zigzags into its next slot. */
-const SLIDE_MS = 1150;
+const SLIDE_MS = 800;
 /** Easing of a step, as CSS cubic-bezier(x1, y1, x2, y2) control points. */
 const SLIDE_EASE: [number, number, number, number] = [0.45, 0, 0.2, 1];
 /** Reduced motion: each half (out, then in) of the slow crossfade that replaces the slide. */
@@ -27,8 +27,8 @@ const ZIG = (1 - SIDE) / 2; // vertical offset that lines a side card up with th
 
 type Shot = { n: number; alt: TKey };
 
-// same 20 photos, same order as the old reel
-const SHOTS: Shot[] = [16, 9, 1, 10, 13, 3, 18, 11, 5, 14, 7, 12, 15, 2, 20, 6, 17, 4, 19, 8].map((n) => ({
+// 19 MindMaze session photos (all from the full-size originals), mixed so similar shots are apart
+const SHOTS: Shot[] = [16, 9, 1, 10, 3, 18, 11, 5, 14, 7, 12, 15, 2, 20, 6, 17, 4, 19, 8].map((n) => ({
   n,
   alt: `mp${n}` as TKey,
 }));
@@ -332,7 +332,8 @@ export default function MomentsReel() {
                       src={`/img/class-${shot.n}.webp`}
                       alt={t(shot.alt)}
                       fill
-                      sizes="(max-width: 639px) 72vw, (max-width: 1240px) 45vw, 560px"
+                      sizes="(max-width: 639px) 78vw, min(86vh, 64vw)"
+                      quality={90}
                       preload={pos === 0 && (k === 0 || k === 1)}
                       loading={Math.abs(d) <= 2 ? 'eager' : 'lazy'} // the next card in is ready before it slides on
                       draggable={false}

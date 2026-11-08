@@ -455,12 +455,95 @@ body:has(.mm)::before {
   }
 }
 
+/* 02-06 (Games to Impact): one horse painting behind all five sections. .horse-track spans the
+   whole .horse-zone wrapper; inside it .horse-bg is sticky and one viewport tall, so the image
+   stays at screen size (never stretched over the tall zone, so never upscaled beyond cover) while
+   the sections scroll over it. Being sticky inside the track, it scrolls in with Games and out with
+   the bottom of Impact: nothing of it shows behind the hero, the header or the footer.
+   mndmz-navy.png is served as-is (lossless PNG, no filter or transform); a dark navy shade sits
+   on top of it (.horse-bg::after).
+   Not background-attachment: fixed. z-index -2 like the key pattern (.khee), drawn after it. */
+.mm .horse-zone {
+  position: relative;
+}
+.mm .horse-track {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+}
+.mm .horse-bg {
+  position: sticky;
+  top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+  height: calc(100vh - var(--nav-h));
+  height: calc(100lvh - var(--nav-h));
+  background: url('/img/mndmz-navy.png') center 65% / cover no-repeat;
+}
+/* the darker shade over the whole painting (all of 02-06): the image itself is untouched, a dark
+   navy layer on top lets it show through faintly. Change --horse-shade to make it lighter/darker. */
+.mm .horse-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, #070b17 var(--horse-shade, 68%), transparent);
+}
+/* landscape screens only see a short band of this 1:2 portrait; at 65% the band stops at the
+   horses' backs and cuts off their legs and the black horse's tail. 74% keeps both horses whole
+   (they span ~56-80% of the image height). Portrait screens see most of the image: 65%. */
+@media (min-aspect-ratio: 1/1) {
+  .mm .horse-bg {
+    background-position: center 74%;
+  }
+}
+/* 01 -> 02 hand-off: a navy band straddling the zone's top edge. The key pattern fades into plain
+   navy at the end of the hero, then the painting fades in out of it, so there is no hard line. It
+   sits below the hero's pinned content (z-index -1) and scrolls away with the top of Games. */
+.mm .horse-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -30vh;
+  height: 75vh;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--bg) 40%,
+    var(--bg) 46%,
+    color-mix(in srgb, var(--bg) 55%, transparent) 72%,
+    transparent 100%
+  );
+}
+/* readability over the painting: a soft navy halo around the text that sits directly on it
+   (section headings and intros); no box and no darkening, so the horses stay visible right up to
+   the text. Cards and photos are opaque already. */
+.mm .horse-zone .band .head,
+.mm #impact h2,
+.mm #edu :is(.edu-head, .edu-intro, .edu-body, .edu-note) {
+  text-shadow:
+    0 0 6px var(--bg),
+    0 0 14px var(--bg),
+    0 0 28px var(--bg);
+}
+/* body copy is finer than the headings and can land on the ivory horse: give those paragraphs a
+   soft, see-through navy patch of their own (box-shadow, so it adds no padding or layout shift) */
+.mm .horse-zone .head .lede,
+.mm #edu :is(.edu-intro, .edu-note) {
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+  box-shadow: 0 0 18px 14px color-mix(in srgb, var(--bg) 60%, transparent);
+  border-radius: 8px;
+}
+
 /* bands sit on the pattern; .alt adds a navy wash */
 .mm .band {
   padding-block: clamp(72px, 10vw, 140px);
 }
 .mm .band.alt {
   background: color-mix(in srgb, var(--bg-2) 82%, transparent);
+}
+/* over the horse painting every section (02-06) shares one shade (.horse-bg::after), so the .alt
+   bands (Schools, Impact) drop their own tint there: otherwise they read lighter than the others */
+.mm .horse-zone .band.alt {
+  background: none;
 }
 .mm .head {
   display: flex;
@@ -638,7 +721,7 @@ body:has(.mm)::before {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(12px, 1.6vw, 18px);
 }
 .mm .next-schools li {
@@ -722,10 +805,31 @@ body:has(.mm)::before {
   object-fit: cover;
   pointer-events: none;
 }
+/* full screen: the slider breaks out of .wrap to the full viewport width, and on tablet/desktop
+   the stage is one screen tall (below the nav), so the centre photo is as big as the screen allows */
+.mm .focus {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+@media (min-width: 640px) {
+  .mm .focus-stage {
+    --stage-h: calc(100vh - var(--nav-h));
+    aspect-ratio: auto;
+    height: var(--stage-h);
+    border-radius: 0;
+    --S: min(calc(var(--stage-h) * 0.86), 64vw);
+  }
+  @supports (height: 100svh) {
+    .mm .focus-stage {
+      --stage-h: calc(100svh - var(--nav-h));
+    }
+  }
+}
 @media (max-width: 639px) {
   .mm .focus-stage {
-    --S: calc(100cqw * 0.72);
+    --S: calc(100cqw * 0.78);
     aspect-ratio: 4 / 5;
+    border-radius: 0;
   }
 }
 

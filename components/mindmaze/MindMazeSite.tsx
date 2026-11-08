@@ -42,11 +42,18 @@ export default function MindMazeSite() {
         <Header />
         <main>
           <Hero />
-          <Games />
-          <Schools />
-          <MomentsReel />
-          <Edu />
-          <Impact />
+          {/* 02-06 share one pinned horse painting (.horse-zone in mindmaze.css) */}
+          <div className="horse-zone">
+            <div className="horse-track" aria-hidden="true">
+              <div className="horse-bg" />
+              <div className="horse-fade" />
+            </div>
+            <Games />
+            <Schools />
+            <MomentsReel />
+            <Edu />
+            <Impact />
+          </div>
         </main>
         <Footer />
       </SiteRoot>

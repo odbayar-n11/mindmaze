@@ -6,11 +6,11 @@ import { useLang } from './LanguageProvider';
 import Rise from './Rise';
 
 const SCHOOLS: { img: string; h: number; cap: TKey; alt: string }[] = [
-  { img: 'school-21', h: 801, cap: 'sc0', alt: 'Students working on wooden puzzles at 21st Secondary School of Ulaanbaatar' },
-  { img: 'school-24', h: 801, cap: 'sc1', alt: 'Students working on wooden puzzles at 24th Secondary School of Ulaanbaatar' },
+  { img: 'school-21', h: 800, cap: 'sc0', alt: 'Students working on wooden puzzles at 21st Secondary School of Ulaanbaatar' },
+  { img: 'school-24', h: 800, cap: 'sc1', alt: 'Students working on wooden puzzles at 24th Secondary School of Ulaanbaatar' },
   { img: 'school-uvs1', h: 900, cap: 'sc2', alt: 'Students working on wooden puzzles at 1st Secondary School of Uvurkhangai' },
 ];
-const NEXT: TKey[] = ['ns0', 'ns1', 'ns2', 'ns3'];
+const NEXT: TKey[] = ['ns0', 'ns1', 'ns2', 'ns3', 'ns4', 'ns5', 'ns6', 'ns7', 'ns8'];
 
 /** 03: the schools that use the curriculum, and the next partner schools. */
 export default function Schools() {
@@ -32,7 +32,7 @@ export default function Schools() {
         <div className="schools">
           {SCHOOLS.map((s, i) => (
             <Rise as="figure" className="school" index={9 + i} key={s.img}>
-              <Image src={`/img/${s.img}.webp`} width={1200} height={s.h} alt={s.alt} sizes="(max-width: 860px) 100vw, 400px" />
+              <Image src={`/img/${s.img}.webp`} width={1200} height={s.h} alt={s.alt} sizes="(max-width: 860px) 100vw, 400px" quality={90} />
               <figcaption>{t(s.cap)}</figcaption>
             </Rise>
           ))}
