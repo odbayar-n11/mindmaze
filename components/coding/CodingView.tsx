@@ -1,5 +1,4 @@
 import type { CodingVals } from './CodingPage';
-import { fontVars, headFont } from './fonts';
 import Hero from './sections/Hero';
 import WhyCoding from './sections/WhyCoding';
 import WhatWeTeach from './sections/WhatWeTeach';
@@ -13,7 +12,7 @@ import Footer from './sections/Footer';
 /** Markup of the "Coding 2" design. Each section lives in ./sections. */
 export default function CodingView({ v }: { v: CodingVals }) {
   return (
-    <div className={`page-coding ${fontVars}`} style={{ ['--head' as string]: headFont }}>
+    <div className="page-coding">
       <Hero v={v} />
       <WhyCoding v={v} />
       <WhatWeTeach v={v} />

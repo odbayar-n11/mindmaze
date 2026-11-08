@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 
 // The same Google Fonts the designs use (Cyrillic subsets included for the Mongolian text).
 const FONTS =
-  'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&family=Noto+Sans+Mongolian&family=Poppins:wght@600;700&family=Montserrat:wght@700&display=swap';
+  'https://fonts.googleapis.com/css2?family=Jost:wght@600&family=Libre+Caslon+Condensed:wght@600&family=Instrument+Serif:ital@0;1&family=Noto+Sans+Mongolian&display=swap';
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

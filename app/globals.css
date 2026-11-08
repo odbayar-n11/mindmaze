@@ -68,7 +68,7 @@ body {
 }
 .pt-dest {
   min-height: 1em;
-  font-family: 'Jost', 'Futura', sans-serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-weight: 500;
   font-size: 13px;
   letter-spacing: 0.32em;
@@ -79,7 +79,7 @@ body {
 /* Match wrapped desktop/mobile navigation height when following section links. */
 html:has(.page-home),
 html:has(.page-coding) {
-  scroll-padding-top: calc(var(--site-nav-height, 89px) + 12px);
+  scroll-padding-top: calc(var(--site-nav-height, 65px) + 12px);
   scroll-behavior: smooth;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -89,7 +89,7 @@ html:has(.page-coding) {
   }
 }
 .page-home .hero {
-  padding-top: var(--site-nav-height, 89px);
+  padding-top: var(--site-nav-height, 65px);
 }
 
 /* A light navigation surface after leaving the top of the page: the same cream as the homepage (#f3f1e8). */
@@ -268,4 +268,35 @@ html[data-theme='dark'] [data-scroll-header][data-scrolled='true'] .theme-toggle
 }
 @media (prefers-reduced-motion: reduce) {
   [data-scroll-header] { transition: none; }
+}
+
+/* One typeface for the whole site: Instrument Serif (Georgia as fallback). Form controls don't inherit fonts by default. */
+html,
+body {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Titles: Libre Caslon Condensed SemiBold, tightly spaced. It has no Cyrillic, so Mongolian titles fall back to
+   Instrument Serif / Georgia. !important beats the per-page heading rules and inline styles. */
+:root {
+  --title-font: 'Libre Caslon Condensed', 'Instrument Serif', Georgia, serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.sec-title,
+.part-title {
+  font-family: var(--title-font) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  font-synthesis: none;
 }

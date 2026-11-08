@@ -5,7 +5,7 @@ body:has(.page-coding) {
 }
 /* --bar is the pinned header's height (measured by components/navigation/PinnedHeader): the hero leaves room for it */
 html:has(.page-coding) {
-  --bar: var(--site-nav-height, 91px);
+  --bar: var(--site-nav-height, 65px);
 }
 /* the shared site header (components/navigation/SiteHeader): clear over the photo until you scroll;
    its scrolled look is in app/globals.css. --hdr-dark-bg is its colour in dark mode, the page's black. */
@@ -94,8 +94,8 @@ html[data-theme='light'] body:has(.page-coding) {
   stroke: var(--c-surface-2);
 }
 .page-coding {
-  --body: var(--font-inter), system-ui, sans-serif;
-  --code: var(--font-mono), ui-monospace, monospace;
+  --body: 'Instrument Serif', Georgia, serif;
+  --code: 'Instrument Serif', Georgia, serif;
   --accent: #e2574c;
   font-family: var(--body);
   -webkit-font-smoothing: antialiased;
@@ -129,7 +129,7 @@ html[data-theme='light'] body:has(.page-coding) {
 .page-coding .sec-title {
   margin: 0;
   text-align: center;
-  font-family: var(--head);
+  font-family: var(--body);
   font-weight: 400;
   font-size: clamp(40px, 4.6vw, 64px);
   line-height: 1;
@@ -204,7 +204,7 @@ html[data-theme='light'] body:has(.page-coding) {
 }
 .page-coding h1 {
   margin: 0;
-  font-family: var(--head);
+  font-family: var(--body);
   font-weight: 400;
   font-size: clamp(56px, 13vw, 182px);
   line-height: 0.9;
@@ -228,7 +228,7 @@ html[data-theme='light'] body:has(.page-coding) {
 }
 .page-coding .why h2 {
   margin: 0;
-  font-family: var(--head);
+  font-family: var(--body);
   font-weight: 400;
   font-size: clamp(44px, 5.4vw, 76px);
   line-height: 0.98;
@@ -296,7 +296,7 @@ html[data-theme='light'] body:has(.page-coding) {
 }
 .page-coding .why-card h3 {
   margin: 22px 0 0;
-  font-family: var(--head);
+  font-family: var(--body);
   font-weight: 400;
   font-size: 24px;
   line-height: 1.1;
@@ -325,7 +325,7 @@ html[data-theme='light'] body:has(.page-coding) {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  font-family: var(--head);
+  font-family: var(--body);
   font-size: clamp(44px, 6.4vw, 92px);
   line-height: 1.08;
   text-transform: uppercase;
@@ -377,7 +377,7 @@ html[data-theme='light'] body:has(.page-coding) {
 }
 .page-coding .ex h3 {
   margin: 14px 0 0;
-  font-family: var(--head);
+  font-family: var(--body);
   font-weight: 400;
   font-size: clamp(32px, 3.4vw, 48px);
   line-height: 1;
@@ -513,7 +513,7 @@ html[data-theme='light'] body:has(.page-coding) {
   padding-right: 20px;
 }
 .page-coding .step-n {
-  font-family: var(--head);
+  font-family: var(--body);
   font-size: clamp(56px, 5.6vw, 80px);
   line-height: 1;
   color: var(--accent);
@@ -539,7 +539,7 @@ html[data-theme='light'] body:has(.page-coding) {
 }
 .page-coding .steps h3 {
   margin: 0;
-  font-family: var(--head);
+  font-family: var(--body);
   font-weight: 400;
   font-size: 22px;
   text-transform: uppercase;
@@ -580,7 +580,7 @@ html[data-theme='light'] body:has(.page-coding) {
 }
 .page-coding .fmt h3 {
   margin: 0;
-  font-family: var(--head);
+  font-family: var(--body);
   font-weight: 400;
   font-size: 26px;
   text-transform: uppercase;
@@ -642,7 +642,7 @@ html[data-theme='light'] body:has(.page-coding) {
   gap: 12px;
 }
 .page-coding .fmt-v {
-  font-family: var(--head);
+  font-family: var(--body);
   font-size: 34px;
   line-height: 1;
 }
@@ -736,7 +736,7 @@ html[data-theme='light'] body:has(.page-coding) {
   border-right: 0;
 }
 .page-coding .stats dt {
-  font-family: var(--head);
+  font-family: var(--body);
   font-size: clamp(48px, 4.6vw, 64px);
   line-height: 1;
   color: var(--accent);
@@ -764,7 +764,7 @@ html[data-theme='light'] body:has(.page-coding) {
 }
 .page-coding .faq-side h2 {
   margin: 0;
-  font-family: var(--head);
+  font-family: var(--body);
   font-weight: 400;
   font-size: clamp(40px, 4.4vw, 60px);
   line-height: 0.98;
@@ -813,7 +813,7 @@ html[data-theme='light'] body:has(.page-coding) {
   color: var(--c-ink);
   cursor: pointer;
   text-align: left;
-  font-family: var(--head);
+  font-family: var(--body);
   font-size: 22px;
   line-height: 1.15;
   text-transform: uppercase;
@@ -844,7 +844,7 @@ html[data-theme='light'] body:has(.page-coding) {
 }
 .page-coding .apply h2 {
   margin: 0;
-  font-family: var(--head);
+  font-family: var(--body);
   font-weight: 400;
   font-size: clamp(44px, 5.2vw, 72px);
   line-height: 1;
@@ -928,7 +928,7 @@ html[data-theme='light'] body:has(.page-coding) {
 }
 .page-coding .wordmark {
   margin-top: 28px;
-  font-family: var(--head);
+  font-family: var(--body);
   font-size: clamp(96px, 21vw, 300px);
   line-height: 0.78;
   letter-spacing: 0.01em;
@@ -997,7 +997,7 @@ html[data-theme='light'] body:has(.page-coding) {
   transform-origin: 50% 35%;
 }
 .page-coding .reel-name {
-  font-family: var(--head);
+  font-family: var(--body);
   font-size: clamp(36px, 4.5vw, 72px);
   line-height: 1.05;
   color: var(--c-ink);

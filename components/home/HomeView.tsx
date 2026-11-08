@@ -15,7 +15,7 @@ export default function HomeView({ v }: { v: HomeVals }) {
     <div className="page-home">
       <div
         style={{
-          fontFamily: "'Jost', 'Futura', sans-serif",
+          fontFamily: "'Instrument Serif', Georgia, serif",
           color: 'var(--hm-ink)',
           background: 'var(--hm-bg)',
           minWidth: '0',

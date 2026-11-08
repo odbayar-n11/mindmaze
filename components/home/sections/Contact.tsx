@@ -41,7 +41,7 @@ export default function Contact({ v }: { v: HomeVals }) {
             <h2
               style={{
                 margin: '32px 0 0',
-                fontFamily: "'DM Serif Display', Georgia, serif",
+                fontFamily: "'Instrument Serif', Georgia, serif",
                 fontWeight: '400',
                 fontSize: 'clamp(36px, 4vw, 56px)',
                 lineHeight: '1.05',
