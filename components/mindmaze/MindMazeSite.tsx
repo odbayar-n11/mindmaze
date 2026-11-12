@@ -4,6 +4,7 @@ import SiteRoot from './SiteRoot';
 import MongolianPattern from './MongolianPattern';
 import Header from './Header';
 import Hero from './Hero';
+import HorseBg from './HorseBg';
 import Games from './Games';
 import Schools from './Schools';
 import MomentsReel from './MomentsReel';
@@ -45,7 +46,7 @@ export default function MindMazeSite() {
           {/* 02-06 share one pinned horse painting (.horse-zone in mindmaze.css) */}
           <div className="horse-zone">
             <div className="horse-track" aria-hidden="true">
-              <div className="horse-bg" />
+              <HorseBg />
               <div className="horse-fade" />
             </div>
             <Games />

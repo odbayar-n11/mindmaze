@@ -49,7 +49,7 @@ const EN = {
   sc0: '21st Secondary School of Ulaanbaatar',
   sc1: '24th Secondary School of Ulaanbaatar',
   sc2: '1st Secondary School of Uvurkhangai',
-  ns_h: 'Next partner schools',
+  ns_h: 'Partner schools',
   ns0: '1st School of Erdenet',
   ns1: '2nd School of Uvurkhangai',
   ns2: '1st School of Kherlen sum',
