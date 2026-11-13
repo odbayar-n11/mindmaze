@@ -75,7 +75,7 @@ export default function Contact({ v }: { v: HomeVals }) {
                 <dt style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: '18px' }}>
                   {t.email}
                 </dt>
-                <dd style={{ margin: '6px 0 0', fontWeight: '500' }}>[hello@yourdomain.mn]</dd>
+                <dd style={{ margin: '6px 0 0', fontWeight: '500' }}>mindmaze.mongolia@gmail.com</dd>
               </div>
               <div>
                 <dt style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: '18px' }}>

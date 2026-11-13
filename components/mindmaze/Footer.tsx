@@ -5,7 +5,7 @@ import type { TKey } from '@/lib/i18n';
 import { useLang } from './LanguageProvider';
 import Rise from './Rise';
 
-const EMAIL = 'hello@mindmaze.mn';
+const EMAIL = 'mindmaze.mongolia@gmail.com';
 
 /** Contact: the email as selectable text with a Copy button. */
 export default function Footer() {

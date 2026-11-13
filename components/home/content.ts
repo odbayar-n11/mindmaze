@@ -75,12 +75,19 @@ export function homeContent(lang: Lang) {
   ];
   const programs = [
     { n: '01', title: L('Classroom puzzle sessions', 'Ангийн оньсогын хичээл'), text: L('5 aimags · 12 schools · 5000+ children solving traditional puzzles together in class.', '5 аймаг · 12 сургууль · 5000+ хүүхэд ангидаа уламжлалт оньсого хамтдаа тайлж байна.'), hasSchools: false, schools: [] as string[] },
-    { n: '02', title: L('Our partner schools', 'Дараагийн хамтрагч сургуулиуд'), text: L('MindMaze puzzle sessions are coming to five more schools in Ulaanbaatar, Uvurkhangai and Erdenet.', 'MindMaze-ийн оньсогын хичээл Улаанбаатар, Өвөрхангай, Эрдэнэт дэх таван сургуульд удахгүй хүрнэ.'), hasSchools: true, schools: [
+    { n: '02', title: L('Our partner schools', 'Дараагийн хамтрагч сургуулиуд'), text: L('MindMaze puzzle sessions are coming to more schools in Ulaanbaatar, Uvurkhangai, Arkhangai, Khujirt, Kherlen and Erdenet.', 'MindMaze-ийн оньсогын хичээл Улаанбаатар, Өвөрхангай, Архангай, Хужирт, Хэрлэн, Эрдэнэт дэх олон шинэ сургуульд удахгүй хүрнэ.'), hasSchools: true, schools: [
       L('21st Secondary School, Ulaanbaatar', 'Улаанбаатар хотын 21-р дунд сургууль'),
       L('24th School, Ulaanbaatar', 'Улаанбаатар хотын 24-р сургууль'),
       L('1st School, Uvurkhangai', 'Өвөрхангай аймгийн 1-р сургууль'),
       L('2nd School, Uvurkhangai', 'Өвөрхангай аймгийн 2-р сургууль'),
-      L('1st School, Erdenet', 'Эрдэнэт хотын 1-р сургууль')
+      L('1st School, Erdenet', 'Эрдэнэт хотын 1-р сургууль'),
+      L('1st School, Kherlen sum', 'Хэрлэн сумын 1-р сургууль'),
+      L('3rd School, Arkhangai', 'Архангай аймгийн 3-р сургууль'),
+      L('1st School, Khujirt', 'Хужирт сумын 1-р сургууль'),
+      L('2nd School, Khujirt', 'Хужирт сумын 2-р сургууль'),
+      L('47th School, Ulaanbaatar', 'Улаанбаатар хотын 47-р сургууль'),
+      L('111th School, Ulaanbaatar', 'Улаанбаатар хотын 111-р сургууль'),
+      L('84th School, Ulaanbaatar', 'Улаанбаатар хотын 84-р сургууль')
     ] }
   ];
   // Marquee photos: new 1800px classroom shots + AI-upscaled Figma photos. w = width at 340px height.
