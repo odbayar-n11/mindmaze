@@ -42,7 +42,7 @@ export default function Impact({ v }: { v: HomeVals }) {
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: '10px' }}>
             <span
               style={{
-                fontFamily: "'Jost', 'Futura', sans-serif",
+                fontFamily: "'Instrument Serif', Georgia, serif",
                 fontWeight: '700',
                 fontSize: '24px',
                 paddingBottom: '4px',
@@ -52,7 +52,7 @@ export default function Impact({ v }: { v: HomeVals }) {
             </span>
             <span
               style={{
-                fontFamily: "'Jost', 'Futura', sans-serif",
+                fontFamily: "'Instrument Serif', Georgia, serif",
                 fontWeight: '700',
                 fontSize: 'clamp(30px, 3.4vw, 46px)',
                 lineHeight: '1',
@@ -65,7 +65,7 @@ export default function Impact({ v }: { v: HomeVals }) {
             <h2
               style={{
                 margin: '0 0 0 clamp(14px, 2vw, 28px)',
-                fontFamily: "'DM Serif Display', Georgia, serif",
+                fontFamily: "'Instrument Serif', Georgia, serif",
                 fontWeight: '400',
                 fontSize: 'clamp(34px, 4vw, 56px)',
                 lineHeight: '1.05',
@@ -259,7 +259,7 @@ export default function Impact({ v }: { v: HomeVals }) {
                     <h3
                       style={{
                         margin: '0',
-                        fontFamily: "'DM Serif Display', Georgia, serif",
+                        fontFamily: "'Instrument Serif', Georgia, serif",
                         fontSize: '22px',
                         fontWeight: '400',
                         letterSpacing: '0.02em',

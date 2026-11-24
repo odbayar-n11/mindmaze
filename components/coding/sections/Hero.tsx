@@ -1,5 +1,6 @@
 import SiteHeader from '../../navigation/SiteHeader';
 import type { CodingVals } from '../CodingPage';
+import { heroFontVars, heroHeadFont } from '../fonts';
 
 export default function Hero({ v }: { v: CodingVals }) {
   const { isEn, nav, setEn, setMn, t } = v;
@@ -15,7 +16,7 @@ export default function Hero({ v }: { v: CodingVals }) {
         loginLabel={t.login}
       />
 
-      <div className="hero">
+      <div className={`hero ${heroFontVars}`} style={{ ['--hero-head' as string]: heroHeadFont }}>
         <div aria-hidden="true" className="hero-bg">
           <img src="/media/3c6a4baae0bcebef7966ed568cb0faaf.jpg" alt="" />
           <div className="hero-shade" />

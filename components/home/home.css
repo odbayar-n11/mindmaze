@@ -275,7 +275,7 @@ html[data-theme='dark'] .page-home .map-img {
 }
 .page-home #top .hero-title h1 {
   margin: 0;
-  font-family: 'DM Serif Display', Georgia, serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-weight: 400;
   font-size: min(98px, 7vw);
   line-height: 0.98;
@@ -297,7 +297,7 @@ html[data-theme='dark'] .page-home .map-img {
 .page-home #top .hero-lead {
   margin: 24px 0 0;
   max-width: 470px;
-  font-family: 'Jost', 'Futura', sans-serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-weight: 400;
   font-size: clamp(17px, 1.45vw, 21px);
   line-height: 1.55;
@@ -309,7 +309,7 @@ html[data-theme='dark'] .page-home .map-img {
   .page-home #top {
     height: auto;
     min-height: 100svh;
-    padding-top: var(--site-nav-height, 89px);
+    padding-top: var(--site-nav-height, 65px);
   }
   /* the photo takes whatever height is left under the title and description, at least 240px */
   .page-home #top .hero-img {
@@ -340,8 +340,8 @@ html[data-theme='dark'] .page-home .map-img {
    (the screen height under the pinned header), with its content centred in it */
 .page-home .why {
   box-sizing: border-box;
-  min-height: calc(100vh - var(--site-nav-height, 89px));
-  min-height: calc(100svh - var(--site-nav-height, 89px));
+  min-height: calc(100vh - var(--site-nav-height, 65px));
+  min-height: calc(100svh - var(--site-nav-height, 65px));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -446,13 +446,13 @@ html[data-theme='dark'] .page-home .why-card::before {
   gap: 10px;
 }
 .page-home .part-word {
-  font-family: 'Jost', 'Futura', sans-serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-weight: 700;
   font-size: 24px;
   padding-bottom: 4px;
 }
 .page-home .part-num {
-  font-family: 'Jost', 'Futura', sans-serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-weight: 700;
   font-size: clamp(30px, 3.4vw, 46px);
   line-height: 1;
@@ -461,7 +461,7 @@ html[data-theme='dark'] .page-home .why-card::before {
 }
 .page-home .part-title {
   margin: 0 0 0 clamp(14px, 2vw, 28px);
-  font-family: 'DM Serif Display', Georgia, serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-weight: 400;
   font-size: clamp(34px, 4vw, 56px);
   line-height: 1.05;
@@ -516,7 +516,7 @@ html[data-theme='dark'] .page-home .why-card::before {
 }
 .page-home .story-by {
   margin-top: 24px;
-  font-family: 'Jost', 'Futura', sans-serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -548,7 +548,7 @@ html[data-theme='dark'] .page-home .why-card::before {
 }
 .page-home .story-beats h3 {
   margin: 0;
-  font-family: 'DM Serif Display', Georgia, serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-weight: 400;
   font-size: 22px;
   line-height: 1.2;
@@ -596,14 +596,15 @@ html[data-theme='dark'] .page-home .why-card::before {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  min-height: calc(clamp(220px, 19vw, 400px) + 215px);
+  /* a fifth shorter than the design's clamp(220px, 19vw, 400px) + 215px */
+  min-height: calc((clamp(220px, 19vw, 400px) + 215px) * 0.8);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 32px;
   padding: clamp(28px, 3.2vw, 46px) clamp(26px, 3.2vw, 46px) clamp(24px, 2.6vw, 38px);
   border-radius: 18px;
-  font-family: 'Jost', 'Futura', sans-serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease;
@@ -623,7 +624,7 @@ html[data-theme='dark'] .page-home .why-card::before {
 }
 .page-home .pc-body h3 {
   margin: 0;
-  font-family: 'Jost', 'Futura', sans-serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-weight: 500;
   font-size: clamp(30px, 3vw, 44px);
   line-height: 1.12;
@@ -632,7 +633,7 @@ html[data-theme='dark'] .page-home .why-card::before {
 }
 .page-home .pc-body p {
   margin: 18px 0 0;
-  font-family: 'Jost', 'Futura', sans-serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-size: 17px;
   line-height: 1.6;
   max-width: 340px;
@@ -644,7 +645,7 @@ html[data-theme='dark'] .page-home .why-card::before {
   align-items: center;
   gap: 16px;
   min-height: 44px;
-  font-family: 'Jost', 'Futura', sans-serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -788,14 +789,10 @@ html[data-theme='dark'] .page-home .why-card::before {
 }
 
 /* ---------------------------------------------------------------- titles
-   Every heading on the homepage: Poppins Bold in dark navy (--hm-title) (Poppins has no Cyrillic, so Mongolian
-   titles fall back to Montserrat Bold, which matches it closely). !important beats the inline styles. */
+   Every heading on the homepage is dark navy (--hm-title); the title font itself is set site-wide in app/globals.css. */
 .page-home h1,
 .page-home h2,
 .page-home h3 {
-  font-family: 'Poppins', 'Montserrat', 'Jost', sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: 0 !important;
   color: var(--hm-title) !important;
 }
 /* headings on dark backgrounds keep their light colour (blue would not read there) */

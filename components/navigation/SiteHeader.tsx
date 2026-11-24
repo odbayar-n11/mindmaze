@@ -114,7 +114,7 @@ export default function SiteHeader({
     cursor: 'pointer',
     padding: '0 14px',
     minHeight: '44px',
-    fontFamily: 'inherit',
+    fontFamily: "'Jost', 'Futura', sans-serif", // the EN/MN switch keeps Jost (it has the Cyrillic МН)
     fontWeight: '600',
     fontSize: '12px',
     letterSpacing: '0.12em',
@@ -126,9 +126,9 @@ export default function SiteHeader({
       style={{
         position: 'relative',
         zIndex: '1',
-        padding: '26px max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) 18px',
+        padding: '10px max(clamp(24px, 5vw, 64px), calc((100% - 1360px) / 2)) 10px',
         borderBottom: '1px solid rgba(243,239,230,0.18)',
-        fontFamily: "'Jost', 'Futura', sans-serif",
+        fontFamily: "'Instrument Serif', Georgia, serif",
       }}
     >
       <div ref={startRef} className="site-header-start">
