@@ -119,7 +119,7 @@ export default function Team({ v }: { v: HomeVals }) {
                 key={i}
                 className="card tm"
                 aria-hidden={m.hid}
-                style={{ margin: '0', paddingRight: '24px', flex: '0 0 auto', width: '240px' }}
+                style={{ margin: '0', paddingRight: '24px', flex: '0 0 auto', width: 'clamp(280px, 24vw, 380px)' }}
               >
                 <div
                   style={{

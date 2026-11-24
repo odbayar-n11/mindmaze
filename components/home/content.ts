@@ -143,17 +143,18 @@ export function homeContent(lang: Lang) {
   });
   const leads = (
     [
-    { ini: 'АӨ', name: L('Anujin Ulziidelger', 'Анужин Өлзийдэлгэр'), role: L('Founder & President', 'Үүсгэн байгуулагч, Ерөнхийлөгч'), img: '/media/cd048eecf80469ed02d2a3288bcdcf77.jpg', poster: true },
-    { ini: 'ЭГ', name: L('Erkhem Ganzorig', 'Эрхэм Ганзориг'), role: L('Chief Technology Officer', 'Технологийн захирал'), img: '/media/dcc00b6d0eab1d4bd2d3f0a6997b6810.jpg', poster: true },
-    { ini: 'МЧ', name: L('Michid-Erdene Chadraabal', 'Мичид-Эрдэнэ Чадраабал'), role: L('Lead member', 'Удирдах гишүүн'), img: '/media/48927a094aa6084d881cd76a28ca8d54.jpg', poster: true },
-    { ini: 'ОН', name: L('Odbayar Nyambayar', 'Одбаяр Нямбаяр'), role: L('Lead member', 'Удирдах гишүүн'), img: '/media/57f73ea335c251b0c3c1442ce3694be3.jpg', poster: true }
+    { ini: 'АӨ', name: L('Anujin Ulziidelger', 'Анужин Өлзийдэлгэр'), role: L('Founder & President, Teacher', 'Үүсгэн байгуулагч, Ерөнхийлөгч, Багш'), img: '/media/anujin-teacher.jpg', poster: true },
+    { ini: 'ЭГ', name: L('Erkhem Ganzorig', 'Эрхэм Ганзориг'), role: L('Chief Technology Officer, Teacher', 'Технологийн захирал, Багш'), img: '/media/erkhem-teacher.jpg', poster: true },
+    { ini: 'МЧ', name: L('Michid-Erdene Chadraabal', 'Мичид-Эрдэнэ Чадраабал'), role: L('Teacher', 'Багш'), img: '/media/michid-erdene-teacher.jpg', poster: true },
+    { ini: 'ОН', name: L('Odbayar Nyambayar', 'Одбаяр Нямбаяр'), role: L('Teacher', 'Багш'), img: '/media/odbayar-teacher.jpg', poster: true }
   ] as Person[]
   ).map(person);
   const members = (
     [
-    { ini: 'ДУ', name: L('Dulguun Uuganbaatar', 'Дөлгөөн Ууганбаатар'), role: L('UW Chapter Leader', 'Вашингтоны их сургуулийн салбарын ахлагч'), img: '/media/d967f981655b5e83531052a80573b5c8.jpg', poster: true },
-    { ini: 'МБ', name: L('Munkhdalai Batbayar', 'Мөнхдалай Батбаяр'), role: L('School Administrator', 'Сургуулийн администратор'), img: '/media/6b92678bb898a1dba561b7a2e903be54.jpg', poster: true },
-    { ini: 'УГ', name: L('Undram Ganzorig', 'Ундрам Ганзориг'), role: L('Team member', 'Багийн гишүүн'), img: '/media/undram-ganzorig.jpg', poster: true }
+    { ini: 'ДУ', name: L('Dulguun Uuganbaatar', 'Дөлгөөн Ууганбаатар'), role: L('UW Chapter Leader, Teacher', 'Вашингтоны их сургуулийн салбарын ахлагч, Багш'), img: '/media/dulguun-teacher.jpg', poster: true },
+    { ini: 'МБ', name: L('Munkhdalai Batbayar', 'Мөнхдалай Батбаяр'), role: L('School Administrator, Teacher', 'Сургуулийн администратор, Багш'), img: '/media/munkhdalai-teacher.jpg', poster: true },
+    { ini: 'УГ', name: L('Undram Ganzorig', 'Ундрам Ганзориг'), role: L('School Administrator, Teacher', 'Сургуулийн администратор, Багш'), img: '/media/undram-teacher.jpg', poster: true },
+    { ini: 'НО', name: L('Nomu-luun Olonbayar', 'Номуулун Олонбаяр'), role: L('Teacher', 'Багш'), img: '/media/nomuluun-olonbayar.jpg', poster: true }
   ] as Person[]
   ).map(person);
   // Sliding rows repeat the people until each half is wider than a big screen; repeats are hidden from screen readers.

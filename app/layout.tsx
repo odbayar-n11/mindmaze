@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import PageTransition from '@/components/transition/PageTransition';
+import ScrollReveal from '@/components/transition/ScrollReveal';
 import { THEME_SCRIPT } from '@/components/navigation/theme';
 import './globals.css';
 
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         <PageTransition>{children}</PageTransition>
+        <ScrollReveal />
       </body>
     </html>
   );
