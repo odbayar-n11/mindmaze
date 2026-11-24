@@ -269,3 +269,30 @@ html[data-theme='dark'] [data-scroll-header][data-scrolled='true'] .theme-toggle
 @media (prefers-reduced-motion: reduce) {
   [data-scroll-header] { transition: none; }
 }
+
+/* Scroll pop-up (components/transition/ScrollReveal.tsx) */
+.sr {
+  opacity: 0;
+}
+.sr-in {
+  opacity: 1;
+  animation: sr-up 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) var(--sr-delay, 0ms) backwards;
+}
+@keyframes sr-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 56px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sr {
+    opacity: 1;
+  }
+  .sr-in {
+    animation: none;
+  }
+}

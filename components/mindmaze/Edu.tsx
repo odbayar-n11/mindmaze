@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import type { TKey } from '@/lib/i18n';
 import { useInView } from '@/lib/useInView';
@@ -42,8 +41,6 @@ function CountUp({ end }: { end: number }) {
   return <b ref={ref}>{value}%</b>;
 }
 
-const FIG = { width: 696, height: 817, sizes: '(max-width: 860px) 100vw, 400px', alt: '' };
-
 /** MindMaze EDU: how a program works, at a glance, and early results. */
 export default function Edu() {
   const { t } = useLang();
@@ -58,11 +55,6 @@ export default function Edu() {
             </h2>
             <p className="edu-intro">{t('edu_i')}</p>
           </Rise>
-          <figure className="fig" aria-label="Illustration: a person whose head is a wooden burr puzzle">
-            <Image src="/img/fig-body.webp" {...FIG} />
-            <Image className="head-l" src="/img/fig-head.webp" {...FIG} />
-            <Image className="hand-l" src="/img/fig-hand.webp" {...FIG} />
-          </figure>
         </div>
         <div className="edu-body">
           <Rise index={14}>
